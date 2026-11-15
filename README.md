@@ -24,7 +24,7 @@ cd mysite && cargo run -- migrate && cargo run -- runserver
 In an existing project, add `rangoframework = "0.1"` to `Cargo.toml`; the library is imported as `rango`
 (`use rango::db::models::Model;`).
 
-Repository: <https://github.com/ZFCon/rango>
+Repository: <https://github.com/ZFCon/rango-framework>
 
 - `docs/tutorial.md` — build a polls app step by step.
 - `docs/guide.md` — module map, rules of thumb, design notes.
