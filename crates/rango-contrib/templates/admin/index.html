@@ -1,0 +1,10 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<h2>{{ index_title }}</h2>
+{% for app in app_list %}
+<table class="module"><caption>{{ app.name }}</caption>
+{% for m in app.models %}<tr><th><a href="{{ m.url }}">{{ m.name }}</a></th>
+<td>{% if m.add_url %}<a href="{{ m.add_url }}">+ Add</a>{% endif %}</td></tr>{% endfor %}
+</table>
+{% empty %}<p>You don’t have permission to view or edit anything.</p>{% endfor %}
+{% endblock %}

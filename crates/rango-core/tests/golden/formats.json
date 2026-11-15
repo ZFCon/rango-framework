@@ -1,0 +1,1190 @@
+{
+ "formats": [
+  {
+   "lang": "en",
+   "name": "DATE_FORMAT",
+   "value": "N j, Y"
+  },
+  {
+   "lang": "en",
+   "name": "DATETIME_FORMAT",
+   "value": "N j, Y, P"
+  },
+  {
+   "lang": "en",
+   "name": "TIME_FORMAT",
+   "value": "P"
+  },
+  {
+   "lang": "en",
+   "name": "YEAR_MONTH_FORMAT",
+   "value": "F Y"
+  },
+  {
+   "lang": "en",
+   "name": "MONTH_DAY_FORMAT",
+   "value": "F j"
+  },
+  {
+   "lang": "en",
+   "name": "SHORT_DATE_FORMAT",
+   "value": "m/d/Y"
+  },
+  {
+   "lang": "en",
+   "name": "SHORT_DATETIME_FORMAT",
+   "value": "m/d/Y P"
+  },
+  {
+   "lang": "en",
+   "name": "FIRST_DAY_OF_WEEK",
+   "value": 0
+  },
+  {
+   "lang": "en",
+   "name": "DECIMAL_SEPARATOR",
+   "value": "."
+  },
+  {
+   "lang": "en",
+   "name": "THOUSAND_SEPARATOR",
+   "value": ","
+  },
+  {
+   "lang": "en",
+   "name": "NUMBER_GROUPING",
+   "value": 3
+  },
+  {
+   "lang": "en",
+   "name": "DATE_INPUT_FORMATS",
+   "value": [
+    "%Y-%m-%d",
+    "%m/%d/%Y",
+    "%m/%d/%y",
+    "%b %d %Y",
+    "%b %d, %Y",
+    "%d %b %Y",
+    "%d %b, %Y",
+    "%B %d %Y",
+    "%B %d, %Y",
+    "%d %B %Y",
+    "%d %B, %Y"
+   ]
+  },
+  {
+   "lang": "en",
+   "name": "TIME_INPUT_FORMATS",
+   "value": [
+    "%H:%M:%S",
+    "%H:%M:%S.%f",
+    "%H:%M"
+   ]
+  },
+  {
+   "lang": "en",
+   "name": "DATETIME_INPUT_FORMATS",
+   "value": [
+    "%Y-%m-%d %H:%M:%S",
+    "%Y-%m-%d %H:%M:%S.%f",
+    "%Y-%m-%d %H:%M",
+    "%m/%d/%Y %H:%M:%S",
+    "%m/%d/%Y %H:%M:%S.%f",
+    "%m/%d/%Y %H:%M",
+    "%m/%d/%y %H:%M:%S",
+    "%m/%d/%y %H:%M:%S.%f",
+    "%m/%d/%y %H:%M",
+    "%Y-%m-%d"
+   ]
+  },
+  {
+   "lang": "en-us",
+   "name": "DATE_FORMAT",
+   "value": "N j, Y"
+  },
+  {
+   "lang": "en-us",
+   "name": "DATETIME_FORMAT",
+   "value": "N j, Y, P"
+  },
+  {
+   "lang": "en-us",
+   "name": "TIME_FORMAT",
+   "value": "P"
+  },
+  {
+   "lang": "en-us",
+   "name": "YEAR_MONTH_FORMAT",
+   "value": "F Y"
+  },
+  {
+   "lang": "en-us",
+   "name": "MONTH_DAY_FORMAT",
+   "value": "F j"
+  },
+  {
+   "lang": "en-us",
+   "name": "SHORT_DATE_FORMAT",
+   "value": "m/d/Y"
+  },
+  {
+   "lang": "en-us",
+   "name": "SHORT_DATETIME_FORMAT",
+   "value": "m/d/Y P"
+  },
+  {
+   "lang": "en-us",
+   "name": "FIRST_DAY_OF_WEEK",
+   "value": 0
+  },
+  {
+   "lang": "en-us",
+   "name": "DECIMAL_SEPARATOR",
+   "value": "."
+  },
+  {
+   "lang": "en-us",
+   "name": "THOUSAND_SEPARATOR",
+   "value": ","
+  },
+  {
+   "lang": "en-us",
+   "name": "NUMBER_GROUPING",
+   "value": 3
+  },
+  {
+   "lang": "en-us",
+   "name": "DATE_INPUT_FORMATS",
+   "value": [
+    "%Y-%m-%d",
+    "%m/%d/%Y",
+    "%m/%d/%y",
+    "%b %d %Y",
+    "%b %d, %Y",
+    "%d %b %Y",
+    "%d %b, %Y",
+    "%B %d %Y",
+    "%B %d, %Y",
+    "%d %B %Y",
+    "%d %B, %Y"
+   ]
+  },
+  {
+   "lang": "en-us",
+   "name": "TIME_INPUT_FORMATS",
+   "value": [
+    "%H:%M:%S",
+    "%H:%M:%S.%f",
+    "%H:%M"
+   ]
+  },
+  {
+   "lang": "en-us",
+   "name": "DATETIME_INPUT_FORMATS",
+   "value": [
+    "%Y-%m-%d %H:%M:%S",
+    "%Y-%m-%d %H:%M:%S.%f",
+    "%Y-%m-%d %H:%M",
+    "%m/%d/%Y %H:%M:%S",
+    "%m/%d/%Y %H:%M:%S.%f",
+    "%m/%d/%Y %H:%M",
+    "%m/%d/%y %H:%M:%S",
+    "%m/%d/%y %H:%M:%S.%f",
+    "%m/%d/%y %H:%M",
+    "%Y-%m-%d"
+   ]
+  },
+  {
+   "lang": "en-gb",
+   "name": "DATE_FORMAT",
+   "value": "j M Y"
+  },
+  {
+   "lang": "en-gb",
+   "name": "DATETIME_FORMAT",
+   "value": "j M Y, P"
+  },
+  {
+   "lang": "en-gb",
+   "name": "TIME_FORMAT",
+   "value": "P"
+  },
+  {
+   "lang": "en-gb",
+   "name": "YEAR_MONTH_FORMAT",
+   "value": "F Y"
+  },
+  {
+   "lang": "en-gb",
+   "name": "MONTH_DAY_FORMAT",
+   "value": "j F"
+  },
+  {
+   "lang": "en-gb",
+   "name": "SHORT_DATE_FORMAT",
+   "value": "d/m/Y"
+  },
+  {
+   "lang": "en-gb",
+   "name": "SHORT_DATETIME_FORMAT",
+   "value": "d/m/Y P"
+  },
+  {
+   "lang": "en-gb",
+   "name": "FIRST_DAY_OF_WEEK",
+   "value": 1
+  },
+  {
+   "lang": "en-gb",
+   "name": "DECIMAL_SEPARATOR",
+   "value": "."
+  },
+  {
+   "lang": "en-gb",
+   "name": "THOUSAND_SEPARATOR",
+   "value": ","
+  },
+  {
+   "lang": "en-gb",
+   "name": "NUMBER_GROUPING",
+   "value": 3
+  },
+  {
+   "lang": "en-gb",
+   "name": "DATE_INPUT_FORMATS",
+   "value": [
+    "%d/%m/%Y",
+    "%d/%m/%y",
+    "%Y-%m-%d"
+   ]
+  },
+  {
+   "lang": "en-gb",
+   "name": "TIME_INPUT_FORMATS",
+   "value": [
+    "%H:%M:%S",
+    "%H:%M:%S.%f",
+    "%H:%M"
+   ]
+  },
+  {
+   "lang": "en-gb",
+   "name": "DATETIME_INPUT_FORMATS",
+   "value": [
+    "%Y-%m-%d %H:%M:%S",
+    "%Y-%m-%d %H:%M:%S.%f",
+    "%Y-%m-%d %H:%M",
+    "%d/%m/%Y %H:%M:%S",
+    "%d/%m/%Y %H:%M:%S.%f",
+    "%d/%m/%Y %H:%M",
+    "%d/%m/%y %H:%M:%S",
+    "%d/%m/%y %H:%M:%S.%f",
+    "%d/%m/%y %H:%M",
+    "%Y-%m-%d"
+   ]
+  },
+  {
+   "lang": "de",
+   "name": "DATE_FORMAT",
+   "value": "j. F Y"
+  },
+  {
+   "lang": "de",
+   "name": "DATETIME_FORMAT",
+   "value": "j. F Y H:i"
+  },
+  {
+   "lang": "de",
+   "name": "TIME_FORMAT",
+   "value": "H:i"
+  },
+  {
+   "lang": "de",
+   "name": "YEAR_MONTH_FORMAT",
+   "value": "F Y"
+  },
+  {
+   "lang": "de",
+   "name": "MONTH_DAY_FORMAT",
+   "value": "j. F"
+  },
+  {
+   "lang": "de",
+   "name": "SHORT_DATE_FORMAT",
+   "value": "d.m.Y"
+  },
+  {
+   "lang": "de",
+   "name": "SHORT_DATETIME_FORMAT",
+   "value": "d.m.Y H:i"
+  },
+  {
+   "lang": "de",
+   "name": "FIRST_DAY_OF_WEEK",
+   "value": 1
+  },
+  {
+   "lang": "de",
+   "name": "DECIMAL_SEPARATOR",
+   "value": ","
+  },
+  {
+   "lang": "de",
+   "name": "THOUSAND_SEPARATOR",
+   "value": "."
+  },
+  {
+   "lang": "de",
+   "name": "NUMBER_GROUPING",
+   "value": 3
+  },
+  {
+   "lang": "de",
+   "name": "DATE_INPUT_FORMATS",
+   "value": [
+    "%d.%m.%Y",
+    "%d.%m.%y",
+    "%Y-%m-%d"
+   ]
+  },
+  {
+   "lang": "de",
+   "name": "TIME_INPUT_FORMATS",
+   "value": [
+    "%H:%M:%S",
+    "%H:%M:%S.%f",
+    "%H:%M"
+   ]
+  },
+  {
+   "lang": "de",
+   "name": "DATETIME_INPUT_FORMATS",
+   "value": [
+    "%d.%m.%Y %H:%M:%S",
+    "%d.%m.%Y %H:%M:%S.%f",
+    "%d.%m.%Y %H:%M",
+    "%Y-%m-%d %H:%M:%S",
+    "%Y-%m-%d %H:%M:%S.%f",
+    "%Y-%m-%d %H:%M",
+    "%Y-%m-%d"
+   ]
+  },
+  {
+   "lang": "fr",
+   "name": "DATE_FORMAT",
+   "value": "j F Y"
+  },
+  {
+   "lang": "fr",
+   "name": "DATETIME_FORMAT",
+   "value": "j F Y H:i"
+  },
+  {
+   "lang": "fr",
+   "name": "TIME_FORMAT",
+   "value": "H:i"
+  },
+  {
+   "lang": "fr",
+   "name": "YEAR_MONTH_FORMAT",
+   "value": "F Y"
+  },
+  {
+   "lang": "fr",
+   "name": "MONTH_DAY_FORMAT",
+   "value": "j F"
+  },
+  {
+   "lang": "fr",
+   "name": "SHORT_DATE_FORMAT",
+   "value": "d/m/Y"
+  },
+  {
+   "lang": "fr",
+   "name": "SHORT_DATETIME_FORMAT",
+   "value": "d/m/Y H:i"
+  },
+  {
+   "lang": "fr",
+   "name": "FIRST_DAY_OF_WEEK",
+   "value": 1
+  },
+  {
+   "lang": "fr",
+   "name": "DECIMAL_SEPARATOR",
+   "value": ","
+  },
+  {
+   "lang": "fr",
+   "name": "THOUSAND_SEPARATOR",
+   "value": " "
+  },
+  {
+   "lang": "fr",
+   "name": "NUMBER_GROUPING",
+   "value": 3
+  },
+  {
+   "lang": "fr",
+   "name": "DATE_INPUT_FORMATS",
+   "value": [
+    "%d/%m/%Y",
+    "%d/%m/%y",
+    "%Y-%m-%d"
+   ]
+  },
+  {
+   "lang": "fr",
+   "name": "TIME_INPUT_FORMATS",
+   "value": [
+    "%H:%M:%S",
+    "%H:%M:%S.%f",
+    "%H:%M"
+   ]
+  },
+  {
+   "lang": "fr",
+   "name": "DATETIME_INPUT_FORMATS",
+   "value": [
+    "%d/%m/%Y %H:%M:%S",
+    "%d/%m/%Y %H:%M:%S.%f",
+    "%d/%m/%Y %H:%M",
+    "%Y-%m-%d %H:%M:%S",
+    "%Y-%m-%d %H:%M:%S.%f",
+    "%Y-%m-%d %H:%M",
+    "%Y-%m-%d"
+   ]
+  },
+  {
+   "lang": "cs",
+   "name": "DATE_FORMAT",
+   "value": "j. E Y"
+  },
+  {
+   "lang": "cs",
+   "name": "DATETIME_FORMAT",
+   "value": "j. E Y G:i"
+  },
+  {
+   "lang": "cs",
+   "name": "TIME_FORMAT",
+   "value": "G:i"
+  },
+  {
+   "lang": "cs",
+   "name": "YEAR_MONTH_FORMAT",
+   "value": "F Y"
+  },
+  {
+   "lang": "cs",
+   "name": "MONTH_DAY_FORMAT",
+   "value": "j. F"
+  },
+  {
+   "lang": "cs",
+   "name": "SHORT_DATE_FORMAT",
+   "value": "d.m.Y"
+  },
+  {
+   "lang": "cs",
+   "name": "SHORT_DATETIME_FORMAT",
+   "value": "d.m.Y G:i"
+  },
+  {
+   "lang": "cs",
+   "name": "FIRST_DAY_OF_WEEK",
+   "value": 1
+  },
+  {
+   "lang": "cs",
+   "name": "DECIMAL_SEPARATOR",
+   "value": ","
+  },
+  {
+   "lang": "cs",
+   "name": "THOUSAND_SEPARATOR",
+   "value": " "
+  },
+  {
+   "lang": "cs",
+   "name": "NUMBER_GROUPING",
+   "value": 3
+  },
+  {
+   "lang": "cs",
+   "name": "DATE_INPUT_FORMATS",
+   "value": [
+    "%d.%m.%Y",
+    "%d.%m.%y",
+    "%d. %m. %Y",
+    "%d. %m. %y",
+    "%Y-%m-%d"
+   ]
+  },
+  {
+   "lang": "cs",
+   "name": "TIME_INPUT_FORMATS",
+   "value": [
+    "%H:%M:%S",
+    "%H.%M",
+    "%H:%M",
+    "%H:%M:%S.%f"
+   ]
+  },
+  {
+   "lang": "cs",
+   "name": "DATETIME_INPUT_FORMATS",
+   "value": [
+    "%d.%m.%Y %H:%M:%S",
+    "%d.%m.%Y %H:%M:%S.%f",
+    "%d.%m.%Y %H.%M",
+    "%d.%m.%Y %H:%M",
+    "%d. %m. %Y %H:%M:%S",
+    "%d. %m. %Y %H:%M:%S.%f",
+    "%d. %m. %Y %H.%M",
+    "%d. %m. %Y %H:%M",
+    "%Y-%m-%d %H.%M",
+    "%Y-%m-%d %H:%M:%S",
+    "%Y-%m-%d %H:%M:%S.%f",
+    "%Y-%m-%d %H:%M",
+    "%Y-%m-%d"
+   ]
+  },
+  {
+   "lang": "pt-br",
+   "name": "DATE_FORMAT",
+   "value": "j \\d\\e F \\d\\e Y"
+  },
+  {
+   "lang": "pt-br",
+   "name": "DATETIME_FORMAT",
+   "value": "j \\d\\e F \\d\\e Y à\\s H:i"
+  },
+  {
+   "lang": "pt-br",
+   "name": "TIME_FORMAT",
+   "value": "H:i"
+  },
+  {
+   "lang": "pt-br",
+   "name": "YEAR_MONTH_FORMAT",
+   "value": "F \\d\\e Y"
+  },
+  {
+   "lang": "pt-br",
+   "name": "MONTH_DAY_FORMAT",
+   "value": "j \\d\\e F"
+  },
+  {
+   "lang": "pt-br",
+   "name": "SHORT_DATE_FORMAT",
+   "value": "d/m/Y"
+  },
+  {
+   "lang": "pt-br",
+   "name": "SHORT_DATETIME_FORMAT",
+   "value": "d/m/Y H:i"
+  },
+  {
+   "lang": "pt-br",
+   "name": "FIRST_DAY_OF_WEEK",
+   "value": 0
+  },
+  {
+   "lang": "pt-br",
+   "name": "DECIMAL_SEPARATOR",
+   "value": ","
+  },
+  {
+   "lang": "pt-br",
+   "name": "THOUSAND_SEPARATOR",
+   "value": "."
+  },
+  {
+   "lang": "pt-br",
+   "name": "NUMBER_GROUPING",
+   "value": 3
+  },
+  {
+   "lang": "pt-br",
+   "name": "DATE_INPUT_FORMATS",
+   "value": [
+    "%d/%m/%Y",
+    "%d/%m/%y",
+    "%Y-%m-%d"
+   ]
+  },
+  {
+   "lang": "pt-br",
+   "name": "TIME_INPUT_FORMATS",
+   "value": [
+    "%H:%M:%S",
+    "%H:%M:%S.%f",
+    "%H:%M"
+   ]
+  },
+  {
+   "lang": "pt-br",
+   "name": "DATETIME_INPUT_FORMATS",
+   "value": [
+    "%d/%m/%Y %H:%M:%S",
+    "%d/%m/%Y %H:%M:%S.%f",
+    "%d/%m/%Y %H:%M",
+    "%d/%m/%y %H:%M:%S",
+    "%d/%m/%y %H:%M:%S.%f",
+    "%d/%m/%y %H:%M",
+    "%Y-%m-%d %H:%M:%S",
+    "%Y-%m-%d %H:%M:%S.%f",
+    "%Y-%m-%d %H:%M",
+    "%Y-%m-%d"
+   ]
+  },
+  {
+   "lang": "ja",
+   "name": "DATE_FORMAT",
+   "value": "Y年n月j日"
+  },
+  {
+   "lang": "ja",
+   "name": "DATETIME_FORMAT",
+   "value": "Y年n月j日G:i"
+  },
+  {
+   "lang": "ja",
+   "name": "TIME_FORMAT",
+   "value": "G:i"
+  },
+  {
+   "lang": "ja",
+   "name": "YEAR_MONTH_FORMAT",
+   "value": "Y年n月"
+  },
+  {
+   "lang": "ja",
+   "name": "MONTH_DAY_FORMAT",
+   "value": "n月j日"
+  },
+  {
+   "lang": "ja",
+   "name": "SHORT_DATE_FORMAT",
+   "value": "Y/m/d"
+  },
+  {
+   "lang": "ja",
+   "name": "SHORT_DATETIME_FORMAT",
+   "value": "Y/m/d G:i"
+  },
+  {
+   "lang": "ja",
+   "name": "FIRST_DAY_OF_WEEK",
+   "value": 0
+  },
+  {
+   "lang": "ja",
+   "name": "DECIMAL_SEPARATOR",
+   "value": "."
+  },
+  {
+   "lang": "ja",
+   "name": "THOUSAND_SEPARATOR",
+   "value": ","
+  },
+  {
+   "lang": "ja",
+   "name": "NUMBER_GROUPING",
+   "value": 3
+  },
+  {
+   "lang": "ja",
+   "name": "DATE_INPUT_FORMATS",
+   "value": [
+    "%Y-%m-%d",
+    "%m/%d/%Y",
+    "%m/%d/%y",
+    "%b %d %Y",
+    "%b %d, %Y",
+    "%d %b %Y",
+    "%d %b, %Y",
+    "%B %d %Y",
+    "%B %d, %Y",
+    "%d %B %Y",
+    "%d %B, %Y"
+   ]
+  },
+  {
+   "lang": "ja",
+   "name": "TIME_INPUT_FORMATS",
+   "value": [
+    "%H:%M:%S",
+    "%H:%M:%S.%f",
+    "%H:%M"
+   ]
+  },
+  {
+   "lang": "ja",
+   "name": "DATETIME_INPUT_FORMATS",
+   "value": [
+    "%Y-%m-%d %H:%M:%S",
+    "%Y-%m-%d %H:%M:%S.%f",
+    "%Y-%m-%d %H:%M",
+    "%m/%d/%Y %H:%M:%S",
+    "%m/%d/%Y %H:%M:%S.%f",
+    "%m/%d/%Y %H:%M",
+    "%m/%d/%y %H:%M:%S",
+    "%m/%d/%y %H:%M:%S.%f",
+    "%m/%d/%y %H:%M"
+   ]
+  },
+  {
+   "lang": "es-ar",
+   "name": "DATE_FORMAT",
+   "value": "j N Y"
+  },
+  {
+   "lang": "es-ar",
+   "name": "DATETIME_FORMAT",
+   "value": "j N Y H:i"
+  },
+  {
+   "lang": "es-ar",
+   "name": "TIME_FORMAT",
+   "value": "H:i"
+  },
+  {
+   "lang": "es-ar",
+   "name": "YEAR_MONTH_FORMAT",
+   "value": "F Y"
+  },
+  {
+   "lang": "es-ar",
+   "name": "MONTH_DAY_FORMAT",
+   "value": "j \\d\\e F"
+  },
+  {
+   "lang": "es-ar",
+   "name": "SHORT_DATE_FORMAT",
+   "value": "d/m/Y"
+  },
+  {
+   "lang": "es-ar",
+   "name": "SHORT_DATETIME_FORMAT",
+   "value": "d/m/Y H:i"
+  },
+  {
+   "lang": "es-ar",
+   "name": "FIRST_DAY_OF_WEEK",
+   "value": 0
+  },
+  {
+   "lang": "es-ar",
+   "name": "DECIMAL_SEPARATOR",
+   "value": ","
+  },
+  {
+   "lang": "es-ar",
+   "name": "THOUSAND_SEPARATOR",
+   "value": "."
+  },
+  {
+   "lang": "es-ar",
+   "name": "NUMBER_GROUPING",
+   "value": 3
+  },
+  {
+   "lang": "es-ar",
+   "name": "DATE_INPUT_FORMATS",
+   "value": [
+    "%d/%m/%Y",
+    "%d/%m/%y",
+    "%Y-%m-%d"
+   ]
+  },
+  {
+   "lang": "es-ar",
+   "name": "TIME_INPUT_FORMATS",
+   "value": [
+    "%H:%M:%S",
+    "%H:%M:%S.%f",
+    "%H:%M"
+   ]
+  },
+  {
+   "lang": "es-ar",
+   "name": "DATETIME_INPUT_FORMATS",
+   "value": [
+    "%d/%m/%Y %H:%M:%S",
+    "%d/%m/%Y %H:%M:%S.%f",
+    "%d/%m/%Y %H:%M",
+    "%d/%m/%y %H:%M:%S",
+    "%d/%m/%y %H:%M:%S.%f",
+    "%d/%m/%y %H:%M",
+    "%Y-%m-%d %H:%M:%S",
+    "%Y-%m-%d %H:%M:%S.%f",
+    "%Y-%m-%d %H:%M",
+    "%Y-%m-%d"
+   ]
+  },
+  {
+   "lang": "hi",
+   "name": "DATE_FORMAT",
+   "value": "j F Y"
+  },
+  {
+   "lang": "hi",
+   "name": "DATETIME_FORMAT",
+   "value": "N j, Y, P"
+  },
+  {
+   "lang": "hi",
+   "name": "TIME_FORMAT",
+   "value": "g:i A"
+  },
+  {
+   "lang": "hi",
+   "name": "YEAR_MONTH_FORMAT",
+   "value": "F Y"
+  },
+  {
+   "lang": "hi",
+   "name": "MONTH_DAY_FORMAT",
+   "value": "j F"
+  },
+  {
+   "lang": "hi",
+   "name": "SHORT_DATE_FORMAT",
+   "value": "d-m-Y"
+  },
+  {
+   "lang": "hi",
+   "name": "SHORT_DATETIME_FORMAT",
+   "value": "m/d/Y P"
+  },
+  {
+   "lang": "hi",
+   "name": "FIRST_DAY_OF_WEEK",
+   "value": 0
+  },
+  {
+   "lang": "hi",
+   "name": "DECIMAL_SEPARATOR",
+   "value": "."
+  },
+  {
+   "lang": "hi",
+   "name": "THOUSAND_SEPARATOR",
+   "value": ","
+  },
+  {
+   "lang": "hi",
+   "name": "NUMBER_GROUPING",
+   "value": 0
+  },
+  {
+   "lang": "hi",
+   "name": "DATE_INPUT_FORMATS",
+   "value": [
+    "%Y-%m-%d",
+    "%m/%d/%Y",
+    "%m/%d/%y",
+    "%b %d %Y",
+    "%b %d, %Y",
+    "%d %b %Y",
+    "%d %b, %Y",
+    "%B %d %Y",
+    "%B %d, %Y",
+    "%d %B %Y",
+    "%d %B, %Y"
+   ]
+  },
+  {
+   "lang": "hi",
+   "name": "TIME_INPUT_FORMATS",
+   "value": [
+    "%H:%M:%S",
+    "%H:%M:%S.%f",
+    "%H:%M"
+   ]
+  },
+  {
+   "lang": "hi",
+   "name": "DATETIME_INPUT_FORMATS",
+   "value": [
+    "%Y-%m-%d %H:%M:%S",
+    "%Y-%m-%d %H:%M:%S.%f",
+    "%Y-%m-%d %H:%M",
+    "%m/%d/%Y %H:%M:%S",
+    "%m/%d/%Y %H:%M:%S.%f",
+    "%m/%d/%Y %H:%M",
+    "%m/%d/%y %H:%M:%S",
+    "%m/%d/%y %H:%M:%S.%f",
+    "%m/%d/%y %H:%M"
+   ]
+  },
+  {
+   "lang": "xx",
+   "name": "DATE_FORMAT",
+   "value": "N j, Y"
+  },
+  {
+   "lang": "xx",
+   "name": "DATETIME_FORMAT",
+   "value": "N j, Y, P"
+  },
+  {
+   "lang": "xx",
+   "name": "TIME_FORMAT",
+   "value": "P"
+  },
+  {
+   "lang": "xx",
+   "name": "YEAR_MONTH_FORMAT",
+   "value": "F Y"
+  },
+  {
+   "lang": "xx",
+   "name": "MONTH_DAY_FORMAT",
+   "value": "F j"
+  },
+  {
+   "lang": "xx",
+   "name": "SHORT_DATE_FORMAT",
+   "value": "m/d/Y"
+  },
+  {
+   "lang": "xx",
+   "name": "SHORT_DATETIME_FORMAT",
+   "value": "m/d/Y P"
+  },
+  {
+   "lang": "xx",
+   "name": "FIRST_DAY_OF_WEEK",
+   "value": 0
+  },
+  {
+   "lang": "xx",
+   "name": "DECIMAL_SEPARATOR",
+   "value": "."
+  },
+  {
+   "lang": "xx",
+   "name": "THOUSAND_SEPARATOR",
+   "value": ","
+  },
+  {
+   "lang": "xx",
+   "name": "NUMBER_GROUPING",
+   "value": 0
+  },
+  {
+   "lang": "xx",
+   "name": "DATE_INPUT_FORMATS",
+   "value": [
+    "%Y-%m-%d",
+    "%m/%d/%Y",
+    "%m/%d/%y",
+    "%b %d %Y",
+    "%b %d, %Y",
+    "%d %b %Y",
+    "%d %b, %Y",
+    "%B %d %Y",
+    "%B %d, %Y",
+    "%d %B %Y",
+    "%d %B, %Y"
+   ]
+  },
+  {
+   "lang": "xx",
+   "name": "TIME_INPUT_FORMATS",
+   "value": [
+    "%H:%M:%S",
+    "%H:%M:%S.%f",
+    "%H:%M"
+   ]
+  },
+  {
+   "lang": "xx",
+   "name": "DATETIME_INPUT_FORMATS",
+   "value": [
+    "%Y-%m-%d %H:%M:%S",
+    "%Y-%m-%d %H:%M:%S.%f",
+    "%Y-%m-%d %H:%M",
+    "%m/%d/%Y %H:%M:%S",
+    "%m/%d/%Y %H:%M:%S.%f",
+    "%m/%d/%Y %H:%M",
+    "%m/%d/%y %H:%M:%S",
+    "%m/%d/%y %H:%M:%S.%f",
+    "%m/%d/%y %H:%M"
+   ]
+  }
+ ],
+ "numbers": [
+  {
+   "lang": "en",
+   "number": "1234567.891",
+   "pos": null,
+   "force": true,
+   "expected": "1,234,567.891"
+  },
+  {
+   "lang": "en",
+   "number": "1234567.891",
+   "pos": 2,
+   "force": true,
+   "expected": "1,234,567.89"
+  },
+  {
+   "lang": "en",
+   "number": "-0.5",
+   "pos": 3,
+   "force": false,
+   "expected": "-0.500"
+  },
+  {
+   "lang": "en",
+   "number": "1234567",
+   "pos": 0,
+   "force": true,
+   "expected": "1,234,567"
+  },
+  {
+   "lang": "en",
+   "number": "12",
+   "pos": null,
+   "force": true,
+   "expected": "12"
+  },
+  {
+   "lang": "en",
+   "number": "-1234.5678",
+   "pos": 1,
+   "force": true,
+   "expected": "-1,234.5"
+  },
+  {
+   "lang": "de",
+   "number": "1234567.891",
+   "pos": null,
+   "force": true,
+   "expected": "1.234.567,891"
+  },
+  {
+   "lang": "de",
+   "number": "1234567.891",
+   "pos": 2,
+   "force": true,
+   "expected": "1.234.567,89"
+  },
+  {
+   "lang": "de",
+   "number": "-0.5",
+   "pos": 3,
+   "force": false,
+   "expected": "-0,500"
+  },
+  {
+   "lang": "de",
+   "number": "1234567",
+   "pos": 0,
+   "force": true,
+   "expected": "1.234.567"
+  },
+  {
+   "lang": "de",
+   "number": "12",
+   "pos": null,
+   "force": true,
+   "expected": "12"
+  },
+  {
+   "lang": "de",
+   "number": "-1234.5678",
+   "pos": 1,
+   "force": true,
+   "expected": "-1.234,5"
+  },
+  {
+   "lang": "fr",
+   "number": "1234567.891",
+   "pos": null,
+   "force": true,
+   "expected": "1 234 567,891"
+  },
+  {
+   "lang": "fr",
+   "number": "1234567.891",
+   "pos": 2,
+   "force": true,
+   "expected": "1 234 567,89"
+  },
+  {
+   "lang": "fr",
+   "number": "-0.5",
+   "pos": 3,
+   "force": false,
+   "expected": "-0,500"
+  },
+  {
+   "lang": "fr",
+   "number": "1234567",
+   "pos": 0,
+   "force": true,
+   "expected": "1 234 567"
+  },
+  {
+   "lang": "fr",
+   "number": "12",
+   "pos": null,
+   "force": true,
+   "expected": "12"
+  },
+  {
+   "lang": "fr",
+   "number": "-1234.5678",
+   "pos": 1,
+   "force": true,
+   "expected": "-1 234,5"
+  },
+  {
+   "lang": "hi",
+   "number": "1234567.891",
+   "pos": null,
+   "force": true,
+   "expected": "1234567.891"
+  },
+  {
+   "lang": "hi",
+   "number": "1234567.891",
+   "pos": 2,
+   "force": true,
+   "expected": "1234567.89"
+  },
+  {
+   "lang": "hi",
+   "number": "-0.5",
+   "pos": 3,
+   "force": false,
+   "expected": "-0.500"
+  },
+  {
+   "lang": "hi",
+   "number": "1234567",
+   "pos": 0,
+   "force": true,
+   "expected": "1234567"
+  },
+  {
+   "lang": "hi",
+   "number": "12",
+   "pos": null,
+   "force": true,
+   "expected": "12"
+  },
+  {
+   "lang": "hi",
+   "number": "-1234.5678",
+   "pos": 1,
+   "force": true,
+   "expected": "-1234.5"
+  }
+ ]
+}

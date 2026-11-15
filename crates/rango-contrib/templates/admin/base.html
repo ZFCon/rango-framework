@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>{% block title %}{{ title }}{% endblock %} | {{ site_title }}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>{{ theme_css|safe }}
+body{margin:0;font:14px/1.5 system-ui,sans-serif;color:var(--body-fg);background:var(--body-bg)}
+a{color:var(--link-fg)} a:hover{color:var(--link-hover-color)}
+#header{background:var(--header-bg);color:var(--header-color);padding:10px 24px;display:flex;justify-content:space-between;align-items:center}
+#header h1{margin:0;font-size:20px;font-weight:400} #header h1 a{color:var(--header-branding-color);text-decoration:none}
+#user-tools a,#user-tools button{color:var(--header-link-color);background:none;border:0;font:inherit;cursor:pointer;text-decoration:underline}
+.breadcrumbs{background:var(--breadcrumbs-bg);color:var(--breadcrumbs-fg);padding:8px 24px}.breadcrumbs a{color:var(--breadcrumbs-link-fg)}
+#content{padding:20px 24px;max-width:1100px}
+h2{font-size:18px;margin:0 0 12px} table{border-collapse:collapse;width:100%}
+th,td{padding:8px 10px;border-bottom:1px solid var(--hairline-color);text-align:left}
+thead th{background:var(--darkened-bg);border-bottom:1px solid var(--border-color)}
+.module{border:1px solid var(--hairline-color);margin-bottom:24px}.module caption{background:var(--primary);color:var(--primary-fg);text-align:left;padding:8px 10px;font-weight:600}
+.messagelist{list-style:none;margin:0 0 16px;padding:0}.messagelist li{padding:10px 14px;margin-bottom:6px;background:var(--message-success-bg)}
+.messagelist li.warning{background:var(--message-warning-bg)}.messagelist li.error{background:var(--message-error-bg)}
+.button,input[type=submit]{background:var(--button-bg);color:var(--button-fg);border:0;padding:8px 14px;cursor:pointer;border-radius:4px;text-decoration:none;display:inline-block}
+input[type=submit].default{background:var(--default-button-bg)}
+.errorlist{color:var(--error-fg);list-style:none;padding:0;margin:0 0 4px}
+.form-row{padding:10px 0;border-bottom:1px solid var(--hairline-color)}.form-row label{display:inline-block;width:180px;font-weight:600;vertical-align:top}
+.helptext{color:var(--body-quiet-color);font-size:12px;margin-left:180px}
+#changelist-filter{float:right;margin-left:24px;border:1px solid var(--hairline-color);padding:10px;width:200px}
+.paginator{margin:12px 0}.object-tools{text-align:right;margin-bottom:10px}
+.yes{color:var(--rango-lizard-deep)}.no{color:var(--error-fg)}
+</style>
+</head>
+<body>
+<div id="header">
+  <h1><a href="{{ admin_url }}">{{ site_header }}</a></h1>
+  <div id="user-tools">{% if user_name %}Welcome, <strong>{{ user_name }}</strong>.
+    <form method="post" action="{{ admin_url }}logout/" style="display:inline">{% csrf_token %}<button type="submit">Log out</button></form>{% endif %}</div>
+</div>
+<div class="breadcrumbs"><a href="{{ admin_url }}">Home</a>{% block breadcrumbs %}{% endblock %}</div>
+<div id="content">
+{% if messages %}<ul class="messagelist">{% for message in messages %}<li class="{{ message.tags }}">{{ message }}</li>{% endfor %}</ul>{% endif %}
+{% block content %}{% endblock %}
+</div>
+</body>
+</html>

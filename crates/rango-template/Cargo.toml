@@ -1,0 +1,31 @@
+[package]
+name = "rangoframework-template"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+readme.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Rango template engine: Rango Template Language in Rust."
+
+[lib]
+name = "rango_template"
+
+[dependencies]
+chrono = { version = "0.4.45", default-features = false, features = ["std", "clock"] }
+indexmap = { version = "2.14.2", features = ["serde"] }
+inventory = "0.3.25"
+md-5 = "0.11.0"
+rand = "0.10.3"
+rango-core = { package = "rangoframework-core", version = "0.1.0", path = "../rango-core" }
+rango-http = { package = "rangoframework-http", version = "0.1.0", path = "../rango-http" }
+rango-urls = { package = "rangoframework-urls", version = "0.1.0", path = "../rango-urls" }
+regex = "1.13.1"
+rust_decimal = "1.43.0"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = { version = "1.0.154", features = ["preserve_order"] }
+thiserror = "2.0.21"
+
+[dev-dependencies]
+tokio = { version = "1.54.1", features = ["rt", "macros"] }

@@ -1,0 +1,6238 @@
+[
+{
+"fn": "Signer.sign",
+"args": [
+"k",
+null,
+null,
+"hello"
+],
+"expected": "hello:T8Z9-Zufi5NauELcsg1pwTP3wxq_PBz1fq5_BQgfbM0"
+},
+{
+"fn": "Signer.sign",
+"args": [
+"k",
+"s",
+"sha1",
+"héllo wörld"
+],
+"expected": "héllo wörld:nJpql1pLOxRW_r4uKEjzjyppKHQ"
+},
+{
+"fn": "Signer.sign",
+"args": [
+"secret",
+"ns",
+"sha512",
+""
+],
+"expected": ":tYEV52cEhCPfmraL6ArVidIiSNDL7L7xXdaJ6SZN_Sx48zjkPSxKws3iGcUnmhlY0HtMK7rRn8C7jlCjMS8z1A"
+},
+{
+"fn": "Signer.sign",
+"args": [
+"k",
+null,
+"sha256",
+"a:b:c"
+],
+"expected": "a:b:c:4LYz1Sl1r-bYxzXP9uNo9oh3V0dyZ31-3aiSnQWI8gg"
+},
+{
+"fn": "TimestampSigner.sign",
+"args": [
+"k",
+"s",
+1700000000,
+"hello"
+],
+"expected": "hello:1r31eq:T4DL73TwV8wqqAA0Osb3i-A6Ba7Eu93rfujfl64jOS8"
+},
+{
+"fn": "TimestampSigner.sign",
+"args": [
+"k",
+"s",
+1700000000,
+"ünï"
+],
+"expected": "ünï:1r31eq:YQCP2xOQTMFoWZJ_AlHmCkRB7zq14FkuXNIPwI_nKOI"
+},
+{
+"fn": "TimestampSigner.sign",
+"args": [
+"k",
+"s",
+1700000000,
+""
+],
+"expected": ":1r31eq:7yFP-VmhT9mO_uqoGmrcJLzwvIY1V6BegyZPinkh8m8"
+},
+{
+"fn": "TimestampSigner.sign",
+"args": [
+"k",
+null,
+0,
+"x"
+],
+"expected": "x:0:AmshP-O5oPVbALc4zQT_fUZCOhbzNkUqMamH0kusgKc"
+},
+{
+"fn": "TimestampSigner.unsign",
+"args": [
+"k",
+"s",
+"hello:1r31eq:T4DL73TwV8wqqAA0Osb3i-A6Ba7Eu93rfujfl64jOS8",
+null,
+1700000005,
+null
+],
+"expected": "hello"
+},
+{
+"fn": "TimestampSigner.unsign",
+"args": [
+"k",
+"s",
+"hello:1r31eq:T4DL73TwV8wqqAA0Osb3i-A6Ba7Eu93rfujfl64jOS8",
+100,
+1700000005,
+null
+],
+"expected": "hello"
+},
+{
+"fn": "TimestampSigner.unsign",
+"args": [
+"k",
+"s",
+"hello:1r31eq:T4DL73TwV8wqqAA0Osb3i-A6Ba7Eu93rfujfl64jOS8",
+3,
+1700050000,
+null
+],
+"expected": {
+"error": "SignatureExpired"
+}
+},
+{
+"fn": "TimestampSigner.unsign",
+"args": [
+"wrong",
+"s",
+"hello:1r31eq:T4DL73TwV8wqqAA0Osb3i-A6Ba7Eu93rfujfl64jOS8",
+null,
+1700000000,
+null
+],
+"expected": {
+"error": "BadSignature"
+}
+},
+{
+"fn": "TimestampSigner.unsign",
+"args": [
+"new",
+"s",
+"hello:1r31eq:zzawstKq4BIaaT7ToSbVBiUnR4xFpsfL_i1b2oLIihg",
+null,
+1700000000,
+[
+"old"
+]
+],
+"expected": "hello"
+},
+{
+"fn": "TimestampSigner.unsign",
+"args": [
+"k",
+"s",
+"a:b:1r31Oi:HMYpgQGRpohTVjVc_rOS-Jjklbmj5CXPvzAf7uQG2sY",
+null,
+1700000005,
+null
+],
+"expected": "a:b"
+},
+{
+"fn": "TimestampSigner.unsign",
+"args": [
+"k",
+"s",
+"a:b:1r31Oi:HMYpgQGRpohTVjVc_rOS-Jjklbmj5CXPvzAf7uQG2sY",
+100,
+1700000005,
+null
+],
+"expected": {
+"error": "SignatureExpired"
+}
+},
+{
+"fn": "TimestampSigner.unsign",
+"args": [
+"k",
+"s",
+"a:b:1r31Oi:HMYpgQGRpohTVjVc_rOS-Jjklbmj5CXPvzAf7uQG2sY",
+3,
+1700050000,
+null
+],
+"expected": {
+"error": "SignatureExpired"
+}
+},
+{
+"fn": "TimestampSigner.unsign",
+"args": [
+"wrong",
+"s",
+"a:b:1r31Oi:HMYpgQGRpohTVjVc_rOS-Jjklbmj5CXPvzAf7uQG2sY",
+null,
+1700000000,
+null
+],
+"expected": {
+"error": "BadSignature"
+}
+},
+{
+"fn": "TimestampSigner.unsign",
+"args": [
+"new",
+"s",
+"a:b:1r31Oi:mMdX_piN0s6SrszEyqb0P1iIYNMAMyFZpar5vWuFsdo",
+null,
+1700000000,
+[
+"old"
+]
+],
+"expected": "a:b"
+},
+{
+"fn": "TimestampSigner.unsign",
+"args": [
+"k",
+"s",
+"no-separator",
+null,
+1700000000,
+null
+],
+"expected": {
+"error": "BadSignature"
+}
+},
+{
+"fn": "TimestampSigner.unsign",
+"args": [
+"k",
+"s",
+"a:b:tampered",
+null,
+1700000000,
+null
+],
+"expected": {
+"error": "BadSignature"
+}
+},
+{
+"fn": "signing.dumps",
+"args": [
+{
+"a": 1,
+"b": [
+1,
+2,
+"é"
+]
+},
+"k",
+"salt",
+false,
+1700000000
+],
+"expected": "eyJhIjoxLCJiIjpbMSwyLCJcdTAwZTkiXX0:1r31eq:e9sbLdGcRYdUG4oTPq13dJ-AEl44eO7_-JTQiF-_LMk"
+},
+{
+"fn": "signing.loads",
+"args": [
+"eyJhIjoxLCJiIjpbMSwyLCJcdTAwZTkiXX0:1r31eq:e9sbLdGcRYdUG4oTPq13dJ-AEl44eO7_-JTQiF-_LMk",
+"k",
+"salt",
+null,
+1700000001
+],
+"expected": {
+"a": 1,
+"b": [
+1,
+2,
+"é"
+]
+}
+},
+{
+"fn": "signing.dumps",
+"args": [
+{
+"a": 1,
+"b": [
+1,
+2,
+"é"
+]
+},
+"k",
+"salt",
+true,
+1700000000
+],
+"expected": "eyJhIjoxLCJiIjpbMSwyLCJcdTAwZTkiXX0:1r31eq:e9sbLdGcRYdUG4oTPq13dJ-AEl44eO7_-JTQiF-_LMk"
+},
+{
+"fn": "signing.loads",
+"args": [
+"eyJhIjoxLCJiIjpbMSwyLCJcdTAwZTkiXX0:1r31eq:e9sbLdGcRYdUG4oTPq13dJ-AEl44eO7_-JTQiF-_LMk",
+"k",
+"salt",
+null,
+1700000001
+],
+"expected": {
+"a": 1,
+"b": [
+1,
+2,
+"é"
+]
+}
+},
+{
+"fn": "signing.dumps",
+"args": [
+"plain string",
+"k",
+"salt",
+false,
+1700000000
+],
+"expected": "InBsYWluIHN0cmluZyI:1r31eq:-heWBzoMsecoP_o9-9kZ704TmD5cykBzA7ZTKDUuf3E"
+},
+{
+"fn": "signing.loads",
+"args": [
+"InBsYWluIHN0cmluZyI:1r31eq:-heWBzoMsecoP_o9-9kZ704TmD5cykBzA7ZTKDUuf3E",
+"k",
+"salt",
+null,
+1700000001
+],
+"expected": "plain string"
+},
+{
+"fn": "signing.dumps",
+"args": [
+"plain string",
+"k",
+"salt",
+true,
+1700000000
+],
+"expected": "InBsYWluIHN0cmluZyI:1r31eq:-heWBzoMsecoP_o9-9kZ704TmD5cykBzA7ZTKDUuf3E"
+},
+{
+"fn": "signing.loads",
+"args": [
+"InBsYWluIHN0cmluZyI:1r31eq:-heWBzoMsecoP_o9-9kZ704TmD5cykBzA7ZTKDUuf3E",
+"k",
+"salt",
+null,
+1700000001
+],
+"expected": "plain string"
+},
+{
+"fn": "signing.dumps",
+"args": [
+[
+1,
+2.5,
+null,
+true
+],
+"k",
+"salt",
+false,
+1700000000
+],
+"expected": "WzEsMi41LG51bGwsdHJ1ZV0:1r31eq:YjTndB0My7rexi5bELFvfu0A0olJLRtDLj-NFdmxKs8"
+},
+{
+"fn": "signing.loads",
+"args": [
+"WzEsMi41LG51bGwsdHJ1ZV0:1r31eq:YjTndB0My7rexi5bELFvfu0A0olJLRtDLj-NFdmxKs8",
+"k",
+"salt",
+null,
+1700000001
+],
+"expected": [
+1,
+2.5,
+null,
+true
+]
+},
+{
+"fn": "signing.dumps",
+"args": [
+[
+1,
+2.5,
+null,
+true
+],
+"k",
+"salt",
+true,
+1700000000
+],
+"expected": "WzEsMi41LG51bGwsdHJ1ZV0:1r31eq:YjTndB0My7rexi5bELFvfu0A0olJLRtDLj-NFdmxKs8"
+},
+{
+"fn": "signing.loads",
+"args": [
+"WzEsMi41LG51bGwsdHJ1ZV0:1r31eq:YjTndB0My7rexi5bELFvfu0A0olJLRtDLj-NFdmxKs8",
+"k",
+"salt",
+null,
+1700000001
+],
+"expected": [
+1,
+2.5,
+null,
+true
+]
+},
+{
+"fn": "signing.dumps",
+"args": [
+{
+"nested": {
+"k": [
+"ü",
+"𝄞"
+]
+}
+},
+"k",
+"salt",
+false,
+1700000000
+],
+"expected": "eyJuZXN0ZWQiOnsiayI6WyJcdTAwZmMiLCJcdWQ4MzRcdWRkMWUiXX19:1r31eq:l8_Fjiq0XSrz2D9ytqXrdq1swrGJxX2Lo1upL69oCMc"
+},
+{
+"fn": "signing.loads",
+"args": [
+"eyJuZXN0ZWQiOnsiayI6WyJcdTAwZmMiLCJcdWQ4MzRcdWRkMWUiXX19:1r31eq:l8_Fjiq0XSrz2D9ytqXrdq1swrGJxX2Lo1upL69oCMc",
+"k",
+"salt",
+null,
+1700000001
+],
+"expected": {
+"nested": {
+"k": [
+"ü",
+"𝄞"
+]
+}
+}
+},
+{
+"fn": "signing.dumps",
+"args": [
+{
+"nested": {
+"k": [
+"ü",
+"𝄞"
+]
+}
+},
+"k",
+"salt",
+true,
+1700000000
+],
+"expected": "eyJuZXN0ZWQiOnsiayI6WyJcdTAwZmMiLCJcdWQ4MzRcdWRkMWUiXX19:1r31eq:l8_Fjiq0XSrz2D9ytqXrdq1swrGJxX2Lo1upL69oCMc"
+},
+{
+"fn": "signing.loads",
+"args": [
+"eyJuZXN0ZWQiOnsiayI6WyJcdTAwZmMiLCJcdWQ4MzRcdWRkMWUiXX19:1r31eq:l8_Fjiq0XSrz2D9ytqXrdq1swrGJxX2Lo1upL69oCMc",
+"k",
+"salt",
+null,
+1700000001
+],
+"expected": {
+"nested": {
+"k": [
+"ü",
+"𝄞"
+]
+}
+}
+},
+{
+"fn": "signing.dumps",
+"args": [
+42,
+"k",
+"salt",
+false,
+1700000000
+],
+"expected": "NDI:1r31eq:Fofa4QGBuRjQg4dJv7n9eMQHdMTM4g1zDF5vCciwm00"
+},
+{
+"fn": "signing.loads",
+"args": [
+"NDI:1r31eq:Fofa4QGBuRjQg4dJv7n9eMQHdMTM4g1zDF5vCciwm00",
+"k",
+"salt",
+null,
+1700000001
+],
+"expected": 42
+},
+{
+"fn": "signing.dumps",
+"args": [
+42,
+"k",
+"salt",
+true,
+1700000000
+],
+"expected": "NDI:1r31eq:Fofa4QGBuRjQg4dJv7n9eMQHdMTM4g1zDF5vCciwm00"
+},
+{
+"fn": "signing.loads",
+"args": [
+"NDI:1r31eq:Fofa4QGBuRjQg4dJv7n9eMQHdMTM4g1zDF5vCciwm00",
+"k",
+"salt",
+null,
+1700000001
+],
+"expected": 42
+},
+{
+"fn": "signing.dumps",
+"args": [
+{
+"big": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+},
+"k",
+"salt",
+false,
+1700000000
+],
+"expected": "eyJiaWciOiJ4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4In0:1r31eq:DF5Scai3CVL0N2Pxaurzwes2vZmRYbDONSBdPpiB3wQ"
+},
+{
+"fn": "signing.loads",
+"args": [
+"eyJiaWciOiJ4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4In0:1r31eq:DF5Scai3CVL0N2Pxaurzwes2vZmRYbDONSBdPpiB3wQ",
+"k",
+"salt",
+null,
+1700000001
+],
+"expected": {
+"big": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+}
+},
+{
+"fn": "signing.dumps",
+"args": [
+{
+"big": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+},
+"k",
+"salt",
+true,
+1700000000
+],
+"expected": ".eJyrVkrKTFeyUqoYBYMKKNUCAASkvm0:1r31eq:Esy2EQlupWunyi3nWZRhKJk1jCcWxO5d6fpgO9-j5DU"
+},
+{
+"fn": "signing.loads",
+"args": [
+".eJyrVkrKTFeyUqoYBYMKKNUCAASkvm0:1r31eq:Esy2EQlupWunyi3nWZRhKJk1jCcWxO5d6fpgO9-j5DU",
+"k",
+"salt",
+null,
+1700000001
+],
+"expected": {
+"big": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+}
+},
+{
+"fn": "signing.loads",
+"args": [
+"eyJhIjoxfQ:1r31eq:GkodMDsDneS3NklOVCRUPFj8Qw2adQwXZjRp72F-LZE",
+"k",
+"other-salt",
+null,
+1700000000
+],
+"expected": {
+"error": "BadSignature"
+}
+},
+{
+"fn": "signing.loads",
+"args": [
+"eyJhIjoxfQ:1r31eq:GkodMDsDneS3NklOVCRUPFj8Qw2adQwXZjRp72F-LZE",
+"k",
+"salt",
+10,
+1700001000
+],
+"expected": {
+"error": "SignatureExpired"
+}
+},
+{
+"fn": "b62_encode",
+"args": [
+0
+],
+"expected": "0"
+},
+{
+"fn": "b62_encode",
+"args": [
+1
+],
+"expected": "1"
+},
+{
+"fn": "b62_encode",
+"args": [
+61
+],
+"expected": "z"
+},
+{
+"fn": "b62_encode",
+"args": [
+62
+],
+"expected": "10"
+},
+{
+"fn": "b62_encode",
+"args": [
+63
+],
+"expected": "11"
+},
+{
+"fn": "b62_encode",
+"args": [
+3844
+],
+"expected": "100"
+},
+{
+"fn": "b62_encode",
+"args": [
+1700000000
+],
+"expected": "1r31eq"
+},
+{
+"fn": "b62_encode",
+"args": [
+-5
+],
+"expected": "-5"
+},
+{
+"fn": "b62_decode",
+"args": [
+"0"
+],
+"expected": 0
+},
+{
+"fn": "b62_decode",
+"args": [
+"1"
+],
+"expected": 1
+},
+{
+"fn": "b62_decode",
+"args": [
+"z"
+],
+"expected": 61
+},
+{
+"fn": "b62_decode",
+"args": [
+"10"
+],
+"expected": 62
+},
+{
+"fn": "b62_decode",
+"args": [
+"1QaUZC"
+],
+"expected": 1309014878
+},
+{
+"fn": "b62_decode",
+"args": [
+"-3"
+],
+"expected": -3
+},
+{
+"fn": "signing.cookie_sign",
+"args": [
+"sid",
+"",
+"val",
+1700000000
+],
+"expected": "val:1r31eq:Xe2V_w9kT0a6EJfRkNcRIZXvkAzgKyU454OTMDI1KlE"
+},
+{
+"fn": "signing.cookie_sign",
+"args": [
+"sid",
+"extra",
+"v:w",
+1700000000
+],
+"expected": "v:w:1r31eq:wKHVmwx6YuoB1kgNlKQwS91osIjuRXD1M0V4qLCPA8U"
+},
+{
+"fn": "signing.cookie_sign",
+"args": [
+"cookie",
+"ü",
+"x",
+1700000000
+],
+"expected": "x:1r31eq:pbsILuXtO1pPzwP-Mf0zyw-ZBROThX6apwSh9m-pEDw"
+},
+{
+"fn": "salted_hmac",
+"args": [
+"salt",
+"value",
+"secret",
+"sha1"
+],
+"expected": "a82be9ba6efe61405ee8d2e8a3781c37e103360a"
+},
+{
+"fn": "salted_hmac",
+"args": [
+"salt",
+"value",
+"secret",
+"sha256"
+],
+"expected": "debaddcd9ecbaab181289870baf8af49b0af0a7050d620d1a63f1e69bd87ceb8"
+},
+{
+"fn": "salted_hmac",
+"args": [
+"salt",
+"value",
+"secret",
+"sha512"
+],
+"expected": "8bce5eeb3926d0f90c727217746725e26de26d311eb6b34ceceb478f89acb51d02ba74ed0f9c4f5797b2ae5f020d4b22e7c1409a5ff1d968045026fdc1936e0e"
+},
+{
+"fn": "salted_hmac",
+"args": [
+"salt",
+"value",
+"secret",
+"md5"
+],
+"expected": "94d99eb4c58dd561afb508fa651ad83d"
+},
+{
+"fn": "salted_hmac",
+"args": [
+"ünï",
+"välue",
+"sécret",
+"sha256"
+],
+"expected": "3e572b0056f68c41cffac55827f7ae7e8dfc07945bddadd0d6f44b05d15f5f23"
+},
+{
+"fn": "pbkdf2",
+"args": [
+"password",
+"salt",
+1000,
+0,
+"sha256"
+],
+"expected": "632c2812e46d4604102ba7618e9d6d7d2f8128f6266b4a03264d2a0460b7dcb3"
+},
+{
+"fn": "pbkdf2",
+"args": [
+"password",
+"salt",
+10,
+20,
+"sha1"
+],
+"expected": "ae3fe5f5707e07f3e7c117fb885cd052a6fcd77a"
+},
+{
+"fn": "pbkdf2",
+"args": [
+"pässword",
+"sält",
+5,
+64,
+"sha512"
+],
+"expected": "a73bb6ff73a16e78b1154f874e4c6bdd667c3e1998f207d95b3f68f042d88d721f26bec07a7f75be8e65122a692819caf098b4502e18dbcd291a38b295b6cf16"
+},
+{
+"fn": "constant_time_compare",
+"args": [
+"abc",
+"abc"
+],
+"expected": true
+},
+{
+"fn": "constant_time_compare",
+"args": [
+"abc",
+"abd"
+],
+"expected": false
+},
+{
+"fn": "constant_time_compare",
+"args": [
+"abc",
+"ab"
+],
+"expected": false
+},
+{
+"fn": "constant_time_compare",
+"args": [
+"",
+""
+],
+"expected": true
+},
+{
+"fn": "constant_time_compare",
+"args": [
+"é",
+"é"
+],
+"expected": true
+},
+{
+"fn": "capfirst",
+"args": [
+""
+],
+"expected": ""
+},
+{
+"fn": "capfirst",
+"args": [
+"hello"
+],
+"expected": "Hello"
+},
+{
+"fn": "capfirst",
+"args": [
+"élan"
+],
+"expected": "Élan"
+},
+{
+"fn": "capfirst",
+"args": [
+"ǆ"
+],
+"expected": "Ǆ"
+},
+{
+"fn": "capfirst",
+"args": [
+"1abc"
+],
+"expected": "1abc"
+},
+{
+"fn": "capfirst",
+"args": [
+"ß"
+],
+"expected": "SS"
+},
+{
+"fn": "slugify",
+"args": [
+"Hello, World!",
+false
+],
+"expected": "hello-world"
+},
+{
+"fn": "slugify",
+"args": [
+"  --Foo__Bar--  ",
+false
+],
+"expected": "foo__bar"
+},
+{
+"fn": "slugify",
+"args": [
+"Ünïcode Straße",
+false
+],
+"expected": "unicode-strae"
+},
+{
+"fn": "slugify",
+"args": [
+"Ünïcode Straße",
+true
+],
+"expected": "ünïcode-straße"
+},
+{
+"fn": "slugify",
+"args": [
+"a  b---c",
+false
+],
+"expected": "a-b-c"
+},
+{
+"fn": "slugify",
+"args": [
+"日本語 text",
+true
+],
+"expected": "日本語-text"
+},
+{
+"fn": "slugify",
+"args": [
+"日本語 text",
+false
+],
+"expected": "text"
+},
+{
+"fn": "slugify",
+"args": [
+"İstanbul",
+true
+],
+"expected": "istanbul"
+},
+{
+"fn": "slugify",
+"args": [
+"x_y-z",
+false
+],
+"expected": "x_y-z"
+},
+{
+"fn": "slugify",
+"args": [
+"ﬁne ℌ ²",
+true
+],
+"expected": "fine-h-2"
+},
+{
+"fn": "get_valid_filename",
+"args": [
+"john's portrait in 2004.jpg"
+],
+"expected": "johns_portrait_in_2004.jpg"
+},
+{
+"fn": "get_valid_filename",
+"args": [
+"  a b  "
+],
+"expected": "a_b"
+},
+{
+"fn": "get_valid_filename",
+"args": [
+""
+],
+"expected": {
+"error": "SuspiciousFileOperation"
+}
+},
+{
+"fn": "get_valid_filename",
+"args": [
+"."
+],
+"expected": {
+"error": "SuspiciousFileOperation"
+}
+},
+{
+"fn": "get_valid_filename",
+"args": [
+".."
+],
+"expected": {
+"error": "SuspiciousFileOperation"
+}
+},
+{
+"fn": "get_valid_filename",
+"args": [
+"../etc"
+],
+"expected": "..etc"
+},
+{
+"fn": "get_valid_filename",
+"args": [
+"ñandú.txt"
+],
+"expected": "ñandú.txt"
+},
+{
+"fn": "get_valid_filename",
+"args": [
+"a/b\\c"
+],
+"expected": "abc"
+},
+{
+"fn": "camel_case_to_spaces",
+"args": [
+"CamelCase"
+],
+"expected": "camel case"
+},
+{
+"fn": "camel_case_to_spaces",
+"args": [
+"HTTPResponse"
+],
+"expected": "http response"
+},
+{
+"fn": "camel_case_to_spaces",
+"args": [
+"already lower"
+],
+"expected": "already lower"
+},
+{
+"fn": "camel_case_to_spaces",
+"args": [
+"ABC"
+],
+"expected": "abc"
+},
+{
+"fn": "camel_case_to_spaces",
+"args": [
+"aB"
+],
+"expected": "a b"
+},
+{
+"fn": "camel_case_to_spaces",
+"args": [
+"A"
+],
+"expected": "a"
+},
+{
+"fn": "camel_case_to_spaces",
+"args": [
+"XMLHttpRequest"
+],
+"expected": "xml http request"
+},
+{
+"fn": "camel_case_to_spaces",
+"args": [
+" Lead"
+],
+"expected": "lead"
+},
+{
+"fn": "camel_case_to_spaces",
+"args": [
+"snake_Case"
+],
+"expected": "snake_ case"
+},
+{
+"fn": "get_text_list",
+"args": [
+[],
+null
+],
+"expected": ""
+},
+{
+"fn": "get_text_list",
+"args": [
+[
+"a"
+],
+null
+],
+"expected": "a"
+},
+{
+"fn": "get_text_list",
+"args": [
+[
+"a",
+"b"
+],
+null
+],
+"expected": "a or b"
+},
+{
+"fn": "get_text_list",
+"args": [
+[
+"a",
+"b",
+"c",
+"d"
+],
+null
+],
+"expected": "a, b, c or d"
+},
+{
+"fn": "get_text_list",
+"args": [
+[
+"a",
+"b",
+"c"
+],
+"and"
+],
+"expected": "a, b and c"
+},
+{
+"fn": "phone2numeric",
+"args": [
+"1-800-FLOWERS"
+],
+"expected": "1-800-3569377"
+},
+{
+"fn": "phone2numeric",
+"args": [
+"abc DEF"
+],
+"expected": "222 333"
+},
+{
+"fn": "phone2numeric",
+"args": [
+""
+],
+"expected": ""
+},
+{
+"fn": "smart_split",
+"args": [
+"This is \"a person's\" test."
+],
+"expected": [
+"This",
+"is",
+"\"a person's\"",
+"test."
+]
+},
+{
+"fn": "smart_split",
+"args": [
+"Another 'person\\'s' test."
+],
+"expected": [
+"Another",
+"'person\\'s'",
+"test."
+]
+},
+{
+"fn": "smart_split",
+"args": [
+"A \"\\\"funky\\\" style\" test."
+],
+"expected": [
+"A",
+"\"\\\"funky\\\" style\"",
+"test."
+]
+},
+{
+"fn": "smart_split",
+"args": [
+"  lead  trail "
+],
+"expected": [
+"lead",
+"trail"
+]
+},
+{
+"fn": "smart_split",
+"args": [
+"a=\"b c\" d"
+],
+"expected": [
+"a=\"b c\"",
+"d"
+]
+},
+{
+"fn": "unescape_string_literal",
+"args": [
+"\"abc\""
+],
+"expected": "abc"
+},
+{
+"fn": "unescape_string_literal",
+"args": [
+"'abc'"
+],
+"expected": "abc"
+},
+{
+"fn": "unescape_string_literal",
+"args": [
+"\"a \\\"bc\\\"\""
+],
+"expected": "a \"bc\""
+},
+{
+"fn": "unescape_string_literal",
+"args": [
+"'\\'ab\\' c'"
+],
+"expected": "'ab' c"
+},
+{
+"fn": "unescape_string_literal",
+"args": [
+"abc"
+],
+"expected": {
+"error": "ValueError"
+}
+},
+{
+"fn": "unescape_string_literal",
+"args": [
+""
+],
+"expected": {
+"error": "ValueError"
+}
+},
+{
+"fn": "unescape_string_literal",
+"args": [
+"\""
+],
+"expected": ""
+},
+{
+"fn": "unescape_string_literal",
+"args": [
+"'x\""
+],
+"expected": {
+"error": "ValueError"
+}
+},
+{
+"fn": "unescape_string_literal",
+"args": [
+"\"a\\\\b\""
+],
+"expected": "a\\b"
+},
+{
+"fn": "wrap",
+"args": [
+"Join them together to create a single phrase",
+10
+],
+"expected": "Join them\ntogether\nto create\na single\nphrase"
+},
+{
+"fn": "wrap",
+"args": [
+"short",
+80
+],
+"expected": "short"
+},
+{
+"fn": "wrap",
+"args": [
+"a\nb c d e f g",
+3
+],
+"expected": "a\nb c\nd e\nf g"
+},
+{
+"fn": "wrap",
+"args": [
+"verylongwordthatexceeds",
+5
+],
+"expected": "verylongwordthatexceeds"
+},
+{
+"fn": "wrap",
+"args": [
+"trailing\n",
+4
+],
+"expected": "trailing\n"
+},
+{
+"fn": "wrap",
+"args": [
+"  indented text here",
+8
+],
+"expected": "indented\ntext\nhere"
+},
+{
+"fn": "wrap",
+"args": [
+"tab\tseparated words here",
+10
+],
+"expected": "tab\nseparated\nwords here"
+},
+{
+"fn": "wrap",
+"args": [
+"",
+5
+],
+"expected": ""
+},
+{
+"fn": "wrap",
+"args": [
+"one two\n\nthree four",
+7
+],
+"expected": "one two\n\nthree\nfour"
+},
+{
+"fn": "normalize_newlines",
+"args": [
+"a\r\nb\rc\nd"
+],
+"expected": "a\nb\nc\nd"
+},
+{
+"fn": "normalize_newlines",
+"args": [
+""
+],
+"expected": ""
+},
+{
+"fn": "normalize_newlines",
+"args": [
+"\r\r\n"
+],
+"expected": "\n\n"
+},
+{
+"fn": "Truncator.chars",
+"args": [
+"The quick brown fox jumped over the lazy dog.",
+10,
+null
+],
+"expected": "The quick…"
+},
+{
+"fn": "Truncator.chars",
+"args": [
+"short",
+10,
+null
+],
+"expected": "short"
+},
+{
+"fn": "Truncator.chars",
+"args": [
+"The quick brown fox",
+9,
+" [more]"
+],
+"expected": "Th [more]"
+},
+{
+"fn": "Truncator.chars",
+"args": [
+"Abc",
+1,
+null
+],
+"expected": "…"
+},
+{
+"fn": "Truncator.chars",
+"args": [
+"Hello",
+0,
+null
+],
+"expected": ""
+},
+{
+"fn": "Truncator.chars",
+"args": [
+"Hello world",
+5,
+"%(truncated_text)s..."
+],
+"expected": "He..."
+},
+{
+"fn": "Truncator.chars",
+"args": [
+"Ünï cödé text here",
+8,
+null
+],
+"expected": "Ünï cöd…"
+},
+{
+"fn": "Truncator.chars",
+"args": [
+"éééé",
+3,
+null
+],
+"expected": "éé…"
+},
+{
+"fn": "Truncator.chars",
+"args": [
+"exactly",
+7,
+null
+],
+"expected": "exactly"
+},
+{
+"fn": "Truncator.words",
+"args": [
+"The quick brown fox jumped over the lazy dog.",
+3,
+null
+],
+"expected": "The quick brown…"
+},
+{
+"fn": "Truncator.words",
+"args": [
+"one two",
+5,
+null
+],
+"expected": "one two"
+},
+{
+"fn": "Truncator.words",
+"args": [
+"a  b\nc d",
+2,
+"..."
+],
+"expected": "a b..."
+},
+{
+"fn": "Truncator.words",
+"args": [
+"a b c",
+0,
+null
+],
+"expected": ""
+},
+{
+"fn": "Truncator.words",
+"args": [
+"  spaced   out  ",
+1,
+null
+],
+"expected": "spaced…"
+},
+{
+"fn": "trim_value",
+"args": [
+"abcdef",
+3
+],
+"expected": [
+"abc",
+"… <trimmed 3 chars out of 6>"
+]
+},
+{
+"fn": "trim_value",
+"args": [
+"abc",
+3
+],
+"expected": [
+"abc",
+""
+]
+},
+{
+"fn": "trim_value",
+"args": [
+"",
+5
+],
+"expected": [
+"",
+""
+]
+},
+{
+"fn": "escape",
+"args": [
+"<b>&\"'</b>"
+],
+"expected": "&lt;b&gt;&amp;&quot;&#x27;&lt;/b&gt;"
+},
+{
+"fn": "escape",
+"args": [
+"plain"
+],
+"expected": "plain"
+},
+{
+"fn": "escape",
+"args": [
+""
+],
+"expected": ""
+},
+{
+"fn": "escape",
+"args": [
+"a&amp;b"
+],
+"expected": "a&amp;amp;b"
+},
+{
+"fn": "escape",
+"args": [
+"ünï"
+],
+"expected": "ünï"
+},
+{
+"fn": "escapejs",
+"args": [
+"it's \"quoted\" <tag> & stuff = - ; `"
+],
+"expected": "it\\u0027s \\u0022quoted\\u0022 \\u003Ctag\\u003E \\u0026 stuff \\u003D \\u002D \\u003B \\u0060"
+},
+{
+"fn": "escapejs",
+"args": [
+"line\nbreak\ttab\u0000\u001f"
+],
+"expected": "line\\u000Abreak\\u0009tab\\u0000\\u001F"
+},
+{
+"fn": "escapejs",
+"args": [
+"  "
+],
+"expected": "\\u2028\\u2029"
+},
+{
+"fn": "escapejs",
+"args": [
+"plain"
+],
+"expected": "plain"
+},
+{
+"fn": "json_script",
+"args": [
+{
+"a": "<script>&"
+},
+"data"
+],
+"expected": "<script id=\"data\" type=\"application/json\">{\"a\": \"\\u003Cscript\\u003E\\u0026\"}</script>"
+},
+{
+"fn": "json_script",
+"args": [
+[
+1,
+"é",
+null
+],
+null
+],
+"expected": "<script type=\"application/json\">[1, \"\\u00e9\", null]</script>"
+},
+{
+"fn": "json_script",
+"args": [
+"x",
+""
+],
+"expected": "<script type=\"application/json\">\"x\"</script>"
+},
+{
+"fn": "json_script",
+"args": [
+{
+"k": 1.5
+},
+"id"
+],
+"expected": "<script id=\"id\" type=\"application/json\">{\"k\": 1.5}</script>"
+},
+{
+"fn": "linebreaks",
+"args": [
+"a\nb\n\nc"
+],
+"expected": "<p>a<br>b</p>\n\n<p>c</p>"
+},
+{
+"fn": "linebreaks",
+"args": [
+"a\r\nb"
+],
+"expected": "<p>a<br>b</p>"
+},
+{
+"fn": "linebreaks",
+"args": [
+"single"
+],
+"expected": "<p>single</p>"
+},
+{
+"fn": "linebreaks",
+"args": [
+""
+],
+"expected": "<p></p>"
+},
+{
+"fn": "linebreaks",
+"args": [
+"<x>\n\n&"
+],
+"expected": "<p><x></p>\n\n<p>&</p>"
+},
+{
+"fn": "strip_tags",
+"args": [
+"<b>bold</b> text"
+],
+"expected": "bold text"
+},
+{
+"fn": "strip_tags",
+"args": [
+"no tags"
+],
+"expected": "no tags"
+},
+{
+"fn": "strip_tags",
+"args": [
+"<a href='x>y'>link</a>"
+],
+"expected": "link"
+},
+{
+"fn": "strip_tags",
+"args": [
+"1 < 2 and 3 > 2"
+],
+"expected": "1 < 2 and 3 > 2"
+},
+{
+"fn": "strip_tags",
+"args": [
+"<scr<script>ipt>"
+],
+"expected": "ipt>"
+},
+{
+"fn": "strip_tags",
+"args": [
+"a<!-- c -->b"
+],
+"expected": "ab"
+},
+{
+"fn": "strip_tags",
+"args": [
+"&amp; &#39; &foo"
+],
+"expected": "&amp; &#39; &foo"
+},
+{
+"fn": "strip_tags",
+"args": [
+"<p>unclosed"
+],
+"expected": "unclosed"
+},
+{
+"fn": "strip_tags",
+"args": [
+"<br/>x<br />y"
+],
+"expected": "xy"
+},
+{
+"fn": "strip_tags",
+"args": [
+"text <img src=a.png> more"
+],
+"expected": "text  more"
+},
+{
+"fn": "strip_tags",
+"args": [
+"<![CDATA[x]]>y"
+],
+"expected": "y"
+},
+{
+"fn": "strip_tags",
+"args": [
+"<?php echo 1 ?>z"
+],
+"expected": "z"
+},
+{
+"fn": "strip_tags",
+"args": [
+"<>"
+],
+"expected": "<>"
+},
+{
+"fn": "strip_tags",
+"args": [
+"a < b"
+],
+"expected": "a < b"
+},
+{
+"fn": "strip_spaces_between_tags",
+"args": [
+"<a> \n <b>"
+],
+"expected": "<a><b>"
+},
+{
+"fn": "strip_spaces_between_tags",
+"args": [
+"<a>x</a>  <b>"
+],
+"expected": "<a>x</a><b>"
+},
+{
+"fn": "strip_spaces_between_tags",
+"args": [
+"no  tags  here"
+],
+"expected": "no  tags  here"
+},
+{
+"fn": "avoid_wrapping",
+"args": [
+"10 MB"
+],
+"expected": "10 MB"
+},
+{
+"fn": "urlencode",
+"args": [
+[
+[
+"a",
+"1"
+],
+[
+"b",
+"x y"
+]
+]
+],
+"expected": "a=1&b=x+y"
+},
+{
+"fn": "urlencode",
+"args": [
+[
+[
+"k",
+"é&="
+],
+[
+"k",
+"~_.-"
+]
+]
+],
+"expected": "k=%C3%A9%26%3D&k=~_.-"
+},
+{
+"fn": "urlencode",
+"args": [
+[]
+],
+"expected": ""
+},
+{
+"fn": "urlencode",
+"args": [
+[
+[
+"a b",
+"c+d"
+]
+]
+],
+"expected": "a+b=c%2Bd"
+},
+{
+"fn": "http_date",
+"args": [
+0
+],
+"expected": "Thu, 01 Jan 1970 00:00:00 GMT"
+},
+{
+"fn": "http_date",
+"args": [
+1700000000
+],
+"expected": "Tue, 14 Nov 2023 22:13:20 GMT"
+},
+{
+"fn": "http_date",
+"args": [
+1000000000.5
+],
+"expected": "Sun, 09 Sep 2001 01:46:40 GMT"
+},
+{
+"fn": "http_date",
+"args": [
+4102444800
+],
+"expected": "Fri, 01 Jan 2100 00:00:00 GMT"
+},
+{
+"fn": "parse_http_date",
+"args": [
+"Sun, 06 Nov 1994 08:49:37 GMT"
+],
+"expected": 784111777
+},
+{
+"fn": "parse_http_date",
+"args": [
+"Sunday, 06-Nov-94 08:49:37 GMT"
+],
+"expected": 784111777
+},
+{
+"fn": "parse_http_date",
+"args": [
+"Sun Nov  6 08:49:37 1994"
+],
+"expected": 784111777
+},
+{
+"fn": "parse_http_date",
+"args": [
+"garbage"
+],
+"expected": null
+},
+{
+"fn": "parse_http_date",
+"args": [
+"Sun, 31 Feb 2000 00:00:00 GMT"
+],
+"expected": null
+},
+{
+"fn": "parse_http_date",
+"args": [
+"Mon, 01 Jan 2024 00:00:00 GMT"
+],
+"expected": 1704067200
+},
+{
+"fn": "int_to_base36",
+"args": [
+0
+],
+"expected": "0"
+},
+{
+"fn": "int_to_base36",
+"args": [
+35
+],
+"expected": "z"
+},
+{
+"fn": "int_to_base36",
+"args": [
+36
+],
+"expected": "10"
+},
+{
+"fn": "int_to_base36",
+"args": [
+1295
+],
+"expected": "zz"
+},
+{
+"fn": "int_to_base36",
+"args": [
+1296
+],
+"expected": "100"
+},
+{
+"fn": "int_to_base36",
+"args": [
+1000000000000
+],
+"expected": "cre66i9s"
+},
+{
+"fn": "base36_to_int",
+"args": [
+"0"
+],
+"expected": 0
+},
+{
+"fn": "base36_to_int",
+"args": [
+"z"
+],
+"expected": 35
+},
+{
+"fn": "base36_to_int",
+"args": [
+"10"
+],
+"expected": 36
+},
+{
+"fn": "base36_to_int",
+"args": [
+"zz"
+],
+"expected": 1295
+},
+{
+"fn": "base36_to_int",
+"args": [
+"aaaaaaaaaaaaaa"
+],
+"expected": {
+"error": "ValueError"
+}
+},
+{
+"fn": "base36_to_int",
+"args": [
+"ZZ"
+],
+"expected": 1295
+},
+{
+"fn": "base36_to_int",
+"args": [
+""
+],
+"expected": {
+"error": "ValueError"
+}
+},
+{
+"fn": "urlsafe_base64_encode",
+"args": [
+"hello"
+],
+"expected": "aGVsbG8"
+},
+{
+"fn": "urlsafe_base64_encode",
+"args": [
+"ünï"
+],
+"expected": "w7xuw68"
+},
+{
+"fn": "urlsafe_base64_encode",
+"args": [
+""
+],
+"expected": ""
+},
+{
+"fn": "urlsafe_base64_decode",
+"args": [
+"aGVsbG8"
+],
+"expected": "hello"
+},
+{
+"fn": "urlsafe_base64_decode",
+"args": [
+"aGVsbG8="
+],
+"expected": "hello"
+},
+{
+"fn": "urlsafe_base64_decode",
+"args": [
+"!!!"
+],
+"expected": ""
+},
+{
+"fn": "urlsafe_base64_decode",
+"args": [
+"w7xuw68"
+],
+"expected": "ünï"
+},
+{
+"fn": "parse_etags",
+"args": [
+"\"abc\", W/\"def\", \"ghi\""
+],
+"expected": [
+"\"abc\"",
+"W/\"def\"",
+"\"ghi\""
+]
+},
+{
+"fn": "parse_etags",
+"args": [
+"*"
+],
+"expected": [
+"*"
+]
+},
+{
+"fn": "parse_etags",
+"args": [
+" \"x\" ,garbage, W/\"y\" "
+],
+"expected": [
+"\"x\"",
+"W/\"y\""
+]
+},
+{
+"fn": "parse_etags",
+"args": [
+""
+],
+"expected": []
+},
+{
+"fn": "parse_etags",
+"args": [
+"\"unterminated"
+],
+"expected": []
+},
+{
+"fn": "quote_etag",
+"args": [
+"\"abc\""
+],
+"expected": "\"abc\""
+},
+{
+"fn": "quote_etag",
+"args": [
+"abc"
+],
+"expected": "\"abc\""
+},
+{
+"fn": "quote_etag",
+"args": [
+"W/\"x\""
+],
+"expected": "W/\"x\""
+},
+{
+"fn": "quote_etag",
+"args": [
+""
+],
+"expected": "\"\""
+},
+{
+"fn": "is_same_domain",
+"args": [
+"example.com",
+"example.com"
+],
+"expected": true
+},
+{
+"fn": "is_same_domain",
+"args": [
+"foo.example.com",
+".example.com"
+],
+"expected": true
+},
+{
+"fn": "is_same_domain",
+"args": [
+"example.com",
+".example.com"
+],
+"expected": true
+},
+{
+"fn": "is_same_domain",
+"args": [
+"evil.com",
+".example.com"
+],
+"expected": false
+},
+{
+"fn": "is_same_domain",
+"args": [
+"a.b",
+""
+],
+"expected": false
+},
+{
+"fn": "is_same_domain",
+"args": [
+"EXAMPLE.com",
+"example.COM"
+],
+"expected": false
+},
+{
+"fn": "url_has_allowed_host_and_scheme",
+"args": [
+"/path",
+[],
+false
+],
+"expected": true
+},
+{
+"fn": "url_has_allowed_host_and_scheme",
+"args": [
+"//evil.com",
+[
+"good.com"
+],
+false
+],
+"expected": false
+},
+{
+"fn": "url_has_allowed_host_and_scheme",
+"args": [
+"https://good.com/x",
+[
+"good.com"
+],
+false
+],
+"expected": true
+},
+{
+"fn": "url_has_allowed_host_and_scheme",
+"args": [
+"http://good.com/x",
+[
+"good.com"
+],
+true
+],
+"expected": false
+},
+{
+"fn": "url_has_allowed_host_and_scheme",
+"args": [
+"javascript:alert(1)",
+[],
+false
+],
+"expected": false
+},
+{
+"fn": "url_has_allowed_host_and_scheme",
+"args": [
+"///evil.com",
+[],
+false
+],
+"expected": false
+},
+{
+"fn": "url_has_allowed_host_and_scheme",
+"args": [
+"/\\evil.com",
+[],
+false
+],
+"expected": false
+},
+{
+"fn": "url_has_allowed_host_and_scheme",
+"args": [
+"",
+[],
+false
+],
+"expected": false
+},
+{
+"fn": "url_has_allowed_host_and_scheme",
+"args": [
+"  /ok  ",
+[],
+false
+],
+"expected": true
+},
+{
+"fn": "url_has_allowed_host_and_scheme",
+"args": [
+"https:///x",
+[
+"good.com"
+],
+false
+],
+"expected": false
+},
+{
+"fn": "url_has_allowed_host_and_scheme",
+"args": [
+"\u0001//x",
+[],
+false
+],
+"expected": false
+},
+{
+"fn": "url_has_allowed_host_and_scheme",
+"args": [
+"http://[::1]/x",
+[
+"[::1]"
+],
+false
+],
+"expected": true
+},
+{
+"fn": "url_has_allowed_host_and_scheme",
+"args": [
+"http://[bad/x",
+[],
+false
+],
+"expected": false
+},
+{
+"fn": "url_has_allowed_host_and_scheme",
+"args": [
+"good.com",
+[
+"good.com"
+],
+false
+],
+"expected": true
+},
+{
+"fn": "url_has_allowed_host_and_scheme",
+"args": [
+"//good.com",
+[
+"good.com"
+],
+false
+],
+"expected": true
+},
+{
+"fn": "url_has_allowed_host_and_scheme",
+"args": [
+"ftp://good.com",
+[
+"good.com"
+],
+false
+],
+"expected": false
+},
+{
+"fn": "escape_leading_slashes",
+"args": [
+"//x/y"
+],
+"expected": "/%2Fx/y"
+},
+{
+"fn": "escape_leading_slashes",
+"args": [
+"/x"
+],
+"expected": "/x"
+},
+{
+"fn": "escape_leading_slashes",
+"args": [
+"///"
+],
+"expected": "/%2F/"
+},
+{
+"fn": "escape_leading_slashes",
+"args": [
+"x//"
+],
+"expected": "x//"
+},
+{
+"fn": "parse_header_parameters",
+"args": [
+"text/html; charset=utf-8"
+],
+"expected": [
+"text/html",
+[
+[
+"charset",
+"utf-8"
+]
+]
+]
+},
+{
+"fn": "parse_header_parameters",
+"args": [
+"TEXT/HTML"
+],
+"expected": [
+"text/html",
+[]
+]
+},
+{
+"fn": "parse_header_parameters",
+"args": [
+""
+],
+"expected": [
+"",
+[]
+]
+},
+{
+"fn": "parse_header_parameters",
+"args": [
+"form-data; name=\"f\"; filename=\"a b.txt\""
+],
+"expected": [
+"form-data",
+[
+[
+"filename",
+"a b.txt"
+],
+[
+"name",
+"f"
+]
+]
+]
+},
+{
+"fn": "parse_header_parameters",
+"args": [
+"a/b; q=1; r=\"x;y\""
+],
+"expected": [
+"a/b",
+[
+[
+"q",
+"1"
+],
+[
+"r",
+"x;y"
+]
+]
+]
+},
+{
+"fn": "parse_header_parameters",
+"args": [
+"attachment; filename*=utf-8''%e2%82%ac%20rates"
+],
+"expected": [
+"attachment",
+[
+[
+"filename",
+"€ rates"
+]
+]
+]
+},
+{
+"fn": "parse_header_parameters",
+"args": [
+"x; a=1; b"
+],
+"expected": [
+"x",
+[
+[
+"a",
+"1"
+],
+[
+"b",
+""
+]
+]
+]
+},
+{
+"fn": "parse_header_parameters",
+"args": [
+"multipart/form-data; boundary=----X123"
+],
+"expected": [
+"multipart/form-data",
+[
+[
+"boundary",
+"----X123"
+]
+]
+]
+},
+{
+"fn": "content_disposition_header",
+"args": [
+true,
+"a.txt"
+],
+"expected": "attachment; filename=\"a.txt\""
+},
+{
+"fn": "content_disposition_header",
+"args": [
+false,
+"a b.txt"
+],
+"expected": "inline; filename=\"a b.txt\""
+},
+{
+"fn": "content_disposition_header",
+"args": [
+true,
+"é.txt"
+],
+"expected": "attachment; filename*=utf-8''%C3%A9.txt"
+},
+{
+"fn": "content_disposition_header",
+"args": [
+true,
+"q\"uote.txt"
+],
+"expected": "attachment; filename=\"q\\\"uote.txt\""
+},
+{
+"fn": "content_disposition_header",
+"args": [
+true,
+null
+],
+"expected": "attachment"
+},
+{
+"fn": "content_disposition_header",
+"args": [
+false,
+null
+],
+"expected": null
+},
+{
+"fn": "content_disposition_header",
+"args": [
+true,
+"back\\slash"
+],
+"expected": "attachment; filename=\"back\\\\slash\""
+},
+{
+"fn": "iri_to_uri",
+"args": [
+"/I ♥ Rango/"
+],
+"expected": "/I%20%E2%99%A5%20Rango/"
+},
+{
+"fn": "iri_to_uri",
+"args": [
+"/a b?x=ü&y=%20#frag"
+],
+"expected": "/a%20b?x=%C3%BC&y=%20#frag"
+},
+{
+"fn": "iri_to_uri",
+"args": [
+"plain"
+],
+"expected": "plain"
+},
+{
+"fn": "iri_to_uri",
+"args": [
+"~tilde_ok"
+],
+"expected": "~tilde_ok"
+},
+{
+"fn": "iri_to_uri",
+"args": [
+"[ipv6]"
+],
+"expected": "[ipv6]"
+},
+{
+"fn": "uri_to_iri",
+"args": [
+"/I%20%E2%99%A5%20Rango/"
+],
+"expected": "/I%20♥%20Rango/"
+},
+{
+"fn": "uri_to_iri",
+"args": [
+"%C3%BC%2F%41"
+],
+"expected": "ü%2FA"
+},
+{
+"fn": "uri_to_iri",
+"args": [
+"%E2%99"
+],
+"expected": "%E2%99"
+},
+{
+"fn": "uri_to_iri",
+"args": [
+"no-escapes"
+],
+"expected": "no-escapes"
+},
+{
+"fn": "uri_to_iri",
+"args": [
+"100%"
+],
+"expected": "100%"
+},
+{
+"fn": "uri_to_iri",
+"args": [
+"%zz%41"
+],
+"expected": "%zzA"
+},
+{
+"fn": "escape_uri_path",
+"args": [
+"/a b/ü"
+],
+"expected": "/a%20b/%C3%BC"
+},
+{
+"fn": "escape_uri_path",
+"args": [
+"x@y+z"
+],
+"expected": "x@y+z"
+},
+{
+"fn": "escape_uri_path",
+"args": [
+"a?b#c"
+],
+"expected": "a%3Fb%23c"
+},
+{
+"fn": "filepath_to_uri",
+"args": [
+"a\\b c/ü"
+],
+"expected": "a/b%20c/%C3%BC"
+},
+{
+"fn": "filepath_to_uri",
+"args": [
+"dir/~file (1)"
+],
+"expected": "dir/~file%20(1)"
+},
+{
+"fn": "clean_ipv6_address",
+"args": [
+"::1",
+false
+],
+"expected": "::1"
+},
+{
+"fn": "clean_ipv6_address",
+"args": [
+"2001:0DB8:0000:0000:0000:0000:0000:0001",
+false
+],
+"expected": "2001:db8::1"
+},
+{
+"fn": "clean_ipv6_address",
+"args": [
+"::ffff:1.2.3.4",
+false
+],
+"expected": "::ffff:1.2.3.4"
+},
+{
+"fn": "clean_ipv6_address",
+"args": [
+"::ffff:1.2.3.4",
+true
+],
+"expected": "1.2.3.4"
+},
+{
+"fn": "clean_ipv6_address",
+"args": [
+"1:2:3:4:5:6:7:8",
+false
+],
+"expected": "1:2:3:4:5:6:7:8"
+},
+{
+"fn": "clean_ipv6_address",
+"args": [
+"not-an-ip",
+false
+],
+"expected": {
+"error": "ValidationError"
+}
+},
+{
+"fn": "clean_ipv6_address",
+"args": [
+"fe80::1%eth0",
+false
+],
+"expected": "fe80::1"
+},
+{
+"fn": "clean_ipv6_address",
+"args": [
+"1::2::3",
+false
+],
+"expected": {
+"error": "ValidationError"
+}
+},
+{
+"fn": "clean_ipv6_address",
+"args": [
+"::",
+false
+],
+"expected": "::"
+},
+{
+"fn": "is_valid_ipv6_address",
+"args": [
+"::1"
+],
+"expected": true
+},
+{
+"fn": "is_valid_ipv6_address",
+"args": [
+"1.2.3.4"
+],
+"expected": false
+},
+{
+"fn": "is_valid_ipv6_address",
+"args": [
+"fe80::1%eth0"
+],
+"expected": true
+},
+{
+"fn": "is_valid_ipv6_address",
+"args": [
+""
+],
+"expected": false
+},
+{
+"fn": "is_valid_ipv6_address",
+"args": [
+"12345::"
+],
+"expected": false
+},
+{
+"fn": "is_valid_ipv6_address",
+"args": [
+"::ffff:1.2.3.4"
+],
+"expected": true
+},
+{
+"fn": "is_valid_ipv6_address",
+"args": [
+"g::1"
+],
+"expected": false
+},
+{
+"fn": "validate_email",
+"args": [
+"a@b.com"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_email",
+"args": [
+"user.name+tag@example.co.uk"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_email",
+"args": [
+"plain"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid email address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_email",
+"args": [
+"@x.com"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid email address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_email",
+"args": [
+"a@"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid email address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_email",
+"args": [
+"a@localhost"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_email",
+"args": [
+"a@[127.0.0.1]"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_email",
+"args": [
+"a@[::1]"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_email",
+"args": [
+"a@-bad.com"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid email address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_email",
+"args": [
+"a@b"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid email address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_email",
+"args": [
+"a b@c.com"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid email address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_email",
+"args": [
+"\"quoted\"@x.com"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_email",
+"args": [
+"x@aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid email address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_email",
+"args": [
+"ünï@dömain.com"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid email address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_email",
+"args": [
+"a@xn--bcher-kva.com"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_email",
+"args": [
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@x.com"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid email address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_email",
+"args": [
+""
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid email address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_slug",
+"args": [
+"good-slug_1"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_unicode_slug",
+"args": [
+"good-slug_1"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_slug",
+"args": [
+"bad slug"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_unicode_slug",
+"args": [
+"bad slug"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or hyphens."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_slug",
+"args": [
+""
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_unicode_slug",
+"args": [
+""
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or hyphens."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_slug",
+"args": [
+"ünï"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_unicode_slug",
+"args": [
+"ünï"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_slug",
+"args": [
+"a/b"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_unicode_slug",
+"args": [
+"a/b"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or hyphens."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv4_address",
+"args": [
+"1.2.3.4"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_ipv6_address",
+"args": [
+"1.2.3.4"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv6 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv46_address",
+"args": [
+"1.2.3.4"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_ipv4_address",
+"args": [
+"256.1.1.1"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv4 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv6_address",
+"args": [
+"256.1.1.1"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv6 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv46_address",
+"args": [
+"256.1.1.1"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv4 or IPv6 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv4_address",
+"args": [
+"1.2.3"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv4 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv6_address",
+"args": [
+"1.2.3"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv6 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv46_address",
+"args": [
+"1.2.3"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv4 or IPv6 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv4_address",
+"args": [
+"::1"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv4 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv6_address",
+"args": [
+"::1"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_ipv46_address",
+"args": [
+"::1"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_ipv4_address",
+"args": [
+"01.2.3.4"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv4 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv6_address",
+"args": [
+"01.2.3.4"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv6 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv46_address",
+"args": [
+"01.2.3.4"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv4 or IPv6 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv4_address",
+"args": [
+"1.2.3.4.5"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv4 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv6_address",
+"args": [
+"1.2.3.4.5"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv6 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv46_address",
+"args": [
+"1.2.3.4.5"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv4 or IPv6 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv4_address",
+"args": [
+""
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv4 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv6_address",
+"args": [
+""
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv6 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_ipv46_address",
+"args": [
+""
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid IPv4 or IPv6 address."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_integer",
+"args": [
+"123"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_integer",
+"args": [
+"-5"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_integer",
+"args": [
+"1.5"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid integer."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_integer",
+"args": [
+""
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid integer."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_integer",
+"args": [
+"abc"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid integer."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_integer",
+"args": [
+"+3"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid integer."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_integer",
+"args": [
+"١٢٣"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_comma_separated_integer_list",
+"args": [
+"1,2,3"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_comma_separated_integer_list",
+"args": [
+"1,,2"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter only digits separated by commas."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_comma_separated_integer_list",
+"args": [
+"1"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_comma_separated_integer_list",
+"args": [
+"a,b"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter only digits separated by commas."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_comma_separated_integer_list",
+"args": [
+"1, 2"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter only digits separated by commas."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_domain_name",
+"args": [
+"example.com"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_domain_name",
+"args": [
+"sub.example.co.uk"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_domain_name",
+"args": [
+"-bad.com"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid domain name."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_domain_name",
+"args": [
+"bad-.com"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid domain name."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_domain_name",
+"args": [
+"localhost"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid domain name."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_domain_name",
+"args": [
+"ünï.com"
+],
+"expected": "ok"
+},
+{
+"fn": "validate_domain_name",
+"args": [
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid domain name."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_domain_name",
+"args": [
+"x.y"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid domain name."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_domain_name",
+"args": [
+"exa mple.com"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid domain name."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "validate_domain_name",
+"args": [
+"example.com."
+],
+"expected": "ok"
+},
+{
+"fn": "URLValidator",
+"args": [
+"http://example.com"
+],
+"expected": "ok"
+},
+{
+"fn": "URLValidator",
+"args": [
+"https://example.com/path?q=1#f"
+],
+"expected": "ok"
+},
+{
+"fn": "URLValidator",
+"args": [
+"ftp://x.org"
+],
+"expected": "ok"
+},
+{
+"fn": "URLValidator",
+"args": [
+"mailto:a@b.c"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid URL."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "URLValidator",
+"args": [
+"http://"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid URL."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "URLValidator",
+"args": [
+"http://localhost:8000/x"
+],
+"expected": "ok"
+},
+{
+"fn": "URLValidator",
+"args": [
+"http://127.0.0.1"
+],
+"expected": "ok"
+},
+{
+"fn": "URLValidator",
+"args": [
+"http://[::1]/x"
+],
+"expected": "ok"
+},
+{
+"fn": "URLValidator",
+"args": [
+"http://[bad]/x"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid URL."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "URLValidator",
+"args": [
+"http://user:pw@example.com"
+],
+"expected": "ok"
+},
+{
+"fn": "URLValidator",
+"args": [
+"http://exa mple.com"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid URL."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "URLValidator",
+"args": [
+"http://example"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid URL."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "URLValidator",
+"args": [
+"HTTP://EXAMPLE.COM"
+],
+"expected": "ok"
+},
+{
+"fn": "URLValidator",
+"args": [
+"http://ünï.com"
+],
+"expected": "ok"
+},
+{
+"fn": "URLValidator",
+"args": [
+"http://example.com\n"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid URL."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "URLValidator",
+"args": [
+"//example.com"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid URL."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "URLValidator",
+"args": [
+"http://a.b-.com"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid URL."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "URLValidator",
+"args": [
+"javascript://x.com"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid URL."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "URLValidator",
+"args": [
+"http://example.com:99999"
+],
+"expected": "ok"
+},
+{
+"fn": "URLValidator",
+"args": [
+"http://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com"
+],
+"expected": "ok"
+},
+{
+"fn": "URLValidator",
+"args": [
+"https://a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.a.com"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Enter a valid URL."
+],
+"codes": [
+"invalid"
+]
+}
+},
+{
+"fn": "MaxValueValidator",
+"args": [
+10,
+5
+],
+"expected": "ok"
+},
+{
+"fn": "MinValueValidator",
+"args": [
+10,
+5
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Ensure this value is greater than or equal to 10."
+],
+"codes": [
+"min_value"
+]
+}
+},
+{
+"fn": "MaxValueValidator",
+"args": [
+10,
+10
+],
+"expected": "ok"
+},
+{
+"fn": "MinValueValidator",
+"args": [
+10,
+10
+],
+"expected": "ok"
+},
+{
+"fn": "MaxValueValidator",
+"args": [
+10,
+11
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Ensure this value is less than or equal to 10."
+],
+"codes": [
+"max_value"
+]
+}
+},
+{
+"fn": "MinValueValidator",
+"args": [
+10,
+11
+],
+"expected": "ok"
+},
+{
+"fn": "MaxValueValidator",
+"args": [
+0,
+-1
+],
+"expected": "ok"
+},
+{
+"fn": "MinValueValidator",
+"args": [
+0,
+-1
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Ensure this value is greater than or equal to 0."
+],
+"codes": [
+"min_value"
+]
+}
+},
+{
+"fn": "MaxValueValidator",
+"args": [
+1.5,
+1.6
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Ensure this value is less than or equal to 1.5."
+],
+"codes": [
+"max_value"
+]
+}
+},
+{
+"fn": "MinValueValidator",
+"args": [
+1.5,
+1.6
+],
+"expected": "ok"
+},
+{
+"fn": "MinLengthValidator",
+"args": [
+3,
+"abcd"
+],
+"expected": "ok"
+},
+{
+"fn": "MaxLengthValidator",
+"args": [
+3,
+"abcd"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Ensure this value has at most 3 characters (it has 4)."
+],
+"codes": [
+"max_length"
+]
+}
+},
+{
+"fn": "MinLengthValidator",
+"args": [
+3,
+"abc"
+],
+"expected": "ok"
+},
+{
+"fn": "MaxLengthValidator",
+"args": [
+3,
+"abc"
+],
+"expected": "ok"
+},
+{
+"fn": "MinLengthValidator",
+"args": [
+3,
+"ab"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Ensure this value has at least 3 characters (it has 2)."
+],
+"codes": [
+"min_length"
+]
+}
+},
+{
+"fn": "MaxLengthValidator",
+"args": [
+3,
+"ab"
+],
+"expected": "ok"
+},
+{
+"fn": "MinLengthValidator",
+"args": [
+1,
+""
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Ensure this value has at least 1 character (it has 0)."
+],
+"codes": [
+"min_length"
+]
+}
+},
+{
+"fn": "MaxLengthValidator",
+"args": [
+1,
+""
+],
+"expected": "ok"
+},
+{
+"fn": "MinLengthValidator",
+"args": [
+1,
+"é"
+],
+"expected": "ok"
+},
+{
+"fn": "MaxLengthValidator",
+"args": [
+1,
+"é"
+],
+"expected": "ok"
+},
+{
+"fn": "MinLengthValidator",
+"args": [
+2,
+"ab"
+],
+"expected": "ok"
+},
+{
+"fn": "MaxLengthValidator",
+"args": [
+2,
+"ab"
+],
+"expected": "ok"
+},
+{
+"fn": "MinLengthValidator",
+"args": [
+1,
+"ab"
+],
+"expected": "ok"
+},
+{
+"fn": "MaxLengthValidator",
+"args": [
+1,
+"ab"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Ensure this value has at most 1 character (it has 2)."
+],
+"codes": [
+"max_length"
+]
+}
+},
+{
+"fn": "StepValueValidator",
+"args": [
+2,
+4
+],
+"expected": "ok"
+},
+{
+"fn": "StepValueValidator",
+"args": [
+2,
+5
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Ensure this value is a multiple of step size 2."
+],
+"codes": [
+"step_size"
+]
+}
+},
+{
+"fn": "StepValueValidator",
+"args": [
+0.1,
+0.3
+],
+"expected": "ok"
+},
+{
+"fn": "StepValueValidator",
+"args": [
+5,
+15
+],
+"expected": "ok"
+},
+{
+"fn": "StepValueValidator",
+"args": [
+3,
+10
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Ensure this value is a multiple of step size 3."
+],
+"codes": [
+"step_size"
+]
+}
+},
+{
+"fn": "ProhibitNullCharactersValidator",
+"args": [
+"ok"
+],
+"expected": "ok"
+},
+{
+"fn": "ProhibitNullCharactersValidator",
+"args": [
+"bad\u0000null"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"Null characters are not allowed."
+],
+"codes": [
+"null_characters_not_allowed"
+]
+}
+},
+{
+"fn": "ProhibitNullCharactersValidator",
+"args": [
+""
+],
+"expected": "ok"
+},
+{
+"fn": "FileExtensionValidator",
+"args": [
+[
+"jpg",
+"png"
+],
+"a.JPG"
+],
+"expected": "ok"
+},
+{
+"fn": "FileExtensionValidator",
+"args": [
+[
+"jpg"
+],
+"a.gif"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"File extension “gif” is not allowed. Allowed extensions are: jpg."
+],
+"codes": [
+"invalid_extension"
+]
+}
+},
+{
+"fn": "FileExtensionValidator",
+"args": [
+[
+"jpg"
+],
+"noext"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"File extension “” is not allowed. Allowed extensions are: jpg."
+],
+"codes": [
+"invalid_extension"
+]
+}
+},
+{
+"fn": "FileExtensionValidator",
+"args": [
+[
+"tar.gz"
+],
+"a.tar.gz"
+],
+"expected": {
+"error": "ValidationError",
+"messages": [
+"File extension “gz” is not allowed. Allowed extensions are: tar.gz."
+],
+"codes": [
+"invalid_extension"
+]
+}
+},
+{
+"fn": "FileExtensionValidator",
+"args": [
+[
+"txt"
+],
+"dir.d/file.txt"
+],
+"expected": "ok"
+},
+{
+"fn": "parse_date",
+"args": [
+"2024-02-29"
+],
+"expected": "2024-02-29"
+},
+{
+"fn": "parse_date",
+"args": [
+"2023-02-29"
+],
+"expected": {
+"error": "ValueError"
+}
+},
+{
+"fn": "parse_date",
+"args": [
+"2024-2-9"
+],
+"expected": "2024-02-09"
+},
+{
+"fn": "parse_date",
+"args": [
+"24-01-01"
+],
+"expected": null
+},
+{
+"fn": "parse_date",
+"args": [
+"garbage"
+],
+"expected": null
+},
+{
+"fn": "parse_date",
+"args": [
+"2024-13-01"
+],
+"expected": {
+"error": "ValueError"
+}
+},
+{
+"fn": "parse_date",
+"args": [
+"2024-01-01T00:00"
+],
+"expected": null
+},
+{
+"fn": "parse_date",
+"args": [
+""
+],
+"expected": null
+},
+{
+"fn": "parse_time",
+"args": [
+"10:20"
+],
+"expected": "10:20:00"
+},
+{
+"fn": "parse_time",
+"args": [
+"10:20:30"
+],
+"expected": "10:20:30"
+},
+{
+"fn": "parse_time",
+"args": [
+"10:20:30.123456"
+],
+"expected": "10:20:30.123456"
+},
+{
+"fn": "parse_time",
+"args": [
+"10:20:30,5"
+],
+"expected": "10:20:30.500000"
+},
+{
+"fn": "parse_time",
+"args": [
+"25:00"
+],
+"expected": {
+"error": "ValueError"
+}
+},
+{
+"fn": "parse_time",
+"args": [
+"1:2:3"
+],
+"expected": "01:02:03"
+},
+{
+"fn": "parse_time",
+"args": [
+"10:20:30+02:00"
+],
+"expected": "10:20:30"
+},
+{
+"fn": "parse_time",
+"args": [
+"garbage"
+],
+"expected": null
+},
+{
+"fn": "parse_time",
+"args": [
+"10:20:30.1234567"
+],
+"expected": "10:20:30.123456"
+},
+{
+"fn": "parse_datetime",
+"args": [
+"2012-04-23T10:20:30.400+02:30"
+],
+"expected": "2012-04-23T10:20:30.400000+02:30"
+},
+{
+"fn": "parse_datetime",
+"args": [
+"2012-04-23 10:20:30"
+],
+"expected": "2012-04-23T10:20:30"
+},
+{
+"fn": "parse_datetime",
+"args": [
+"2012-04-23T10:20:30Z"
+],
+"expected": "2012-04-23T10:20:30+00:00"
+},
+{
+"fn": "parse_datetime",
+"args": [
+"2012-04-23T10:20"
+],
+"expected": "2012-04-23T10:20:00"
+},
+{
+"fn": "parse_datetime",
+"args": [
+"2012-4-3 1:2"
+],
+"expected": "2012-04-03T01:02:00"
+},
+{
+"fn": "parse_datetime",
+"args": [
+"2012-04-23T10:20:30-0530"
+],
+"expected": "2012-04-23T10:20:30-05:30"
+},
+{
+"fn": "parse_datetime",
+"args": [
+"2012-04-23T10:20:30 +02"
+],
+"expected": "2012-04-23T10:20:30+02:00"
+},
+{
+"fn": "parse_datetime",
+"args": [
+"2012-13-23T10:20"
+],
+"expected": {
+"error": "ValueError"
+}
+},
+{
+"fn": "parse_datetime",
+"args": [
+"garbage"
+],
+"expected": null
+},
+{
+"fn": "parse_datetime",
+"args": [
+"2012-04-23"
+],
+"expected": "2012-04-23T00:00:00"
+},
+{
+"fn": "parse_datetime",
+"args": [
+"2012-04-23T10:20:30.123456789"
+],
+"expected": "2012-04-23T10:20:30.123456"
+},
+{
+"fn": "parse_duration",
+"args": [
+"1 day, 2:03:04"
+],
+"expected": {
+"days": 1,
+"seconds": 7384,
+"microseconds": 0
+}
+},
+{
+"fn": "parse_duration",
+"args": [
+"-1 days 2:03:04"
+],
+"expected": {
+"days": -1,
+"seconds": 7384,
+"microseconds": 0
+}
+},
+{
+"fn": "parse_duration",
+"args": [
+"4 15:30"
+],
+"expected": {
+"days": 4,
+"seconds": 930,
+"microseconds": 0
+}
+},
+{
+"fn": "parse_duration",
+"args": [
+"15:30"
+],
+"expected": {
+"days": 0,
+"seconds": 930,
+"microseconds": 0
+}
+},
+{
+"fn": "parse_duration",
+"args": [
+"30"
+],
+"expected": {
+"days": 0,
+"seconds": 30,
+"microseconds": 0
+}
+},
+{
+"fn": "parse_duration",
+"args": [
+"1:2:3"
+],
+"expected": {
+"days": 0,
+"seconds": 3723,
+"microseconds": 0
+}
+},
+{
+"fn": "parse_duration",
+"args": [
+"10:15:30.5"
+],
+"expected": {
+"days": 0,
+"seconds": 36930,
+"microseconds": 500000
+}
+},
+{
+"fn": "parse_duration",
+"args": [
+"-4 15:30"
+],
+"expected": {
+"days": -4,
+"seconds": 930,
+"microseconds": 0
+}
+},
+{
+"fn": "parse_duration",
+"args": [
+"P4DT1H15M20S"
+],
+"expected": {
+"days": 4,
+"seconds": 4520,
+"microseconds": 0
+}
+},
+{
+"fn": "parse_duration",
+"args": [
+"-P1DT2H"
+],
+"expected": {
+"days": -2,
+"seconds": 79200,
+"microseconds": 0
+}
+},
+{
+"fn": "parse_duration",
+"args": [
+"PT0.5S"
+],
+"expected": {
+"days": 0,
+"seconds": 0,
+"microseconds": 500000
+}
+},
+{
+"fn": "parse_duration",
+"args": [
+"P1.5D"
+],
+"expected": {
+"days": 1,
+"seconds": 43200,
+"microseconds": 0
+}
+},
+{
+"fn": "parse_duration",
+"args": [
+"4 days 11:00:00.001"
+],
+"expected": {
+"days": 4,
+"seconds": 39600,
+"microseconds": 1000
+}
+},
+{
+"fn": "parse_duration",
+"args": [
+"garbage"
+],
+"expected": null
+},
+{
+"fn": "parse_duration",
+"args": [
+""
+],
+"expected": {
+"days": 0,
+"seconds": 0,
+"microseconds": 0
+}
+},
+{
+"fn": "parse_duration",
+"args": [
+"1 2:3:4.123456789"
+],
+"expected": {
+"days": 1,
+"seconds": 7384,
+"microseconds": 123456
+}
+},
+{
+"fn": "parse_duration",
+"args": [
+"-00:00:01"
+],
+"expected": {
+"days": -1,
+"seconds": 86399,
+"microseconds": 0
+}
+},
+{
+"fn": "parse_duration",
+"args": [
+"+1 day"
+],
+"expected": null
+},
+{
+"fn": "parse_duration",
+"args": [
+"1,5"
+],
+"expected": {
+"days": 0,
+"seconds": 1,
+"microseconds": 500000
+}
+},
+{
+"fn": "duration_string",
+"args": [
+0,
+0,
+0
+],
+"expected": "00:00:00"
+},
+{
+"fn": "duration_iso_string",
+"args": [
+0,
+0,
+0
+],
+"expected": "P0DT00H00M00S"
+},
+{
+"fn": "duration_string",
+"args": [
+1,
+3723,
+0
+],
+"expected": "1 01:02:03"
+},
+{
+"fn": "duration_iso_string",
+"args": [
+1,
+3723,
+0
+],
+"expected": "P1DT01H02M03S"
+},
+{
+"fn": "duration_string",
+"args": [
+-1,
+86399,
+999999
+],
+"expected": "-1 23:59:59.999999"
+},
+{
+"fn": "duration_iso_string",
+"args": [
+-1,
+86399,
+999999
+],
+"expected": "-P0DT00H00M00.000001S"
+},
+{
+"fn": "duration_string",
+"args": [
+0,
+59,
+5
+],
+"expected": "00:00:59.000005"
+},
+{
+"fn": "duration_iso_string",
+"args": [
+0,
+59,
+5
+],
+"expected": "P0DT00H00M59.000005S"
+},
+{
+"fn": "duration_string",
+"args": [
+400,
+0,
+123456
+],
+"expected": "400 00:00:00.123456"
+},
+{
+"fn": "duration_iso_string",
+"args": [
+400,
+0,
+123456
+],
+"expected": "P400DT00H00M00.123456S"
+},
+{
+"fn": "duration_string",
+"args": [
+-2,
+0,
+0
+],
+"expected": "-2 00:00:00"
+},
+{
+"fn": "duration_iso_string",
+"args": [
+-2,
+0,
+0
+],
+"expected": "-P2DT00H00M00S"
+},
+{
+"fn": "paginate",
+"args": [
+[],
+10,
+0,
+true,
+1,
+3,
+2
+],
+"expected": {
+"count": 0,
+"num_pages": 1,
+"page": {
+"items": [],
+"start": 0,
+"end": 0,
+"has_next": false,
+"has_prev": false
+},
+"elided": [
+1
+]
+}
+},
+{
+"fn": "paginate",
+"args": [
+[],
+10,
+0,
+false,
+1,
+3,
+2
+],
+"expected": {
+"count": 0,
+"num_pages": 0,
+"page": {
+"error": "EmptyPage"
+},
+"elided": {
+"error": "EmptyPage"
+}
+}
+},
+{
+"fn": "paginate",
+"args": [
+[
+1
+],
+10,
+0,
+true,
+1,
+3,
+2
+],
+"expected": {
+"count": 1,
+"num_pages": 1,
+"page": {
+"items": [
+1
+],
+"start": 1,
+"end": 1,
+"has_next": false,
+"has_prev": false
+},
+"elided": [
+1
+]
+}
+},
+{
+"fn": "paginate",
+"args": [
+[
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+3,
+0,
+true,
+4,
+3,
+2
+],
+"expected": {
+"count": 10,
+"num_pages": 4,
+"page": {
+"items": [
+10
+],
+"start": 10,
+"end": 10,
+"has_next": false,
+"has_prev": true
+},
+"elided": [
+1,
+2,
+3,
+4
+]
+}
+},
+{
+"fn": "paginate",
+"args": [
+[
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+3,
+1,
+true,
+3,
+3,
+2
+],
+"expected": {
+"count": 10,
+"num_pages": 3,
+"page": {
+"items": [
+7,
+8,
+9,
+10
+],
+"start": 7,
+"end": 10,
+"has_next": false,
+"has_prev": true
+},
+"elided": [
+1,
+2,
+3
+]
+}
+},
+{
+"fn": "paginate",
+"args": [
+[
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10
+],
+3,
+1,
+true,
+4,
+3,
+2
+],
+"expected": {
+"count": 10,
+"num_pages": 3,
+"page": {
+"error": "EmptyPage"
+},
+"elided": {
+"error": "EmptyPage"
+}
+}
+},
+{
+"fn": "paginate",
+"args": [
+[
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12,
+13,
+14,
+15,
+16,
+17,
+18,
+19,
+20,
+21,
+22,
+23,
+24,
+25,
+26,
+27,
+28,
+29,
+30,
+31,
+32,
+33,
+34,
+35,
+36,
+37,
+38,
+39,
+40,
+41,
+42,
+43,
+44,
+45,
+46,
+47,
+48,
+49,
+50,
+51,
+52,
+53,
+54,
+55,
+56,
+57,
+58,
+59,
+60,
+61,
+62,
+63,
+64,
+65,
+66,
+67,
+68,
+69,
+70,
+71,
+72,
+73,
+74,
+75,
+76,
+77,
+78,
+79,
+80,
+81,
+82,
+83,
+84,
+85,
+86,
+87,
+88,
+89,
+90,
+91,
+92,
+93,
+94,
+95,
+96,
+97,
+98,
+99,
+100
+],
+2,
+0,
+true,
+25,
+3,
+2
+],
+"expected": {
+"count": 100,
+"num_pages": 50,
+"page": {
+"items": [
+49,
+50
+],
+"start": 49,
+"end": 50,
+"has_next": true,
+"has_prev": true
+},
+"elided": [
+1,
+2,
+"…",
+22,
+23,
+24,
+25,
+26,
+27,
+28,
+"…",
+49,
+50
+]
+}
+},
+{
+"fn": "paginate",
+"args": [
+[
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12,
+13,
+14,
+15,
+16,
+17,
+18,
+19,
+20,
+21,
+22,
+23,
+24,
+25,
+26,
+27,
+28,
+29,
+30,
+31,
+32,
+33,
+34,
+35,
+36,
+37,
+38,
+39,
+40,
+41,
+42,
+43,
+44,
+45,
+46,
+47,
+48,
+49,
+50,
+51,
+52,
+53,
+54,
+55,
+56,
+57,
+58,
+59,
+60,
+61,
+62,
+63,
+64,
+65,
+66,
+67,
+68,
+69,
+70,
+71,
+72,
+73,
+74,
+75,
+76,
+77,
+78,
+79,
+80,
+81,
+82,
+83,
+84,
+85,
+86,
+87,
+88,
+89,
+90,
+91,
+92,
+93,
+94,
+95,
+96,
+97,
+98,
+99,
+100
+],
+2,
+0,
+true,
+1,
+3,
+2
+],
+"expected": {
+"count": 100,
+"num_pages": 50,
+"page": {
+"items": [
+1,
+2
+],
+"start": 1,
+"end": 2,
+"has_next": true,
+"has_prev": false
+},
+"elided": [
+1,
+2,
+3,
+4,
+"…",
+49,
+50
+]
+}
+},
+{
+"fn": "paginate",
+"args": [
+[
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12,
+13,
+14,
+15,
+16,
+17,
+18,
+19,
+20,
+21,
+22,
+23,
+24,
+25,
+26,
+27,
+28,
+29,
+30,
+31,
+32,
+33,
+34,
+35,
+36,
+37,
+38,
+39,
+40,
+41,
+42,
+43,
+44,
+45,
+46,
+47,
+48,
+49,
+50,
+51,
+52,
+53,
+54,
+55,
+56,
+57,
+58,
+59,
+60,
+61,
+62,
+63,
+64,
+65,
+66,
+67,
+68,
+69,
+70,
+71,
+72,
+73,
+74,
+75,
+76,
+77,
+78,
+79,
+80,
+81,
+82,
+83,
+84,
+85,
+86,
+87,
+88,
+89,
+90,
+91,
+92,
+93,
+94,
+95,
+96,
+97,
+98,
+99,
+100
+],
+2,
+0,
+true,
+50,
+3,
+2
+],
+"expected": {
+"count": 100,
+"num_pages": 50,
+"page": {
+"items": [
+99,
+100
+],
+"start": 99,
+"end": 100,
+"has_next": false,
+"has_prev": true
+},
+"elided": [
+1,
+2,
+"…",
+47,
+48,
+49,
+50
+]
+}
+},
+{
+"fn": "paginate",
+"args": [
+[
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12,
+13,
+14,
+15,
+16,
+17,
+18,
+19,
+20,
+21,
+22,
+23,
+24,
+25,
+26,
+27,
+28,
+29,
+30,
+31,
+32,
+33,
+34,
+35,
+36,
+37,
+38,
+39,
+40,
+41,
+42,
+43,
+44,
+45,
+46,
+47,
+48,
+49,
+50,
+51,
+52,
+53,
+54,
+55,
+56,
+57,
+58,
+59,
+60,
+61,
+62,
+63,
+64,
+65,
+66,
+67,
+68,
+69,
+70,
+71,
+72,
+73,
+74,
+75,
+76,
+77,
+78,
+79,
+80,
+81,
+82,
+83,
+84,
+85,
+86,
+87,
+88,
+89,
+90,
+91,
+92,
+93,
+94,
+95,
+96,
+97,
+98,
+99,
+100
+],
+2,
+5,
+true,
+48,
+1,
+1
+],
+"expected": {
+"count": 100,
+"num_pages": 48,
+"page": {
+"items": [
+95,
+96,
+97,
+98,
+99,
+100
+],
+"start": 95,
+"end": 100,
+"has_next": false,
+"has_prev": true
+},
+"elided": [
+1,
+"…",
+47,
+48
+]
+}
+},
+{
+"fn": "paginate",
+"args": [
+[
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12,
+13,
+14,
+15,
+16,
+17,
+18,
+19,
+20,
+21,
+22,
+23
+],
+5,
+0,
+true,
+0,
+3,
+2
+],
+"expected": {
+"count": 23,
+"num_pages": 5,
+"page": {
+"error": "EmptyPage"
+},
+"elided": {
+"error": "EmptyPage"
+}
+}
+},
+{
+"fn": "paginate",
+"args": [
+[
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12,
+13,
+14,
+15,
+16,
+17,
+18,
+19,
+20,
+21,
+22,
+23
+],
+5,
+0,
+true,
+6,
+3,
+2
+],
+"expected": {
+"count": 23,
+"num_pages": 5,
+"page": {
+"error": "EmptyPage"
+},
+"elided": {
+"error": "EmptyPage"
+}
+}
+},
+{
+"fn": "paginate",
+"args": [
+[
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12,
+13,
+14,
+15,
+16,
+17,
+18,
+19,
+20,
+21,
+22,
+23
+],
+5,
+2,
+true,
+4,
+3,
+2
+],
+"expected": {
+"count": 23,
+"num_pages": 5,
+"page": {
+"items": [
+16,
+17,
+18,
+19,
+20
+],
+"start": 16,
+"end": 20,
+"has_next": true,
+"has_prev": true
+},
+"elided": [
+1,
+2,
+3,
+4,
+5
+]
+}
+},
+{
+"fn": "paginate",
+"args": [
+[
+1,
+2,
+3,
+4,
+5,
+6,
+7
+],
+7,
+0,
+true,
+1,
+3,
+2
+],
+"expected": {
+"count": 7,
+"num_pages": 1,
+"page": {
+"items": [
+1,
+2,
+3,
+4,
+5,
+6,
+7
+],
+"start": 1,
+"end": 7,
+"has_next": false,
+"has_prev": false
+},
+"elided": [
+1
+]
+}
+},
+{
+"fn": "normalize",
+"args": [
+"^articles/(?P<year>[0-9]{4})/$"
+],
+"expected": [
+[
+"articles/%(year)s/",
+[
+"year"
+]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"^a/(\\d+)/$"
+],
+"expected": [
+[
+"a/%(_0)s/",
+[
+"_0"
+]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"^(?:foo/)?(?P<x>\\w+)/"
+],
+"expected": [
+[
+"%(x)s/",
+[
+"x"
+]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"x?"
+],
+"expected": [
+[
+"",
+[]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"a|b"
+],
+"expected": [
+[
+"",
+[]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"[abc]d"
+],
+"expected": [
+[
+"ad",
+[]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"(?P<a>x)(?P<b>y)"
+],
+"expected": [
+[
+"%(a)s%(b)s",
+[
+"a",
+"b"
+]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"^[a-z]+/"
+],
+"expected": [
+[
+"a/",
+[]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"^\\w+\\.html$"
+],
+"expected": [
+[
+"x.html",
+[]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"^(?:(?P<p>\\d+)/)?end"
+],
+"expected": [
+[
+"end",
+[]
+],
+[
+"%(p)s/end",
+[
+"p"
+]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"^a{2}b"
+],
+"expected": [
+[
+"aab",
+[]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"(?P=a)"
+],
+"expected": [
+[
+"%(a)s",
+[]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+""
+],
+"expected": [
+[
+"",
+[]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"^$"
+],
+"expected": [
+[
+"",
+[]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"^b/(?P<n>[-\\w]+)/(?:c/)*d"
+],
+"expected": [
+[
+"b/%(n)s/d",
+[
+"n"
+]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"(?:a|b)"
+],
+"expected": [
+[
+"",
+[]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"(?=x)y"
+],
+"expected": [
+[
+"y",
+[]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"^x*(?P<k>y)?"
+],
+"expected": [
+[
+"",
+[]
+],
+[
+"%(k)s",
+[
+"k"
+]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"^page-(?P<n>\\d+)?/$"
+],
+"expected": [
+[
+"page-/",
+[]
+],
+[
+"page-%(n)s/",
+[
+"n"
+]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"(?P<n>\\d+){2}"
+],
+"expected": [
+[
+"%(n)s%(n)s",
+[
+"n",
+"n"
+]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"(?i)x"
+],
+"expected": {
+"error": "ValueError"
+}
+},
+{
+"fn": "normalize",
+"args": [
+"^\\(a\\)$"
+],
+"expected": [
+[
+"(a)",
+[]
+]
+]
+},
+{
+"fn": "normalize",
+"args": [
+"^/(?:(?P<a>\\d+)/(?P<b>\\d+)/)?$"
+],
+"expected": [
+[
+"/",
+[]
+],
+[
+"/%(a)s/%(b)s/",
+[
+"a",
+"b"
+]
+]
+]
+},
+{
+"fn": "urljoin",
+"args": [
+"http://a/b/c/d;p?q",
+"g"
+],
+"expected": "http://a/b/c/g"
+},
+{
+"fn": "urljoin",
+"args": [
+"http://a/b/c/d;p?q",
+"../g"
+],
+"expected": "http://a/b/g"
+},
+{
+"fn": "urljoin",
+"args": [
+"http://a/b/c/d;p?q",
+"/g"
+],
+"expected": "http://a/g"
+},
+{
+"fn": "urljoin",
+"args": [
+"http://a/b/c/d;p?q",
+"//g"
+],
+"expected": "http://g"
+},
+{
+"fn": "urljoin",
+"args": [
+"http://a/b/c/d;p?q",
+"?y"
+],
+"expected": "http://a/b/c/d;p?y"
+},
+{
+"fn": "urljoin",
+"args": [
+"http://a/b/c/d;p?q",
+"g?y#s"
+],
+"expected": "http://a/b/c/g?y#s"
+},
+{
+"fn": "urljoin",
+"args": [
+"http://a/b/c/d;p?q",
+"../../../g"
+],
+"expected": "http://a/g"
+},
+{
+"fn": "urljoin",
+"args": [
+"http://a/b/c/d;p?q",
+"./g/."
+],
+"expected": "http://a/b/c/g/"
+},
+{
+"fn": "urljoin",
+"args": [
+"http://a/b/c/d;p?q",
+"https://x/y"
+],
+"expected": "https://x/y"
+},
+{
+"fn": "urljoin",
+"args": [
+"http://a/b/c/",
+"d"
+],
+"expected": "http://a/b/c/d"
+},
+{
+"fn": "urljoin",
+"args": [
+"http://a",
+"/x"
+],
+"expected": "http://a/x"
+},
+{
+"fn": "urljoin",
+"args": [
+"http://a/b",
+""
+],
+"expected": "http://a/b"
+},
+{
+"fn": "urljoin",
+"args": [
+"",
+"x"
+],
+"expected": "x"
+},
+{
+"fn": "urljoin",
+"args": [
+"http://testserver/p/",
+"q"
+],
+"expected": "http://testserver/p/q"
+},
+{
+"fn": "urljoin",
+"args": [
+"http://a/b/c",
+"#f"
+],
+"expected": "http://a/b/c#f"
+},
+{
+"fn": "urljoin",
+"args": [
+"http://a/b/c",
+"mailto:x@y"
+],
+"expected": "mailto:x@y"
+},
+{
+"fn": "urljoin",
+"args": [
+"http://a/b/c",
+"../.."
+],
+"expected": "http://a/"
+},
+{
+"fn": "urljoin",
+"args": [
+"http://a/b//c",
+"d"
+],
+"expected": "http://a/b/d"
+}
+]

@@ -1,0 +1,11 @@
+//! {{ project_name }}: Rango's command-line utility for administrative tasks (`manage.py`).
+
+mod settings;
+mod urls;
+
+#[tokio::main]
+async fn main() {
+    rango::conf::configure(settings::settings()).expect("settings are already configured");
+    rango::setup().await.expect("failed to set up Rango");
+    std::process::exit(rango::core::management::execute_from_command_line(std::env::args()).await);
+}

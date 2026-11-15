@@ -1,0 +1,8 @@
+//! Views for the {{ app_name }} app.
+
+use rango::Result;
+use rango::http::{HttpRequest, HttpResponse};
+
+pub async fn index(_request: HttpRequest) -> Result<HttpResponse> {
+    Ok(HttpResponse::new("Hello, world. You're at the {{ app_name }} index."))
+}

@@ -1,0 +1,28 @@
+[package]
+name = "rangoframework-urls"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+readme.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Rango URL routing: path()/re_path()/include(), resolve(), reverse()."
+
+[lib]
+name = "rango_urls"
+
+[dependencies]
+fancy-regex = "0.20.2"
+futures-util = "0.3.34"
+indexmap = { version = "2.14.2", features = ["serde"] }
+inventory = "0.3.25"
+rango-core = { package = "rangoframework-core", version = "0.1.0", path = "../rango-core" }
+rango-http = { package = "rangoframework-http", version = "0.1.0", path = "../rango-http" }
+thiserror = "2.0.21"
+tokio = { version = "1.54.1", features = ["rt", "macros", "sync"] }
+uuid = "1.29.2"
+
+[dev-dependencies]
+serde_json = "1.0.154"
+tokio = { version = "1.54.1", features = ["rt-multi-thread", "macros"] }

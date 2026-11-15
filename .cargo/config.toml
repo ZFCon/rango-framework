@@ -1,0 +1,3 @@
+[build]
+# Disk is tight on the dev machine: incremental caches alone were ~700 MB.
+incremental = false

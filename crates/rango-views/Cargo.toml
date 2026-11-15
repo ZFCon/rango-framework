@@ -1,0 +1,33 @@
+[package]
+name = "rangoframework-views"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+readme.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Rango views: default error views, debug pages, static serving, decorators, shortcuts."
+
+[lib]
+name = "rango_views"
+
+[dependencies]
+chrono = { version = "0.4.45", default-features = false, features = ["std", "clock"] }
+futures-util = "0.3.34"
+indexmap = "2.14.2"
+mime_guess = "2.0.5"
+async-trait = "0.1"
+rango-core = { package = "rangoframework-core", version = "0.1.0", path = "../rango-core" }
+rango-db = { package = "rangoframework-db", version = "0.1.0", path = "../rango-db" }
+rango-forms = { package = "rangoframework-forms", version = "0.1.0", path = "../rango-forms" }
+rango-http = { package = "rangoframework-http", version = "0.1.0", path = "../rango-http" }
+rango-template = { package = "rangoframework-template", version = "0.1.0", path = "../rango-template" }
+rango-urls = { package = "rangoframework-urls", version = "0.1.0", path = "../rango-urls" }
+regex = "1.13.1"
+serde_json = "1.0.154"
+tracing = "0.1"
+tokio = { version = "1.54.1", features = ["rt", "fs", "macros"] }
+
+[dev-dependencies]
+tokio = { version = "1.54.1", features = ["rt-multi-thread", "macros"] }

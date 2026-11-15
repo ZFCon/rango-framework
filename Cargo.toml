@@ -1,0 +1,40 @@
+[workspace]
+resolver = "2"
+members = ["crates/*"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "BSD-3-Clause"
+repository = "https://github.com/ZFCon/rango"
+readme = "README.md"
+keywords = ["web", "framework", "orm", "rest", "admin"]
+categories = ["web-programming", "web-programming::http-server", "database"]
+description = "Rango: a batteries-included web framework for Rust — ORM, migrations, templates, forms, admin, auth, REST."
+
+# Lean dev profile: disk is tight, so keep debuginfo to line tables only.
+[profile.dev]
+debug = "line-tables-only"
+
+[profile.dev.package."*"]
+debug = false
+
+# Password hashing is deliberately slow; keep it fast enough to test in debug builds.
+[profile.dev.package.pbkdf2]
+opt-level = 3
+[profile.dev.package.sha2]
+opt-level = 3
+[profile.dev.package.sha1]
+opt-level = 3
+[profile.dev.package.hmac]
+opt-level = 3
+[profile.dev.package.scrypt]
+opt-level = 3
+[profile.dev.package.argon2]
+opt-level = 3
+[profile.dev.package.blake2]
+opt-level = 3
+[profile.dev.package.bcrypt]
+opt-level = 3
+[profile.dev.package.blowfish]
+opt-level = 3

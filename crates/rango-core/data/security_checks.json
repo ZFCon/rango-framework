@@ -1,0 +1,117 @@
+{
+ "security.E023": {
+  "level": 40,
+  "msg": "You have set the SECURE_REFERRER_POLICY setting to an invalid value.",
+  "hint": "Valid values are: no-referrer, no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url."
+ },
+ "security.E024": {
+  "level": 40,
+  "msg": "You have set the SECURE_CROSS_ORIGIN_OPENER_POLICY setting to an invalid value.",
+  "hint": "Valid values are: same-origin, same-origin-allow-popups, unsafe-none."
+ },
+ "security.W001": {
+  "level": 30,
+  "msg": "You do not have 'rango.middleware.security.SecurityMiddleware' in your MIDDLEWARE so the SECURE_HSTS_SECONDS, SECURE_CONTENT_TYPE_NOSNIFF, SECURE_REFERRER_POLICY, SECURE_CROSS_ORIGIN_OPENER_POLICY, and SECURE_SSL_REDIRECT settings will have no effect.",
+  "hint": null
+ },
+ "security.W002": {
+  "level": 30,
+  "msg": "You do not have 'rango.middleware.clickjacking.XFrameOptionsMiddleware' in your MIDDLEWARE, so your pages will not be served with an 'x-frame-options' header. Unless there is a good reason for your site to be served in a frame, you should consider enabling this header to help prevent clickjacking attacks.",
+  "hint": null
+ },
+ "security.W003": {
+  "level": 30,
+  "msg": "You don't appear to be using the built-in cross-site request forgery protection via the middleware ('rango.middleware.csrf.CsrfViewMiddleware' is not in your MIDDLEWARE). Enabling the middleware is the safest approach to ensure you don't leave any holes.",
+  "hint": null
+ },
+ "security.W004": {
+  "level": 30,
+  "msg": "You have not set a value for the SECURE_HSTS_SECONDS setting. If your entire site is served only over SSL, you may want to consider setting a value and enabling HTTP Strict Transport Security. Be sure to read the documentation first; enabling HSTS carelessly can cause serious, irreversible problems.",
+  "hint": null
+ },
+ "security.W005": {
+  "level": 30,
+  "msg": "You have not set the SECURE_HSTS_INCLUDE_SUBDOMAINS setting to True. Without this, your site is potentially vulnerable to attack via an insecure connection to a subdomain. Only set this to True if you are certain that all subdomains of your domain should be served exclusively via SSL.",
+  "hint": null
+ },
+ "security.W006": {
+  "level": 30,
+  "msg": "Your SECURE_CONTENT_TYPE_NOSNIFF setting is not set to True, so your pages will not be served with an 'X-Content-Type-Options: nosniff' header. You should consider enabling this header to prevent the browser from identifying content types incorrectly.",
+  "hint": null
+ },
+ "security.W008": {
+  "level": 30,
+  "msg": "Your SECURE_SSL_REDIRECT setting is not set to True. Unless your site should be available over both SSL and non-SSL connections, you may want to either set this setting True or configure a load balancer or reverse-proxy server to redirect all connections to HTTPS.",
+  "hint": null
+ },
+ "security.W009": {
+  "level": 30,
+  "msg": "Your SECRET_KEY has less than 50 characters, less than 5 unique characters, or it's prefixed with 'rango-insecure-' indicating that it was generated automatically by Rango. Please generate a long and random value, otherwise many of Rango's security-critical features will be vulnerable to attack.",
+  "hint": null
+ },
+ "security.W010": {
+  "level": 30,
+  "msg": "You have 'rango.contrib.sessions' in your INSTALLED_APPS, but you have not set SESSION_COOKIE_SECURE to True. Using a secure-only session cookie makes it more difficult for network traffic sniffers to hijack user sessions.",
+  "hint": null
+ },
+ "security.W011": {
+  "level": 30,
+  "msg": "You have 'rango.contrib.sessions.middleware.SessionMiddleware' in your MIDDLEWARE, but you have not set SESSION_COOKIE_SECURE to True. Using a secure-only session cookie makes it more difficult for network traffic sniffers to hijack user sessions.",
+  "hint": null
+ },
+ "security.W012": {
+  "level": 30,
+  "msg": "SESSION_COOKIE_SECURE is not set to True. Using a secure-only session cookie makes it more difficult for network traffic sniffers to hijack user sessions.",
+  "hint": null
+ },
+ "security.W013": {
+  "level": 30,
+  "msg": "You have 'rango.contrib.sessions' in your INSTALLED_APPS, but you have not set SESSION_COOKIE_HTTPONLY to True. Using an HttpOnly session cookie makes it more difficult for cross-site scripting attacks to hijack user sessions.",
+  "hint": null
+ },
+ "security.W014": {
+  "level": 30,
+  "msg": "You have 'rango.contrib.sessions.middleware.SessionMiddleware' in your MIDDLEWARE, but you have not set SESSION_COOKIE_HTTPONLY to True. Using an HttpOnly session cookie makes it more difficult for cross-site scripting attacks to hijack user sessions.",
+  "hint": null
+ },
+ "security.W015": {
+  "level": 30,
+  "msg": "SESSION_COOKIE_HTTPONLY is not set to True. Using an HttpOnly session cookie makes it more difficult for cross-site scripting attacks to hijack user sessions.",
+  "hint": null
+ },
+ "security.W016": {
+  "level": 30,
+  "msg": "You have 'rango.middleware.csrf.CsrfViewMiddleware' in your MIDDLEWARE, but you have not set CSRF_COOKIE_SECURE to True. Using a secure-only CSRF cookie makes it more difficult for network traffic sniffers to steal the CSRF token.",
+  "hint": null
+ },
+ "security.W018": {
+  "level": 30,
+  "msg": "You should not have DEBUG set to True in deployment.",
+  "hint": null
+ },
+ "security.W019": {
+  "level": 30,
+  "msg": "You have 'rango.middleware.clickjacking.XFrameOptionsMiddleware' in your MIDDLEWARE, but X_FRAME_OPTIONS is not set to 'DENY'. Unless there is a good reason for your site to serve other parts of itself in a frame, you should change it to 'DENY'.",
+  "hint": null
+ },
+ "security.W020": {
+  "level": 30,
+  "msg": "ALLOWED_HOSTS must not be empty in deployment.",
+  "hint": null
+ },
+ "security.W021": {
+  "level": 30,
+  "msg": "You have not set the SECURE_HSTS_PRELOAD setting to True. Without this, your site cannot be submitted to the browser preload list.",
+  "hint": null
+ },
+ "security.W022": {
+  "level": 30,
+  "msg": "You have not set the SECURE_REFERRER_POLICY setting. Without this, your site will not send a Referrer-Policy header. You should consider enabling this header to protect user privacy.",
+  "hint": null
+ },
+ "security.W025": {
+  "level": 30,
+  "msg": "Your %s has less than 50 characters, less than 5 unique characters, or it's prefixed with 'rango-insecure-' indicating that it was generated automatically by Rango. Please generate a long and random value, otherwise many of Rango's security-critical features will be vulnerable to attack.",
+  "hint": null
+ }
+}

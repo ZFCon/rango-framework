@@ -1,0 +1,19 @@
+[package]
+name = "rangoframework-macros"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+readme.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Rango procedural macros: #[derive(Model)], filter!, q!."
+
+[lib]
+name = "rango_macros"
+proc-macro = true
+
+[dependencies]
+proc-macro2 = "1.0.107"
+quote = "1.0.47"
+syn = { version = "2", features = ["full", "extra-traits"] }

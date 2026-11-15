@@ -1,0 +1,46 @@
+[package]
+name = "rangoframework-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+readme.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Rango core: settings, signals, signing, validators, utils, checks, management framework."
+
+[lib]
+name = "rango_core"
+
+[dependencies]
+async-trait = "0.1.92"
+base64 = "0.23.1"
+chrono = { version = "0.4.45", default-features = false, features = ["std", "clock", "serde"] }
+chrono-tz = "0.10.4"
+clap = "4.6.7"
+fancy-regex = "0.20.2"
+flate2 = "1.1.11"
+futures-util = "0.3.34"
+hmac = "0.13.0"
+idna = "1.1.0"
+indexmap = { version = "2.14.2", features = ["serde"] }
+inventory = "0.3.25"
+md-5 = "0.11.0"
+pbkdf2 = { version = "0.13.0", features = ["hmac"] }
+percent-encoding = "2.3.2"
+rand = "0.10.3"
+regex = "1.13.1"
+rust_decimal = "1.43.0"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = { version = "1.0.154", features = ["preserve_order"] }
+sha1 = "0.11.0"
+sha2 = "0.11.1"
+subtle = "2.6.1"
+thiserror = "2.0.21"
+tokio = { version = "1.54.1", features = ["rt", "macros", "sync", "net", "io-util", "time"] }
+tracing = "0.1.44"
+unicode-normalization = "0.1.26"
+unicode-properties = "0.1.5"
+
+[dev-dependencies]
+tokio = { version = "1.54.1", features = ["rt-multi-thread", "macros"] }

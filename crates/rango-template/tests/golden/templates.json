@@ -1,0 +1,2822 @@
+{
+"shared": {
+"base.html": "<{% block a %}A{% endblock %}|{% block b %}B{% endblock %}>",
+"child.html": "{% extends 'base.html' %}{% block a %}[{{ block.super }}x]{% endblock %}",
+"grand.html": "{% extends 'child.html' %}{% block a %}<<{{ block.super }}>>{% endblock %}{% block b %}G{% endblock %}",
+"inc.html": "inc:{{ v }}:{{ x|default:'-' }}",
+"list_item.html": "<li>{{ item }}</li>"
+},
+"cases": [
+{
+"template": "{{ a }}",
+"context": {
+"a": "hi"
+},
+"autoescape": true,
+"expected": {
+"output": "hi"
+}
+},
+{
+"template": "{{ a.b }}",
+"context": {
+"a": {
+"b": 3
+}
+},
+"autoescape": true,
+"expected": {
+"output": "3"
+}
+},
+{
+"template": "{{ l.1 }}",
+"context": {
+"l": [
+1,
+2,
+3
+]
+},
+"autoescape": true,
+"expected": {
+"output": "2"
+}
+},
+{
+"template": "{{ missing }}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ a.b.c }}",
+"context": {
+"a": {
+"b": {
+"c": "deep"
+}
+}
+},
+"autoescape": true,
+"expected": {
+"output": "deep"
+}
+},
+{
+"template": "{{ 'lit' }}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "lit"
+}
+},
+{
+"template": "{{ 42 }}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "42"
+}
+},
+{
+"template": "{{ 3.5 }}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "3.5"
+}
+},
+{
+"template": "{{ h }}",
+"context": {
+"h": "<b>&\"'"
+},
+"autoescape": true,
+"expected": {
+"output": "&lt;b&gt;&amp;&quot;&#x27;"
+}
+},
+{
+"template": "{{ h|safe }}",
+"context": {
+"h": "<b>"
+},
+"autoescape": true,
+"expected": {
+"output": "<b>"
+}
+},
+{
+"template": "{{ s }}",
+"context": {
+"s": {
+"__safe__": "<i>x</i>"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "<i>x</i>"
+}
+},
+{
+"template": "{{ n }}",
+"context": {
+"n": null
+},
+"autoescape": true,
+"expected": {
+"output": "None"
+}
+},
+{
+"template": "{{ t }}",
+"context": {
+"t": true
+},
+"autoescape": true,
+"expected": {
+"output": "True"
+}
+},
+{
+"template": "{{ f }}",
+"context": {
+"f": false
+},
+"autoescape": true,
+"expected": {
+"output": "False"
+}
+},
+{
+"template": "{{ x }}",
+"context": {
+"x": 1.0
+},
+"autoescape": true,
+"expected": {
+"output": "1.0"
+}
+},
+{
+"template": "{{ x }}",
+"context": {
+"x": 1.5
+},
+"autoescape": true,
+"expected": {
+"output": "1.5"
+}
+},
+{
+"template": "{{ l }}",
+"context": {
+"l": [
+1,
+"a",
+null
+]
+},
+"autoescape": true,
+"expected": {
+"output": "[1, &#x27;a&#x27;, None]"
+}
+},
+{
+"template": "{{ d }}",
+"context": {
+"d": {
+"k": "v"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "{&#x27;k&#x27;: &#x27;v&#x27;}"
+}
+},
+{
+"template": "{{ a.0 }}",
+"context": {
+"a": "xyz"
+},
+"autoescape": true,
+"expected": {
+"output": "x"
+}
+},
+{
+"template": "a{{ b }}c",
+"context": {
+"b": "-"
+},
+"autoescape": true,
+"expected": {
+"output": "a-c"
+}
+},
+{
+"template": "{{ _x }}",
+"context": {},
+"autoescape": true,
+"expected": {
+"error": "TemplateSyntaxError"
+}
+},
+{
+"template": "{{ d }}",
+"context": {
+"d": {
+"__date__": "2024-01-05"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "Jan. 5, 2024"
+}
+},
+{
+"template": "{{ d }}",
+"context": {
+"d": {
+"__datetime__": "2024-01-05T14:30:00"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "Jan. 5, 2024, 2:30 p.m."
+}
+},
+{
+"template": "{{ d }}",
+"context": {
+"d": {
+"__time__": "14:05:00"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "2:05 p.m."
+}
+},
+{
+"template": "{{ h }}",
+"context": {
+"h": "<b>"
+},
+"autoescape": false,
+"expected": {
+"output": "<b>"
+}
+},
+{
+"template": "{% autoescape off %}{{ h }}{% endautoescape %}|{{ h }}",
+"context": {
+"h": "<b>"
+},
+"autoescape": true,
+"expected": {
+"output": "<b>|&lt;b&gt;"
+}
+},
+{
+"template": "{{ v|add:3 }}",
+"context": {
+"v": 5
+},
+"autoescape": true,
+"expected": {
+"output": "8"
+}
+},
+{
+"template": "{{ v|add:3 }}",
+"context": {
+"v": "2"
+},
+"autoescape": true,
+"expected": {
+"output": "5"
+}
+},
+{
+"template": "{{ v|add:3 }}",
+"context": {
+"v": "a"
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ v|add:3 }}",
+"context": {
+"v": 1.5
+},
+"autoescape": true,
+"expected": {
+"output": "4"
+}
+},
+{
+"template": "{{ v|add:3 }}",
+"context": {
+"v": [
+1
+]
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ v|add:'x' }}",
+"context": {
+"v": "a"
+},
+"autoescape": true,
+"expected": {
+"output": "ax"
+}
+},
+{
+"template": "{{ v|add:'x' }}",
+"context": {
+"v": 1
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ v|addslashes }}",
+"context": {
+"v": "it's \"q\" \\"
+},
+"autoescape": true,
+"expected": {
+"output": "it\\&#x27;s \\&quot;q\\&quot; \\\\"
+}
+},
+{
+"template": "{{ v|capfirst }}",
+"context": {
+"v": "hello"
+},
+"autoescape": true,
+"expected": {
+"output": "Hello"
+}
+},
+{
+"template": "{{ v|capfirst }}",
+"context": {
+"v": ""
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ v|capfirst }}",
+"context": {
+"v": "élan"
+},
+"autoescape": true,
+"expected": {
+"output": "Élan"
+}
+},
+{
+"template": "{{ v|center:'11' }}",
+"context": {
+"v": "ab"
+},
+"autoescape": true,
+"expected": {
+"output": "     ab    "
+}
+},
+{
+"template": "{{ v|center:'11' }}",
+"context": {
+"v": "abc"
+},
+"autoescape": true,
+"expected": {
+"output": "    abc    "
+}
+},
+{
+"template": "{{ v|cut:' ' }}",
+"context": {
+"v": "a b c"
+},
+"autoescape": true,
+"expected": {
+"output": "abc"
+}
+},
+{
+"template": "{{ v|default:'d' }}",
+"context": {
+"v": ""
+},
+"autoescape": true,
+"expected": {
+"output": "d"
+}
+},
+{
+"template": "{{ v|default:'d' }}",
+"context": {
+"v": null
+},
+"autoescape": true,
+"expected": {
+"output": "d"
+}
+},
+{
+"template": "{{ v|default:'d' }}",
+"context": {
+"v": 0
+},
+"autoescape": true,
+"expected": {
+"output": "d"
+}
+},
+{
+"template": "{{ v|default:'d' }}",
+"context": {
+"v": "x"
+},
+"autoescape": true,
+"expected": {
+"output": "x"
+}
+},
+{
+"template": "{{ v|default:'d' }}",
+"context": {
+"v": []
+},
+"autoescape": true,
+"expected": {
+"output": "d"
+}
+},
+{
+"template": "{{ v|default_if_none:'d' }}",
+"context": {
+"v": null
+},
+"autoescape": true,
+"expected": {
+"output": "d"
+}
+},
+{
+"template": "{{ v|default_if_none:'d' }}",
+"context": {
+"v": ""
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ v|default_if_none:'d' }}",
+"context": {
+"v": 0
+},
+"autoescape": true,
+"expected": {
+"output": "0"
+}
+},
+{
+"template": "{{ v|divisibleby:3 }}",
+"context": {
+"v": 9
+},
+"autoescape": true,
+"expected": {
+"output": "True"
+}
+},
+{
+"template": "{{ v|divisibleby:3 }}",
+"context": {
+"v": 10
+},
+"autoescape": true,
+"expected": {
+"output": "False"
+}
+},
+{
+"template": "{{ v|divisibleby:3 }}",
+"context": {
+"v": "x"
+},
+"autoescape": true,
+"expected": {
+"error": "ValueError"
+}
+},
+{
+"template": "{{ v|escape }}",
+"context": {
+"v": "<&>"
+},
+"autoescape": true,
+"expected": {
+"output": "&lt;&amp;&gt;"
+}
+},
+{
+"template": "{{ v|escapejs }}",
+"context": {
+"v": "a'b\"c\n<>"
+},
+"autoescape": true,
+"expected": {
+"output": "a\\u0027b\\u0022c\\u000A\\u003C\\u003E"
+}
+},
+{
+"template": "{{ v|filesizeformat }}",
+"context": {
+"v": 0
+},
+"autoescape": true,
+"expected": {
+"output": "0 bytes"
+}
+},
+{
+"template": "{{ v|filesizeformat }}",
+"context": {
+"v": 1
+},
+"autoescape": true,
+"expected": {
+"output": "1 byte"
+}
+},
+{
+"template": "{{ v|filesizeformat }}",
+"context": {
+"v": 1023
+},
+"autoescape": true,
+"expected": {
+"output": "1023 bytes"
+}
+},
+{
+"template": "{{ v|filesizeformat }}",
+"context": {
+"v": 1024
+},
+"autoescape": true,
+"expected": {
+"output": "1.0 KB"
+}
+},
+{
+"template": "{{ v|filesizeformat }}",
+"context": {
+"v": 1536
+},
+"autoescape": true,
+"expected": {
+"output": "1.5 KB"
+}
+},
+{
+"template": "{{ v|filesizeformat }}",
+"context": {
+"v": 1048576
+},
+"autoescape": true,
+"expected": {
+"output": "1.0 MB"
+}
+},
+{
+"template": "{{ v|filesizeformat }}",
+"context": {
+"v": 123456789
+},
+"autoescape": true,
+"expected": {
+"output": "117.7 MB"
+}
+},
+{
+"template": "{{ v|filesizeformat }}",
+"context": {
+"v": 1000000000000
+},
+"autoescape": true,
+"expected": {
+"output": "931.3 GB"
+}
+},
+{
+"template": "{{ v|filesizeformat }}",
+"context": {
+"v": -2048
+},
+"autoescape": true,
+"expected": {
+"output": "-2.0 KB"
+}
+},
+{
+"template": "{{ v|first }}",
+"context": {
+"v": [
+1,
+2
+]
+},
+"autoescape": true,
+"expected": {
+"output": "1"
+}
+},
+{
+"template": "{{ v|first }}",
+"context": {
+"v": "abc"
+},
+"autoescape": true,
+"expected": {
+"output": "a"
+}
+},
+{
+"template": "{{ v|first }}",
+"context": {
+"v": []
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ v|last }}",
+"context": {
+"v": [
+1,
+2
+]
+},
+"autoescape": true,
+"expected": {
+"output": "2"
+}
+},
+{
+"template": "{{ v|last }}",
+"context": {
+"v": "abc"
+},
+"autoescape": true,
+"expected": {
+"output": "c"
+}
+},
+{
+"template": "{{ v|last }}",
+"context": {
+"v": []
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ v|floatformat }}",
+"context": {
+"v": 34.23234
+},
+"autoescape": true,
+"expected": {
+"output": "34.2"
+}
+},
+{
+"template": "{{ v|floatformat }}",
+"context": {
+"v": 34.0
+},
+"autoescape": true,
+"expected": {
+"output": "34"
+}
+},
+{
+"template": "{{ v|floatformat }}",
+"context": {
+"v": 34.26
+},
+"autoescape": true,
+"expected": {
+"output": "34.3"
+}
+},
+{
+"template": "{{ v|floatformat }}",
+"context": {
+"v": 0.5
+},
+"autoescape": true,
+"expected": {
+"output": "0.5"
+}
+},
+{
+"template": "{{ v|floatformat }}",
+"context": {
+"v": -0.0
+},
+"autoescape": true,
+"expected": {
+"output": "0"
+}
+},
+{
+"template": "{{ v|floatformat }}",
+"context": {
+"v": 1234.5678
+},
+"autoescape": true,
+"expected": {
+"output": "1234.6"
+}
+},
+{
+"template": "{{ v|floatformat }}",
+"context": {
+"v": 0
+},
+"autoescape": true,
+"expected": {
+"output": "0"
+}
+},
+{
+"template": "{{ v|floatformat }}",
+"context": {
+"v": "abc"
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ v|floatformat }}",
+"context": {
+"v": null
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ v|floatformat }}",
+"context": {
+"v": 7
+},
+"autoescape": true,
+"expected": {
+"output": "7"
+}
+},
+{
+"template": "{{ v|floatformat:2 }}",
+"context": {
+"v": 34.23234
+},
+"autoescape": true,
+"expected": {
+"output": "34.23"
+}
+},
+{
+"template": "{{ v|floatformat:2 }}",
+"context": {
+"v": 34.0
+},
+"autoescape": true,
+"expected": {
+"output": "34.00"
+}
+},
+{
+"template": "{{ v|floatformat:2 }}",
+"context": {
+"v": 34.265
+},
+"autoescape": true,
+"expected": {
+"output": "34.27"
+}
+},
+{
+"template": "{{ v|floatformat:2 }}",
+"context": {
+"v": 1.005
+},
+"autoescape": true,
+"expected": {
+"output": "1.01"
+}
+},
+{
+"template": "{{ v|floatformat:2 }}",
+"context": {
+"v": -0.001
+},
+"autoescape": true,
+"expected": {
+"output": "0.00"
+}
+},
+{
+"template": "{{ v|floatformat:2 }}",
+"context": {
+"v": "3"
+},
+"autoescape": true,
+"expected": {
+"output": "3.00"
+}
+},
+{
+"template": "{{ v|floatformat:'-1' }}",
+"context": {
+"v": 34.23234
+},
+"autoescape": true,
+"expected": {
+"output": "34.2"
+}
+},
+{
+"template": "{{ v|floatformat:'-1' }}",
+"context": {
+"v": 34.0
+},
+"autoescape": true,
+"expected": {
+"output": "34"
+}
+},
+{
+"template": "{{ v|floatformat:'-3' }}",
+"context": {
+"v": 34.23234
+},
+"autoescape": true,
+"expected": {
+"output": "34.232"
+}
+},
+{
+"template": "{{ v|floatformat:'-3' }}",
+"context": {
+"v": 34.0
+},
+"autoescape": true,
+"expected": {
+"output": "34"
+}
+},
+{
+"template": "{{ v|floatformat:0 }}",
+"context": {
+"v": 34.5
+},
+"autoescape": true,
+"expected": {
+"output": "35"
+}
+},
+{
+"template": "{{ v|floatformat:0 }}",
+"context": {
+"v": 35.5
+},
+"autoescape": true,
+"expected": {
+"output": "36"
+}
+},
+{
+"template": "{{ v|floatformat:0 }}",
+"context": {
+"v": 0.4
+},
+"autoescape": true,
+"expected": {
+"output": "0"
+}
+},
+{
+"template": "{{ v|force_escape }}",
+"context": {
+"v": "<a>"
+},
+"autoescape": true,
+"expected": {
+"output": "&lt;a&gt;"
+}
+},
+{
+"template": "{{ v|get_digit:2 }}",
+"context": {
+"v": 123
+},
+"autoescape": true,
+"expected": {
+"output": "2"
+}
+},
+{
+"template": "{{ v|get_digit:2 }}",
+"context": {
+"v": 5
+},
+"autoescape": true,
+"expected": {
+"output": "0"
+}
+},
+{
+"template": "{{ v|get_digit:2 }}",
+"context": {
+"v": "abc"
+},
+"autoescape": true,
+"expected": {
+"output": "abc"
+}
+},
+{
+"template": "{{ v|join:', ' }}",
+"context": {
+"v": [
+1,
+2,
+3
+]
+},
+"autoescape": true,
+"expected": {
+"output": "1, 2, 3"
+}
+},
+{
+"template": "{{ v|join:', ' }}",
+"context": {
+"v": [
+"<a>",
+"b"
+]
+},
+"autoescape": true,
+"expected": {
+"output": "&lt;a&gt;, b"
+}
+},
+{
+"template": "{{ v|join:'<' }}",
+"context": {
+"v": [
+"a",
+"b"
+]
+},
+"autoescape": true,
+"expected": {
+"output": "a<b"
+}
+},
+{
+"template": "{{ v|length }}",
+"context": {
+"v": "abc"
+},
+"autoescape": true,
+"expected": {
+"output": "3"
+}
+},
+{
+"template": "{{ v|length }}",
+"context": {
+"v": [
+1,
+2
+]
+},
+"autoescape": true,
+"expected": {
+"output": "2"
+}
+},
+{
+"template": "{{ v|length }}",
+"context": {
+"v": {}
+},
+"autoescape": true,
+"expected": {
+"output": "0"
+}
+},
+{
+"template": "{{ v|length }}",
+"context": {
+"v": 5
+},
+"autoescape": true,
+"expected": {
+"output": "0"
+}
+},
+{
+"template": "{{ v|length }}",
+"context": {
+"v": null
+},
+"autoescape": true,
+"expected": {
+"output": "0"
+}
+},
+{
+"template": "{{ v|linebreaks }}",
+"context": {
+"v": "a\nb\n\nc"
+},
+"autoescape": true,
+"expected": {
+"output": "<p>a<br>b</p>\n\n<p>c</p>"
+}
+},
+{
+"template": "{{ v|linebreaksbr }}",
+"context": {
+"v": "a\nb"
+},
+"autoescape": true,
+"expected": {
+"output": "a<br>b"
+}
+},
+{
+"template": "{{ v|linenumbers }}",
+"context": {
+"v": "a\nb\nc"
+},
+"autoescape": true,
+"expected": {
+"output": "1. a\n2. b\n3. c"
+}
+},
+{
+"template": "{{ v|ljust:'6' }}",
+"context": {
+"v": "ab"
+},
+"autoescape": true,
+"expected": {
+"output": "ab    "
+}
+},
+{
+"template": "{{ v|rjust:'6' }}",
+"context": {
+"v": "ab"
+},
+"autoescape": true,
+"expected": {
+"output": "    ab"
+}
+},
+{
+"template": "{{ v|lower }}",
+"context": {
+"v": "ABC Ä"
+},
+"autoescape": true,
+"expected": {
+"output": "abc ä"
+}
+},
+{
+"template": "{{ v|upper }}",
+"context": {
+"v": "abc ä"
+},
+"autoescape": true,
+"expected": {
+"output": "ABC Ä"
+}
+},
+{
+"template": "{{ v|make_list }}",
+"context": {
+"v": "abc"
+},
+"autoescape": true,
+"expected": {
+"output": "[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]"
+}
+},
+{
+"template": "{{ v|make_list }}",
+"context": {
+"v": 123
+},
+"autoescape": true,
+"expected": {
+"output": "[&#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;]"
+}
+},
+{
+"template": "{{ v|phone2numeric }}",
+"context": {
+"v": "1-800-COLLECT"
+},
+"autoescape": true,
+"expected": {
+"output": "1-800-2655328"
+}
+},
+{
+"template": "{{ v|pluralize }}",
+"context": {
+"v": 1
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ v|pluralize }}",
+"context": {
+"v": 2
+},
+"autoescape": true,
+"expected": {
+"output": "s"
+}
+},
+{
+"template": "{{ v|pluralize }}",
+"context": {
+"v": 0
+},
+"autoescape": true,
+"expected": {
+"output": "s"
+}
+},
+{
+"template": "{{ v|pluralize }}",
+"context": {
+"v": [
+1
+]
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ v|pluralize }}",
+"context": {
+"v": [
+1,
+2
+]
+},
+"autoescape": true,
+"expected": {
+"output": "s"
+}
+},
+{
+"template": "{{ v|pluralize }}",
+"context": {
+"v": "1"
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ v|pluralize:'y,ies' }}",
+"context": {
+"v": 1
+},
+"autoescape": true,
+"expected": {
+"output": "y"
+}
+},
+{
+"template": "{{ v|pluralize:'y,ies' }}",
+"context": {
+"v": 2
+},
+"autoescape": true,
+"expected": {
+"output": "ies"
+}
+},
+{
+"template": "{{ v|pluralize:'es' }}",
+"context": {
+"v": 1
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ v|pluralize:'es' }}",
+"context": {
+"v": 3
+},
+"autoescape": true,
+"expected": {
+"output": "es"
+}
+},
+{
+"template": "{{ v|safe }}",
+"context": {
+"v": "<b>"
+},
+"autoescape": true,
+"expected": {
+"output": "<b>"
+}
+},
+{
+"template": "{{ v|slice:':2' }}",
+"context": {
+"v": "abcde"
+},
+"autoescape": true,
+"expected": {
+"output": "ab"
+}
+},
+{
+"template": "{{ v|slice:':2' }}",
+"context": {
+"v": [
+1,
+2,
+3
+]
+},
+"autoescape": true,
+"expected": {
+"output": "[1, 2]"
+}
+},
+{
+"template": "{{ v|slice:'1:3' }}",
+"context": {
+"v": "abcde"
+},
+"autoescape": true,
+"expected": {
+"output": "bc"
+}
+},
+{
+"template": "{{ v|slice:'::2' }}",
+"context": {
+"v": "abcde"
+},
+"autoescape": true,
+"expected": {
+"output": "ace"
+}
+},
+{
+"template": "{{ v|slice:'-2:' }}",
+"context": {
+"v": "abcde"
+},
+"autoescape": true,
+"expected": {
+"output": "de"
+}
+},
+{
+"template": "{{ v|slugify }}",
+"context": {
+"v": "Hello, World! 日本"
+},
+"autoescape": true,
+"expected": {
+"output": "hello-world"
+}
+},
+{
+"template": "{{ v|stringformat:'05d' }}",
+"context": {
+"v": 42
+},
+"autoescape": true,
+"expected": {
+"output": "00042"
+}
+},
+{
+"template": "{{ v|stringformat:'.2f' }}",
+"context": {
+"v": 3.14159
+},
+"autoescape": true,
+"expected": {
+"output": "3.14"
+}
+},
+{
+"template": "{{ v|stringformat:'s' }}",
+"context": {
+"v": "x"
+},
+"autoescape": true,
+"expected": {
+"output": "x"
+}
+},
+{
+"template": "{{ v|stringformat:'x' }}",
+"context": {
+"v": 255
+},
+"autoescape": true,
+"expected": {
+"output": "ff"
+}
+},
+{
+"template": "{{ v|striptags }}",
+"context": {
+"v": "<b>bold</b> text"
+},
+"autoescape": true,
+"expected": {
+"output": "bold text"
+}
+},
+{
+"template": "{{ v|striptags }}",
+"context": {
+"v": "a < b"
+},
+"autoescape": true,
+"expected": {
+"output": "a &lt; b"
+}
+},
+{
+"template": "{{ v|title }}",
+"context": {
+"v": "hello world"
+},
+"autoescape": true,
+"expected": {
+"output": "Hello World"
+}
+},
+{
+"template": "{{ v|title }}",
+"context": {
+"v": "it's a o'neil"
+},
+"autoescape": true,
+"expected": {
+"output": "It&#x27;s A O&#x27;Neil"
+}
+},
+{
+"template": "{{ v|truncatechars:5 }}",
+"context": {
+"v": "abcdefgh"
+},
+"autoescape": true,
+"expected": {
+"output": "abcd…"
+}
+},
+{
+"template": "{{ v|truncatechars:5 }}",
+"context": {
+"v": "abc"
+},
+"autoescape": true,
+"expected": {
+"output": "abc"
+}
+},
+{
+"template": "{{ v|truncatechars:1 }}",
+"context": {
+"v": "abc"
+},
+"autoescape": true,
+"expected": {
+"output": "…"
+}
+},
+{
+"template": "{{ v|truncatewords:2 }}",
+"context": {
+"v": "a b c d"
+},
+"autoescape": true,
+"expected": {
+"output": "a b …"
+}
+},
+{
+"template": "{{ v|truncatewords:2 }}",
+"context": {
+"v": "a b"
+},
+"autoescape": true,
+"expected": {
+"output": "a b"
+}
+},
+{
+"template": "{{ v|urlencode }}",
+"context": {
+"v": "a b/c?d=é"
+},
+"autoescape": true,
+"expected": {
+"output": "a%20b/c%3Fd%3D%C3%A9"
+}
+},
+{
+"template": "{{ v|urlencode:'' }}",
+"context": {
+"v": "a b/c"
+},
+"autoescape": true,
+"expected": {
+"output": "a%20b%2Fc"
+}
+},
+{
+"template": "{{ v|wordcount }}",
+"context": {
+"v": "a b  c\nd"
+},
+"autoescape": true,
+"expected": {
+"output": "4"
+}
+},
+{
+"template": "{{ v|wordwrap:5 }}",
+"context": {
+"v": "aaa bbb ccc ddd"
+},
+"autoescape": true,
+"expected": {
+"output": "aaa\nbbb\nccc\nddd"
+}
+},
+{
+"template": "{{ v|wordwrap:5 }}",
+"context": {
+"v": "toolongword x"
+},
+"autoescape": true,
+"expected": {
+"output": "toolongword\nx"
+}
+},
+{
+"template": "{{ v|yesno }}",
+"context": {
+"v": true
+},
+"autoescape": true,
+"expected": {
+"output": "yes"
+}
+},
+{
+"template": "{{ v|yesno }}",
+"context": {
+"v": false
+},
+"autoescape": true,
+"expected": {
+"output": "no"
+}
+},
+{
+"template": "{{ v|yesno }}",
+"context": {
+"v": null
+},
+"autoescape": true,
+"expected": {
+"output": "maybe"
+}
+},
+{
+"template": "{{ v|yesno:'ja,nein' }}",
+"context": {
+"v": true
+},
+"autoescape": true,
+"expected": {
+"output": "ja"
+}
+},
+{
+"template": "{{ v|yesno:'ja,nein' }}",
+"context": {
+"v": null
+},
+"autoescape": true,
+"expected": {
+"output": "nein"
+}
+},
+{
+"template": "{{ v|yesno:'a,b,c' }}",
+"context": {
+"v": null
+},
+"autoescape": true,
+"expected": {
+"output": "c"
+}
+},
+{
+"template": "{{ v|unordered_list }}",
+"context": {
+"v": [
+"a",
+[
+"b",
+"c"
+],
+"d"
+]
+},
+"autoescape": true,
+"expected": {
+"output": "\t<li>a\n\t<ul>\n\t\t<li>b</li>\n\t\t<li>c</li>\n\t</ul>\n\t</li>\n\t<li>d</li>"
+}
+},
+{
+"template": "{{ v|unordered_list }}",
+"context": {
+"v": [
+"x",
+[
+"y",
+[
+"z"
+]
+]
+]
+},
+"autoescape": true,
+"expected": {
+"output": "\t<li>x\n\t<ul>\n\t\t<li>y\n\t\t<ul>\n\t\t\t<li>z</li>\n\t\t</ul>\n\t\t</li>\n\t</ul>\n\t</li>"
+}
+},
+{
+"template": "{{ v|dictsort:'n' }}",
+"context": {
+"v": [
+{
+"n": 3
+},
+{
+"n": 1
+},
+{
+"n": 2
+}
+]
+},
+"autoescape": true,
+"expected": {
+"output": "[{&#x27;n&#x27;: 1}, {&#x27;n&#x27;: 2}, {&#x27;n&#x27;: 3}]"
+}
+},
+{
+"template": "{{ v|dictsortreversed:'n' }}",
+"context": {
+"v": [
+{
+"n": 3
+},
+{
+"n": 1
+},
+{
+"n": 2
+}
+]
+},
+"autoescape": true,
+"expected": {
+"output": "[{&#x27;n&#x27;: 3}, {&#x27;n&#x27;: 2}, {&#x27;n&#x27;: 1}]"
+}
+},
+{
+"template": "{{ v|date:'Y-m-d' }}",
+"context": {
+"v": {
+"__date__": "2024-03-05"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "2024-03-05"
+}
+},
+{
+"template": "{{ v|date:'D, d M Y' }}",
+"context": {
+"v": {
+"__date__": "2024-03-05"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "Tue, 05 Mar 2024"
+}
+},
+{
+"template": "{{ v|date:'jS F Y' }}",
+"context": {
+"v": {
+"__date__": "2024-03-01"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "1st March 2024"
+}
+},
+{
+"template": "{{ v|date:'jS F Y' }}",
+"context": {
+"v": {
+"__date__": "2024-03-22"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "22nd March 2024"
+}
+},
+{
+"template": "{{ v|date:'jS F Y' }}",
+"context": {
+"v": {
+"__date__": "2024-03-13"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "13th March 2024"
+}
+},
+{
+"template": "{{ v|date:'N j, Y' }}",
+"context": {
+"v": {
+"__date__": "2024-05-05"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "May 5, 2024"
+}
+},
+{
+"template": "{{ v|date:'N j, Y' }}",
+"context": {
+"v": {
+"__date__": "2024-03-05"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "March 5, 2024"
+}
+},
+{
+"template": "{{ v|date:'N j, Y' }}",
+"context": {
+"v": {
+"__date__": "2024-09-05"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "Sept. 5, 2024"
+}
+},
+{
+"template": "{{ v|date:'l w z W t L y' }}",
+"context": {
+"v": {
+"__date__": "2024-03-05"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "Tuesday 2 65 10 31 True 24"
+}
+},
+{
+"template": "{{ v|date:'H:i:s' }}",
+"context": {
+"v": {
+"__datetime__": "2024-03-05T14:30:07"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "14:30:07"
+}
+},
+{
+"template": "{{ v|date:'g:i A a P' }}",
+"context": {
+"v": {
+"__datetime__": "2024-03-05T00:00:00"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "12:00 AM a.m. midnight"
+}
+},
+{
+"template": "{{ v|date:'g:i A a P' }}",
+"context": {
+"v": {
+"__datetime__": "2024-03-05T12:00:00"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "12:00 PM p.m. noon"
+}
+},
+{
+"template": "{{ v|date:'g:i A a P' }}",
+"context": {
+"v": {
+"__datetime__": "2024-03-05T15:45:00"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "3:45 PM p.m. 3:45 p.m."
+}
+},
+{
+"template": "{{ v|date:'c' }}",
+"context": {
+"v": {
+"__datetime__": "2024-03-05T14:30:07"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "2024-03-05T14:30:07"
+}
+},
+{
+"template": "{{ v|date }}",
+"context": {
+"v": {
+"__date__": "2024-03-05"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "March 5, 2024"
+}
+},
+{
+"template": "{{ v|date }}",
+"context": {
+"v": {
+"__datetime__": "2024-03-05T14:30:07"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "March 5, 2024"
+}
+},
+{
+"template": "{{ v|date:'Y\\Y\\ m' }}",
+"context": {
+"v": {
+"__date__": "2024-03-05"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "2024Y 03"
+}
+},
+{
+"template": "{{ v|time:'H:i' }}",
+"context": {
+"v": {
+"__time__": "14:05:09"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "14:05"
+}
+},
+{
+"template": "{{ v|time:'H:i' }}",
+"context": {
+"v": {
+"__datetime__": "2024-03-05T01:02:03"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "01:02"
+}
+},
+{
+"template": "{{ v|time }}",
+"context": {
+"v": {
+"__time__": "14:05:09"
+}
+},
+"autoescape": true,
+"expected": {
+"output": "2:05 p.m."
+}
+},
+{
+"template": "{{ v|date:'Y' }}",
+"context": {
+"v": ""
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ v|date:'Y' }}",
+"context": {
+"v": null
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ v|date:'Y' }}",
+"context": {
+"v": "str"
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{{ v|json_script:'id1' }}",
+"context": {
+"v": {
+"a": [
+1,
+"é"
+]
+}
+},
+"autoescape": true,
+"expected": {
+"output": "<script id=\"id1\" type=\"application/json\">{\"a\": [1, \"\\u00e9\"]}</script>"
+}
+},
+{
+"template": "{{ v|urlize }}",
+"context": {
+"v": "see http://example.com/a?b=1, ok"
+},
+"autoescape": true,
+"expected": {
+"output": "see <a href=\"http://example.com/a?b=1\" rel=\"nofollow\">http://example.com/a?b=1</a>, ok"
+}
+},
+{
+"template": "{{ v|urlize }}",
+"context": {
+"v": "www.example.org."
+},
+"autoescape": true,
+"expected": {
+"output": "<a href=\"http://www.example.org\" rel=\"nofollow\">www.example.org</a>."
+}
+},
+{
+"template": "{{ v|urlize }}",
+"context": {
+"v": "no link"
+},
+"autoescape": true,
+"expected": {
+"output": "no link"
+}
+},
+{
+"template": "{{ v|urlize }}",
+"context": {
+"v": "a<b http://x.y"
+},
+"autoescape": true,
+"expected": {
+"output": "a&lt;b <a href=\"http://x.y\" rel=\"nofollow\">http://x.y</a>"
+}
+},
+{
+"template": "{{ v|safeseq|join:',' }}",
+"context": {
+"v": [
+"<a>",
+"b"
+]
+},
+"autoescape": true,
+"expected": {
+"output": "<a>,b"
+}
+},
+{
+"template": "{{ v|escape|upper }}",
+"context": {
+"v": "<a>"
+},
+"autoescape": true,
+"expected": {
+"output": "&amp;LT;A&amp;GT;"
+}
+},
+{
+"template": "{{ v|upper|escape }}",
+"context": {
+"v": "<a>"
+},
+"autoescape": true,
+"expected": {
+"output": "&lt;A&gt;"
+}
+},
+{
+"template": "{{ v|lower|capfirst }}",
+"context": {
+"v": "ABC"
+},
+"autoescape": true,
+"expected": {
+"output": "Abc"
+}
+},
+{
+"template": "{{ v|add:1|add:2 }}",
+"context": {
+"v": 1
+},
+"autoescape": true,
+"expected": {
+"output": "4"
+}
+},
+{
+"template": "{{ v|nosuchfilter }}",
+"context": {
+"v": 1
+},
+"autoescape": true,
+"expected": {
+"error": "TemplateSyntaxError"
+}
+},
+{
+"template": "{{ v|add: }}",
+"context": {
+"v": 1
+},
+"autoescape": true,
+"expected": {
+"error": "TemplateSyntaxError"
+}
+},
+{
+"template": "{% if a %}yes{% else %}no{% endif %}",
+"context": {
+"a": 1
+},
+"autoescape": true,
+"expected": {
+"output": "yes"
+}
+},
+{
+"template": "{% if a %}yes{% else %}no{% endif %}",
+"context": {
+"a": []
+},
+"autoescape": true,
+"expected": {
+"output": "no"
+}
+},
+{
+"template": "{% if a and b %}1{% elif c %}2{% else %}3{% endif %}",
+"context": {
+"a": 1,
+"b": 0,
+"c": 1
+},
+"autoescape": true,
+"expected": {
+"output": "2"
+}
+},
+{
+"template": "{% if a or b %}1{% endif %}|{% if not a %}n{% endif %}",
+"context": {
+"a": 0,
+"b": 1
+},
+"autoescape": true,
+"expected": {
+"output": "1|n"
+}
+},
+{
+"template": "{% if a == 1 %}eq{% endif %}{% if a != 2 %}ne{% endif %}{% if a > 0 %}gt{% endif %}{% if a >= 1 %}ge{% endif %}{% if a < 5 %}lt{% endif %}{% if a <= 1 %}le{% endif %}",
+"context": {
+"a": 1
+},
+"autoescape": true,
+"expected": {
+"output": "eqnegtgeltle"
+}
+},
+{
+"template": "{% if x in l %}in{% endif %}{% if y not in l %}nin{% endif %}",
+"context": {
+"x": 2,
+"y": 9,
+"l": [
+1,
+2,
+3
+]
+},
+"autoescape": true,
+"expected": {
+"output": "innin"
+}
+},
+{
+"template": "{% if a is None %}none{% endif %}{% if b is not None %}some{% endif %}",
+"context": {
+"a": null,
+"b": 1
+},
+"autoescape": true,
+"expected": {
+"output": "nonesome"
+}
+},
+{
+"template": "{% if a and not b or c %}t{% else %}f{% endif %}",
+"context": {
+"a": 1,
+"b": 1,
+"c": 0
+},
+"autoescape": true,
+"expected": {
+"output": "f"
+}
+},
+{
+"template": "{% if a|length > 2 %}long{% endif %}",
+"context": {
+"a": "abc"
+},
+"autoescape": true,
+"expected": {
+"output": "long"
+}
+},
+{
+"template": "{% if missing %}x{% else %}y{% endif %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "y"
+}
+},
+{
+"template": "{% if a > b %}x{% endif %}",
+"context": {
+"a": "s",
+"b": 3
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{% if %}x{% endif %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"error": "TemplateSyntaxError"
+}
+},
+{
+"template": "{% if a %}x",
+"context": {
+"a": 1
+},
+"autoescape": true,
+"expected": {
+"error": "TemplateSyntaxError"
+}
+},
+{
+"template": "{% for x in l %}{{ x }},{% endfor %}",
+"context": {
+"l": [
+1,
+2,
+3
+]
+},
+"autoescape": true,
+"expected": {
+"output": "1,2,3,"
+}
+},
+{
+"template": "{% for x in l %}{{ x }}{% empty %}none{% endfor %}",
+"context": {
+"l": []
+},
+"autoescape": true,
+"expected": {
+"output": "none"
+}
+},
+{
+"template": "{% for x in l reversed %}{{ x }}{% endfor %}",
+"context": {
+"l": [
+1,
+2,
+3
+]
+},
+"autoescape": true,
+"expected": {
+"output": "321"
+}
+},
+{
+"template": "{% for x in l %}{{ forloop.counter }}{{ forloop.counter0 }}{{ forloop.revcounter }}{{ forloop.revcounter0 }}{% if forloop.first %}F{% endif %}{% if forloop.last %}L{% endif %};{% endfor %}",
+"context": {
+"l": [
+"a",
+"b",
+"c"
+]
+},
+"autoescape": true,
+"expected": {
+"output": "1032F;2121;3210L;"
+}
+},
+{
+"template": "{% for a, b in l %}{{ a }}={{ b }};{% endfor %}",
+"context": {
+"l": [
+[
+1,
+2
+],
+[
+3,
+4
+]
+]
+},
+"autoescape": true,
+"expected": {
+"output": "1=2;3=4;"
+}
+},
+{
+"template": "{% for k, v in d.items %}{{ k }}:{{ v }};{% endfor %}",
+"context": {
+"d": {
+"a": 1,
+"b": 2
+}
+},
+"autoescape": true,
+"expected": {
+"output": "a:1;b:2;"
+}
+},
+{
+"template": "{% for x in l %}{% for y in l %}{{ forloop.parentloop.counter }}{{ forloop.counter }} {% endfor %}{% endfor %}",
+"context": {
+"l": [
+1,
+2
+]
+},
+"autoescape": true,
+"expected": {
+"output": "11 12 21 22 "
+}
+},
+{
+"template": "{% for x in s %}{{ x }}-{% endfor %}",
+"context": {
+"s": "abc"
+},
+"autoescape": true,
+"expected": {
+"output": "a-b-c-"
+}
+},
+{
+"template": "{% for x in l %}{{ x }}{% endfor %}",
+"context": {
+"l": null
+},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{% for x in d %}{{ x }}{% endfor %}",
+"context": {
+"d": {
+"p": 1,
+"q": 2
+}
+},
+"autoescape": true,
+"expected": {
+"output": "pq"
+}
+},
+{
+"template": "{% for a, b in l %}{% endfor %}",
+"context": {
+"l": [
+[
+1,
+2,
+3
+]
+]
+},
+"autoescape": true,
+"expected": {
+"error": "ValueError"
+}
+},
+{
+"template": "{% with a=1 b=2 %}{{ a }}{{ b }}{% endwith %}{{ a }}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "12"
+}
+},
+{
+"template": "{% with x as y %}{{ y }}{% endwith %}",
+"context": {
+"x": "val"
+},
+"autoescape": true,
+"expected": {
+"output": "val"
+}
+},
+{
+"template": "{% with %}x{% endwith %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"error": "TemplateSyntaxError"
+}
+},
+{
+"template": "{% cycle 'a' 'b' 'c' %}{% cycle 'a' 'b' 'c' %}{% cycle 'a' 'b' 'c' %}{% cycle 'a' 'b' 'c' %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "aaaa"
+}
+},
+{
+"template": "{% for i in l %}{% cycle 'x' 'y' as c %}{{ c }}{% endfor %}",
+"context": {
+"l": [
+1,
+2,
+3
+]
+},
+"autoescape": true,
+"expected": {
+"output": "xxyyxx"
+}
+},
+{
+"template": "{% cycle a b %}{% cycle a b %}",
+"context": {
+"a": 1,
+"b": 2
+},
+"autoescape": true,
+"expected": {
+"output": "11"
+}
+},
+{
+"template": "{% cycle 'a' 'b' as c silent %}{{ c }}{% cycle c %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "a"
+}
+},
+{
+"template": "{% firstof a b 'z' %}",
+"context": {
+"a": 0,
+"b": "bee"
+},
+"autoescape": true,
+"expected": {
+"output": "bee"
+}
+},
+{
+"template": "{% firstof a b %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": ""
+}
+},
+{
+"template": "{% firstof a b as r %}[{{ r }}]",
+"context": {
+"b": "<x>"
+},
+"autoescape": true,
+"expected": {
+"output": "[&lt;x&gt;]"
+}
+},
+{
+"template": "{% for x in l %}{% ifchanged x %}{{ x }}{% endifchanged %}{% endfor %}",
+"context": {
+"l": [
+1,
+1,
+2,
+2,
+3
+]
+},
+"autoescape": true,
+"expected": {
+"output": "123"
+}
+},
+{
+"template": "{% for x in l %}{% ifchanged %}{{ x }}{% else %}-{% endifchanged %}{% endfor %}",
+"context": {
+"l": [
+1,
+1,
+2
+]
+},
+"autoescape": true,
+"expected": {
+"output": "1-2"
+}
+},
+{
+"template": "{% regroup p by g as grp %}{% for g in grp %}{{ g.grouper }}:{% for i in g.list %}{{ i.n }}{% endfor %};{% endfor %}",
+"context": {
+"p": [
+{
+"g": "a",
+"n": 1
+},
+{
+"g": "a",
+"n": 2
+},
+{
+"g": "b",
+"n": 3
+}
+]
+},
+"autoescape": true,
+"expected": {
+"output": "a:12;b:3;"
+}
+},
+{
+"template": "{% spaceless %}<p>  <b> x </b>  </p> <i> y </i>{% endspaceless %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "<p><b> x </b></p><i> y </i>"
+}
+},
+{
+"template": "{% templatetag openblock %}{% templatetag closevariable %}{% templatetag openbrace %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "{%}}{"
+}
+},
+{
+"template": "{% widthratio a b 100 %}|{% widthratio a b 100 as w %}[{{ w }}]",
+"context": {
+"a": 175,
+"b": 200
+},
+"autoescape": true,
+"expected": {
+"output": "88|[88]"
+}
+},
+{
+"template": "{% widthratio a b 10 %}",
+"context": {
+"a": 0,
+"b": 0
+},
+"autoescape": true,
+"expected": {
+"output": "0"
+}
+},
+{
+"template": "{% widthratio a b 10 %}",
+"context": {
+"a": 5,
+"b": 2
+},
+"autoescape": true,
+"expected": {
+"output": "25"
+}
+},
+{
+"template": "{# comment #}x{% comment %}hidden {{ x }}{% endcomment %}y",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "xy"
+}
+},
+{
+"template": "{% verbatim %}{{ x }}{% if %}{% endverbatim %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "{{ x }}{% if %}"
+}
+},
+{
+"template": "{% filter upper|escape %}<b>x</b>{% endfilter %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"error": "TemplateSyntaxError"
+}
+},
+{
+"template": "{% filter lower %}ABC {{ v }}{% endfilter %}",
+"context": {
+"v": "DEF"
+},
+"autoescape": true,
+"expected": {
+"output": "abc def"
+}
+},
+{
+"template": "{% include 'inc.html' %}",
+"context": {
+"v": 1
+},
+"autoescape": true,
+"expected": {
+"output": "inc:1:-"
+}
+},
+{
+"template": "{% include 'inc.html' with v=2 x='z' %}",
+"context": {
+"v": 1
+},
+"autoescape": true,
+"expected": {
+"output": "inc:2:z"
+}
+},
+{
+"template": "{% include 'inc.html' with v=2 only %}",
+"context": {
+"v": 1,
+"x": "outer"
+},
+"autoescape": true,
+"expected": {
+"output": "inc:2:-"
+}
+},
+{
+"template": "{% include 'missing.html' %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"error": "TemplateDoesNotExist"
+}
+},
+{
+"template": "{% include name %}",
+"context": {
+"name": "inc.html",
+"v": 9
+},
+"autoescape": true,
+"expected": {
+"output": "inc:9:-"
+}
+},
+{
+"template": "{% for i in l %}{% include 'list_item.html' with item=i %}{% endfor %}",
+"context": {
+"l": [
+"a",
+"b"
+]
+},
+"autoescape": true,
+"expected": {
+"output": "<li>a</li><li>b</li>"
+}
+},
+{
+"template": "{% extends 'base.html' %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "<A|B>"
+}
+},
+{
+"template": "{% extends 'base.html' %}{% block b %}[b]{% endblock %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "<A|[b]>"
+}
+},
+{
+"template": "{% extends 'child.html' %}{% block b %}[{{ block.super }}]{% endblock %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "<[Ax]|[B]>"
+}
+},
+{
+"template": "{% extends 'grand.html' %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "<<<[Ax]>>|G>"
+}
+},
+{
+"template": "{% extends 'grand.html' %}{% block a %}top{% endblock %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "<top|G>"
+}
+},
+{
+"template": "{% extends 'nope.html' %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"error": "TemplateDoesNotExist"
+}
+},
+{
+"template": "{% extends 'base.html' %}{% block a %}{% for i in l %}{{ i }}{% endfor %}{% endblock %}",
+"context": {
+"l": [
+1,
+2
+]
+},
+"autoescape": true,
+"expected": {
+"output": "<12|B>"
+}
+},
+{
+"template": "{% block x %}in{% endblock %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "in"
+}
+},
+{
+"template": "{% block x %}a{% block y %}b{% endblock %}{% endblock %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "ab"
+}
+},
+{
+"template": "{% load static %}{% static 'a/b.css' %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "/static/a/b.css"
+}
+},
+{
+"template": "{% nosuchtag %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"error": "TemplateSyntaxError"
+}
+},
+{
+"template": "{% endif %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"error": "TemplateSyntaxError"
+}
+},
+{
+"template": "{{ a|upper }}{% load nosuchlib %}",
+"context": {
+"a": "x"
+},
+"autoescape": true,
+"expected": {
+"error": "TemplateSyntaxError"
+}
+},
+{
+"template": "{% if a %}{{ a }}{% elif b %}{{ b }}{% endif %}{% for i in l %}{% if forloop.first %}[{% endif %}{{ i }}{% if forloop.last %}]{% endif %}{% endfor %}",
+"context": {
+"a": "",
+"b": "B",
+"l": [
+1,
+2,
+3
+]
+},
+"autoescape": true,
+"expected": {
+"output": "B[123]"
+}
+},
+{
+"template": "{{ v|default:'x'|upper }}",
+"context": {
+"v": ""
+},
+"autoescape": true,
+"expected": {
+"output": "X"
+}
+},
+{
+"template": "{{ v|default:other }}",
+"context": {
+"v": "",
+"other": "o"
+},
+"autoescape": true,
+"expected": {
+"output": "o"
+}
+},
+{
+"template": "{{ a.b|default:'n' }}",
+"context": {
+"a": {}
+},
+"autoescape": true,
+"expected": {
+"output": "n"
+}
+},
+{
+"template": "{% lorem 3 w %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "lorem ipsum dolor"
+}
+},
+{
+"template": "{% lorem 5 w %}",
+"context": {},
+"autoescape": true,
+"expected": {
+"output": "lorem ipsum dolor sit amet"
+}
+}
+]
+}

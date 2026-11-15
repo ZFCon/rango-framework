@@ -1,0 +1,517 @@
+[
+ {
+  "name": "all",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\"",
+   "params": []
+  }
+ },
+ {
+  "name": "filter_exact",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE \"polls_question\".\"id\" = %s",
+   "params": [
+    1
+   ]
+  }
+ },
+ {
+  "name": "filter_two",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE (\"polls_question\".\"id\" = %s AND \"polls_question\".\"question_text\" = %s)",
+   "params": [
+    2,
+    "a"
+   ]
+  }
+ },
+ {
+  "name": "filter_chain",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE (\"polls_question\".\"question_text\" = %s AND \"polls_question\".\"id\" = %s)",
+   "params": [
+    "a",
+    2
+   ]
+  }
+ },
+ {
+  "name": "startswith",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE \"polls_question\".\"question_text\" LIKE %s ESCAPE '\\'",
+   "params": [
+    "What%"
+   ]
+  }
+ },
+ {
+  "name": "icontains",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE \"polls_question\".\"question_text\" LIKE %s ESCAPE '\\'",
+   "params": [
+    "%x\\%y\\_%"
+   ]
+  }
+ },
+ {
+  "name": "contains",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE \"polls_question\".\"question_text\" LIKE %s ESCAPE '\\'",
+   "params": [
+    "%x%"
+   ]
+  }
+ },
+ {
+  "name": "endswith",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE \"polls_question\".\"question_text\" LIKE %s ESCAPE '\\'",
+   "params": [
+    "%x"
+   ]
+  }
+ },
+ {
+  "name": "iexact",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE \"polls_question\".\"question_text\" LIKE %s ESCAPE '\\'",
+   "params": [
+    "x"
+   ]
+  }
+ },
+ {
+  "name": "in_list",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE \"polls_question\".\"id\" IN (%s, %s, %s)",
+   "params": [
+    1,
+    2,
+    3
+   ]
+  }
+ },
+ {
+  "name": "range",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE \"polls_question\".\"id\" BETWEEN %s AND %s",
+   "params": [
+    1,
+    5
+   ]
+  }
+ },
+ {
+  "name": "isnull",
+  "expected": {
+   "sql": "SELECT \"polls_author\".\"id\", \"polls_author\".\"name\", \"polls_author\".\"age\" FROM \"polls_author\" WHERE \"polls_author\".\"age\" IS NULL",
+   "params": []
+  }
+ },
+ {
+  "name": "isnull_false",
+  "expected": {
+   "sql": "SELECT \"polls_author\".\"id\", \"polls_author\".\"name\", \"polls_author\".\"age\" FROM \"polls_author\" WHERE \"polls_author\".\"age\" IS NOT NULL",
+   "params": []
+  }
+ },
+ {
+  "name": "exclude",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE NOT (\"polls_question\".\"question_text\" = %s)",
+   "params": [
+    "a"
+   ]
+  }
+ },
+ {
+  "name": "exclude_nullable",
+  "expected": {
+   "sql": "SELECT \"polls_author\".\"id\", \"polls_author\".\"name\", \"polls_author\".\"age\" FROM \"polls_author\" WHERE NOT (\"polls_author\".\"age\" = %s AND \"polls_author\".\"age\" IS NOT NULL)",
+   "params": [
+    3
+   ]
+  }
+ },
+ {
+  "name": "gt_lte",
+  "expected": {
+   "sql": "SELECT \"polls_choice\".\"id\", \"polls_choice\".\"question_id\", \"polls_choice\".\"choice_text\", \"polls_choice\".\"votes\" FROM \"polls_choice\" WHERE (\"polls_choice\".\"votes\" > %s AND \"polls_choice\".\"votes\" <= %s)",
+   "params": [
+    1,
+    9
+   ]
+  }
+ },
+ {
+  "name": "q_or",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE (\"polls_question\".\"question_text\" = %s OR \"polls_question\".\"id\" = %s)",
+   "params": [
+    "a",
+    1
+   ]
+  }
+ },
+ {
+  "name": "q_and_or",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE (\"polls_question\".\"question_text\" = %s AND (\"polls_question\".\"id\" = %s OR \"polls_question\".\"id\" = %s))",
+   "params": [
+    "a",
+    1,
+    2
+   ]
+  }
+ },
+ {
+  "name": "q_not",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE NOT (\"polls_question\".\"id\" = %s)",
+   "params": [
+    1
+   ]
+  }
+ },
+ {
+  "name": "order_desc",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" ORDER BY \"polls_question\".\"pub_date\" DESC",
+   "params": []
+  }
+ },
+ {
+  "name": "order_two",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" ORDER BY \"polls_question\".\"question_text\" ASC, \"polls_question\".\"id\" DESC",
+   "params": []
+  }
+ },
+ {
+  "name": "order_pk",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" ORDER BY \"polls_question\".\"id\" ASC",
+   "params": []
+  }
+ },
+ {
+  "name": "slice",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" ORDER BY \"polls_question\".\"id\" ASC LIMIT 3 OFFSET 2",
+   "params": []
+  }
+ },
+ {
+  "name": "slice_limit",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" LIMIT 3",
+   "params": []
+  }
+ },
+ {
+  "name": "slice_offset",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" LIMIT -1 OFFSET 3",
+   "params": []
+  }
+ },
+ {
+  "name": "distinct",
+  "expected": {
+   "sql": "SELECT DISTINCT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\"",
+   "params": []
+  }
+ },
+ {
+  "name": "values",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\" AS \"id\", \"polls_question\".\"question_text\" AS \"question_text\" FROM \"polls_question\"",
+   "params": []
+  }
+ },
+ {
+  "name": "values_list",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\" AS \"id\" FROM \"polls_question\"",
+   "params": []
+  }
+ },
+ {
+  "name": "only",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\" FROM \"polls_question\"",
+   "params": []
+  }
+ },
+ {
+  "name": "defer",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\" FROM \"polls_question\"",
+   "params": []
+  }
+ },
+ {
+  "name": "fk_filter",
+  "expected": {
+   "sql": "SELECT \"polls_choice\".\"id\", \"polls_choice\".\"question_id\", \"polls_choice\".\"choice_text\", \"polls_choice\".\"votes\" FROM \"polls_choice\" INNER JOIN \"polls_question\" ON (\"polls_choice\".\"question_id\" = \"polls_question\".\"id\") WHERE \"polls_question\".\"question_text\" = %s",
+   "params": [
+    "x"
+   ]
+  }
+ },
+ {
+  "name": "fk_filter_id",
+  "expected": {
+   "sql": "SELECT \"polls_choice\".\"id\", \"polls_choice\".\"question_id\", \"polls_choice\".\"choice_text\", \"polls_choice\".\"votes\" FROM \"polls_choice\" WHERE \"polls_choice\".\"question_id\" = %s",
+   "params": [
+    3
+   ]
+  }
+ },
+ {
+  "name": "fk_filter_id_attr",
+  "expected": {
+   "sql": "SELECT \"polls_choice\".\"id\", \"polls_choice\".\"question_id\", \"polls_choice\".\"choice_text\", \"polls_choice\".\"votes\" FROM \"polls_choice\" WHERE \"polls_choice\".\"question_id\" = %s",
+   "params": [
+    3
+   ]
+  }
+ },
+ {
+  "name": "fk_filter_pk",
+  "expected": {
+   "sql": "SELECT \"polls_choice\".\"id\", \"polls_choice\".\"question_id\", \"polls_choice\".\"choice_text\", \"polls_choice\".\"votes\" FROM \"polls_choice\" WHERE \"polls_choice\".\"question_id\" = %s",
+   "params": [
+    3
+   ]
+  }
+ },
+ {
+  "name": "fk_two_fields",
+  "expected": {
+   "sql": "SELECT \"polls_choice\".\"id\", \"polls_choice\".\"question_id\", \"polls_choice\".\"choice_text\", \"polls_choice\".\"votes\" FROM \"polls_choice\" INNER JOIN \"polls_question\" ON (\"polls_choice\".\"question_id\" = \"polls_question\".\"id\") WHERE (\"polls_choice\".\"question_id\" = %s AND \"polls_question\".\"question_text\" = %s)",
+   "params": [
+    3,
+    "x"
+   ]
+  }
+ },
+ {
+  "name": "reverse_filter",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" INNER JOIN \"polls_choice\" ON (\"polls_question\".\"id\" = \"polls_choice\".\"question_id\") WHERE \"polls_choice\".\"votes\" > %s",
+   "params": [
+    2
+   ]
+  }
+ },
+ {
+  "name": "reverse_two_filters",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" INNER JOIN \"polls_choice\" ON (\"polls_question\".\"id\" = \"polls_choice\".\"question_id\") INNER JOIN \"polls_choice\" T3 ON (\"polls_question\".\"id\" = T3.\"question_id\") WHERE (\"polls_choice\".\"votes\" > %s AND T3.\"choice_text\" = %s)",
+   "params": [
+    2,
+    "a"
+   ]
+  }
+ },
+ {
+  "name": "reverse_same_filter",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" INNER JOIN \"polls_choice\" ON (\"polls_question\".\"id\" = \"polls_choice\".\"question_id\") WHERE (\"polls_choice\".\"choice_text\" = %s AND \"polls_choice\".\"votes\" > %s)",
+   "params": [
+    "a",
+    2
+   ]
+  }
+ },
+ {
+  "name": "m2m_filter",
+  "expected": {
+   "sql": "SELECT \"polls_book\".\"id\", \"polls_book\".\"title\", \"polls_book\".\"published\", \"polls_book\".\"price\" FROM \"polls_book\" INNER JOIN \"polls_book_authors\" ON (\"polls_book\".\"id\" = \"polls_book_authors\".\"book_id\") INNER JOIN \"polls_author\" ON (\"polls_book_authors\".\"author_id\" = \"polls_author\".\"id\") WHERE \"polls_author\".\"name\" = %s",
+   "params": [
+    "x"
+   ]
+  }
+ },
+ {
+  "name": "m2m_reverse",
+  "expected": {
+   "sql": "SELECT \"polls_author\".\"id\", \"polls_author\".\"name\", \"polls_author\".\"age\" FROM \"polls_author\" INNER JOIN \"polls_book_authors\" ON (\"polls_author\".\"id\" = \"polls_book_authors\".\"author_id\") INNER JOIN \"polls_book\" ON (\"polls_book_authors\".\"book_id\" = \"polls_book\".\"id\") WHERE \"polls_book\".\"title\" = %s",
+   "params": [
+    "x"
+   ]
+  }
+ },
+ {
+  "name": "select_related",
+  "expected": {
+   "sql": "SELECT \"polls_choice\".\"id\", \"polls_choice\".\"question_id\", \"polls_choice\".\"choice_text\", \"polls_choice\".\"votes\", \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_choice\" INNER JOIN \"polls_question\" ON (\"polls_choice\".\"question_id\" = \"polls_question\".\"id\")",
+   "params": []
+  }
+ },
+ {
+  "name": "select_related_order",
+  "expected": {
+   "sql": "SELECT \"polls_choice\".\"id\", \"polls_choice\".\"question_id\", \"polls_choice\".\"choice_text\", \"polls_choice\".\"votes\", \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_choice\" INNER JOIN \"polls_question\" ON (\"polls_choice\".\"question_id\" = \"polls_question\".\"id\") ORDER BY \"polls_question\".\"pub_date\" ASC",
+   "params": []
+  }
+ },
+ {
+  "name": "annotate_count",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\", COUNT(\"polls_choice\".\"id\") AS \"n\" FROM \"polls_question\" LEFT OUTER JOIN \"polls_choice\" ON (\"polls_question\".\"id\" = \"polls_choice\".\"question_id\") GROUP BY \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\"",
+   "params": []
+  }
+ },
+ {
+  "name": "annotate_filter_having",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\", COUNT(\"polls_choice\".\"id\") AS \"n\" FROM \"polls_question\" LEFT OUTER JOIN \"polls_choice\" ON (\"polls_question\".\"id\" = \"polls_choice\".\"question_id\") GROUP BY \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" HAVING COUNT(\"polls_choice\".\"id\") > %s",
+   "params": [
+    1
+   ]
+  }
+ },
+ {
+  "name": "annotate_values",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\" AS \"id\", COUNT(\"polls_choice\".\"id\") AS \"n\" FROM \"polls_question\" LEFT OUTER JOIN \"polls_choice\" ON (\"polls_question\".\"id\" = \"polls_choice\".\"question_id\") GROUP BY 1 ORDER BY 2 DESC",
+   "params": []
+  }
+ },
+ {
+  "name": "f_compare",
+  "expected": {
+   "sql": "SELECT \"polls_choice\".\"id\", \"polls_choice\".\"question_id\", \"polls_choice\".\"choice_text\", \"polls_choice\".\"votes\" FROM \"polls_choice\" WHERE \"polls_choice\".\"votes\" > (\"polls_choice\".\"question_id\")",
+   "params": []
+  }
+ },
+ {
+  "name": "f_arith",
+  "expected": {
+   "sql": "SELECT \"polls_choice\".\"id\", \"polls_choice\".\"question_id\", \"polls_choice\".\"choice_text\", \"polls_choice\".\"votes\" FROM \"polls_choice\" WHERE \"polls_choice\".\"votes\" > (\"polls_choice\".\"question_id\" * %s)",
+   "params": [
+    2
+   ]
+  }
+ },
+ {
+  "name": "year_exact",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE \"polls_question\".\"pub_date\" BETWEEN %s AND %s",
+   "params": [
+    "2024-01-01 00:00:00",
+    "2024-12-31 23:59:59.999999"
+   ]
+  }
+ },
+ {
+  "name": "year_gte",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE \"polls_question\".\"pub_date\" >= %s",
+   "params": [
+    "2024-01-01 00:00:00"
+   ]
+  }
+ },
+ {
+  "name": "datetime_gt",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE \"polls_question\".\"pub_date\" > %s",
+   "params": [
+    "2024-01-01 12:30:00"
+   ]
+  }
+ },
+ {
+  "name": "date_exact",
+  "expected": {
+   "sql": "SELECT \"polls_book\".\"id\", \"polls_book\".\"title\", \"polls_book\".\"published\", \"polls_book\".\"price\" FROM \"polls_book\" WHERE \"polls_book\".\"published\" = %s",
+   "params": [
+    "2024-03-01"
+   ]
+  }
+ },
+ {
+  "name": "decimal",
+  "expected": {
+   "sql": "SELECT \"polls_book\".\"id\", \"polls_book\".\"title\", \"polls_book\".\"published\", \"polls_book\".\"price\" FROM \"polls_book\" WHERE \"polls_book\".\"price\" > %s",
+   "params": [
+    "9.99"
+   ]
+  }
+ },
+ {
+  "name": "exists_subquery",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE EXISTS(SELECT %s AS \"a\" FROM \"polls_choice\" U0 WHERE (U0.\"question_id\" = (\"polls_question\".\"id\") AND U0.\"votes\" > %s) LIMIT 1)",
+   "params": [
+    1,
+    1
+   ]
+  }
+ },
+ {
+  "name": "in_subquery",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE \"polls_question\".\"id\" IN (SELECT U0.\"question_id\" AS \"question_id\" FROM \"polls_choice\" U0 WHERE U0.\"votes\" > %s)",
+   "params": [
+    1
+   ]
+  }
+ },
+ {
+  "name": "union",
+  "expected": {
+   "sql": "SELECT \"polls_author\".\"id\" AS \"col1\", \"polls_author\".\"name\" AS \"col2\", \"polls_author\".\"age\" AS \"col3\" FROM \"polls_author\" WHERE \"polls_author\".\"name\" = %s UNION SELECT \"polls_author\".\"id\" AS \"col1\", \"polls_author\".\"name\" AS \"col2\", \"polls_author\".\"age\" AS \"col3\" FROM \"polls_author\" WHERE \"polls_author\".\"name\" = %s",
+   "params": [
+    "a",
+    "b"
+   ]
+  }
+ },
+ {
+  "name": "regex",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE \"polls_question\".\"question_text\" REGEXP %s",
+   "params": [
+    "^W"
+   ]
+  }
+ },
+ {
+  "name": "none_exact",
+  "expected": {
+   "sql": "SELECT \"polls_author\".\"id\", \"polls_author\".\"name\", \"polls_author\".\"age\" FROM \"polls_author\" WHERE \"polls_author\".\"age\" IS NULL",
+   "params": []
+  }
+ },
+ {
+  "name": "pk_in",
+  "expected": {
+   "sql": "SELECT \"polls_question\".\"id\", \"polls_question\".\"question_text\", \"polls_question\".\"pub_date\" FROM \"polls_question\" WHERE \"polls_question\".\"id\" IN (%s, %s)",
+   "params": [
+    1,
+    2
+   ]
+  }
+ },
+ {
+  "name": "order_related",
+  "expected": {
+   "sql": "SELECT \"polls_choice\".\"id\", \"polls_choice\".\"question_id\", \"polls_choice\".\"choice_text\", \"polls_choice\".\"votes\" FROM \"polls_choice\" INNER JOIN \"polls_question\" ON (\"polls_choice\".\"question_id\" = \"polls_question\".\"id\") ORDER BY \"polls_question\".\"question_text\" ASC",
+   "params": []
+  }
+ },
+ {
+  "name": "exists_sql",
+  "expected": {
+   "sql": "SELECT %s AS \"a\" FROM \"polls_question\" WHERE \"polls_question\".\"id\" > %s LIMIT 1",
+   "params": [
+    1,
+    1
+   ]
+  }
+ }
+]

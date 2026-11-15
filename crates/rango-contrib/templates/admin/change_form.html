@@ -1,0 +1,11 @@
+{% extends "admin/base.html" %}
+{% block breadcrumbs %} &rsaquo; {{ app_name }} &rsaquo; <a href="{{ list_url }}">{{ verbose_name_plural }}</a> &rsaquo; {{ title }}{% endblock %}
+{% block content %}
+<h2>{{ title }}</h2>
+<form method="post" {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+{{ form.non_field_errors }}
+{% for field in form.visible_fields %}<div class="form-row">{{ field.errors }}{{ field.label_tag }} {{ field }}{% if field.help_text %}<div class="helptext">{{ field.help_text|safe }}</div>{% endif %}</div>{% endfor %}
+{% for field in form.hidden_fields %}{{ field }}{% endfor %}
+<p><input type="submit" class="default" value="Save">{% if delete_url %} <a class="button" href="{{ delete_url }}">Delete</a>{% endif %}</p>
+</form>
+{% endblock %}

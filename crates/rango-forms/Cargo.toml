@@ -1,0 +1,33 @@
+[package]
+name = "rangoframework-forms"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+readme.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Rango forms: the forms framework in Rust."
+
+[lib]
+name = "rango_forms"
+
+[dependencies]
+chrono = { version = "0.4.45", default-features = false, features = ["std", "clock"] }
+indexmap = { version = "2.14.2", features = ["serde"] }
+rango-core = { package = "rangoframework-core", version = "0.1.0", path = "../rango-core" }
+rango-db = { package = "rangoframework-db", version = "0.1.0", path = "../rango-db" }
+rango-http = { package = "rangoframework-http", version = "0.1.0", path = "../rango-http" }
+rango-macros = { package = "rangoframework-macros", version = "0.1.0", path = "../rango-macros" }
+rango-template = { package = "rangoframework-template", version = "0.1.0", path = "../rango-template" }
+regex = "1.13.1"
+rust_decimal = "1.43.0"
+serde_json = { version = "1.0.154", features = ["preserve_order"] }
+uuid = { version = "1", features = ["v4"] }
+
+[dev-dependencies]
+serde_json = "1.0.154"
+chrono = { version = "0.4.45", default-features = false, features = ["std", "clock"] }
+tokio = { version = "1", features = ["rt", "macros"] }
+rango-db = { package = "rangoframework-db", version = "0.1.0", path = "../rango-db" }
+rust_decimal = "1.43.0"

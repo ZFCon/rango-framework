@@ -1,0 +1,357 @@
+[
+ {
+  "method": "GET",
+  "url": "/api/",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "content": "{\"articles\":\"http://testserver/api/articles/\",\"paged\":\"http://testserver/api/paged/\",\"private\":\"http://testserver/api/private/\"}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, HEAD, OPTIONS"
+ },
+ {
+  "method": "GET",
+  "url": "/api/articles/",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "content": "[]",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, POST, HEAD, OPTIONS"
+ },
+ {
+  "method": "POST",
+  "url": "/api/articles/",
+  "body": {
+   "title": "First",
+   "slug": "first",
+   "body": "hello world",
+   "views": 5,
+   "rating": "4.5"
+  },
+  "headers": {},
+  "status": 201,
+  "content": "{\"id\":1,\"title\":\"First\",\"slug\":\"first\",\"body\":\"hello world\",\"published\":false,\"views\":5,\"rating\":\"4.50\"}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, POST, HEAD, OPTIONS"
+ },
+ {
+  "method": "POST",
+  "url": "/api/articles/",
+  "body": {
+   "title": "Second",
+   "slug": "second",
+   "published": true,
+   "views": "7"
+  },
+  "headers": {},
+  "status": 201,
+  "content": "{\"id\":2,\"title\":\"Second\",\"slug\":\"second\",\"body\":\"\",\"published\":true,\"views\":7,\"rating\":null}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, POST, HEAD, OPTIONS"
+ },
+ {
+  "method": "POST",
+  "url": "/api/articles/",
+  "body": {
+   "title": "Third post",
+   "slug": "third",
+   "body": "more words",
+   "rating": null
+  },
+  "headers": {},
+  "status": 201,
+  "content": "{\"id\":3,\"title\":\"Third post\",\"slug\":\"third\",\"body\":\"more words\",\"published\":false,\"views\":0,\"rating\":null}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, POST, HEAD, OPTIONS"
+ },
+ {
+  "method": "POST",
+  "url": "/api/articles/",
+  "body": {},
+  "headers": {},
+  "status": 400,
+  "content": "{\"title\":[\"This field is required.\"],\"slug\":[\"This field is required.\"]}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, POST, HEAD, OPTIONS"
+ },
+ {
+  "method": "POST",
+  "url": "/api/articles/",
+  "body": {
+   "title": "",
+   "slug": "bad slug!",
+   "views": "x",
+   "published": "maybe",
+   "rating": "123.456"
+  },
+  "headers": {},
+  "status": 400,
+  "content": "{\"title\":[\"This field may not be blank.\"],\"slug\":[\"Enter a valid \\\"slug\\\" consisting of letters, numbers, underscores or hyphens.\"],\"published\":[\"Must be a valid boolean.\"],\"views\":[\"A valid integer is required.\"],\"rating\":[\"Ensure that there are no more than 4 digits in total.\"]}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, POST, HEAD, OPTIONS"
+ },
+ {
+  "method": "POST",
+  "url": "/api/articles/",
+  "body": {
+   "title": "xxxxxxxxxxxxxxxxxxxxx",
+   "slug": "first",
+   "views": 1.5,
+   "rating": "abc",
+   "body": null
+  },
+  "headers": {},
+  "status": 400,
+  "content": "{\"title\":[\"Ensure this field has no more than 20 characters.\"],\"slug\":[\"article with this slug already exists.\"],\"body\":[\"This field may not be null.\"],\"views\":[\"A valid integer is required.\"],\"rating\":[\"A valid number is required.\"]}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, POST, HEAD, OPTIONS"
+ },
+ {
+  "method": "POST",
+  "url": "/api/articles/",
+  "body": [
+   1,
+   2
+  ],
+  "headers": {},
+  "status": 400,
+  "content": "{\"non_field_errors\":[\"Invalid data. Expected a dictionary, but got list.\"]}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, POST, HEAD, OPTIONS"
+ },
+ {
+  "method": "GET",
+  "url": "/api/articles/1/",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "content": "{\"id\":1,\"title\":\"First\",\"slug\":\"first\",\"body\":\"hello world\",\"published\":false,\"views\":5,\"rating\":\"4.50\"}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+ },
+ {
+  "method": "GET",
+  "url": "/api/articles/99/",
+  "body": null,
+  "headers": {},
+  "status": 404,
+  "content": "{\"detail\":\"No Article matches the given query.\"}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+ },
+ {
+  "method": "PUT",
+  "url": "/api/articles/1/",
+  "body": {
+   "title": "First!",
+   "slug": "first",
+   "views": 6
+  },
+  "headers": {},
+  "status": 200,
+  "content": "{\"id\":1,\"title\":\"First!\",\"slug\":\"first\",\"body\":\"hello world\",\"published\":false,\"views\":6,\"rating\":\"4.50\"}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+ },
+ {
+  "method": "PUT",
+  "url": "/api/articles/1/",
+  "body": {
+   "views": 6
+  },
+  "headers": {},
+  "status": 400,
+  "content": "{\"title\":[\"This field is required.\"],\"slug\":[\"This field is required.\"]}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+ },
+ {
+  "method": "PATCH",
+  "url": "/api/articles/2/",
+  "body": {
+   "views": 70
+  },
+  "headers": {},
+  "status": 200,
+  "content": "{\"id\":2,\"title\":\"Second\",\"slug\":\"second\",\"body\":\"\",\"published\":true,\"views\":70,\"rating\":null}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+ },
+ {
+  "method": "PATCH",
+  "url": "/api/articles/2/",
+  "body": {
+   "slug": "first"
+  },
+  "headers": {},
+  "status": 400,
+  "content": "{\"slug\":[\"article with this slug already exists.\"]}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+ },
+ {
+  "method": "GET",
+  "url": "/api/articles/?search=words",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "content": "[{\"id\":3,\"title\":\"Third post\",\"slug\":\"third\",\"body\":\"more words\",\"published\":false,\"views\":0,\"rating\":null}]",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, POST, HEAD, OPTIONS"
+ },
+ {
+  "method": "GET",
+  "url": "/api/articles/?ordering=-views",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "content": "[{\"id\":2,\"title\":\"Second\",\"slug\":\"second\",\"body\":\"\",\"published\":true,\"views\":70,\"rating\":null},{\"id\":1,\"title\":\"First!\",\"slug\":\"first\",\"body\":\"hello world\",\"published\":false,\"views\":6,\"rating\":\"4.50\"},{\"id\":3,\"title\":\"Third post\",\"slug\":\"third\",\"body\":\"more words\",\"published\":false,\"views\":0,\"rating\":null}]",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, POST, HEAD, OPTIONS"
+ },
+ {
+  "method": "GET",
+  "url": "/api/articles/?ordering=title&search=i",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "content": "[{\"id\":1,\"title\":\"First!\",\"slug\":\"first\",\"body\":\"hello world\",\"published\":false,\"views\":6,\"rating\":\"4.50\"},{\"id\":3,\"title\":\"Third post\",\"slug\":\"third\",\"body\":\"more words\",\"published\":false,\"views\":0,\"rating\":null}]",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, POST, HEAD, OPTIONS"
+ },
+ {
+  "method": "GET",
+  "url": "/api/paged/",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "content": "{\"count\":3,\"next\":\"http://testserver/api/paged/?page=2\",\"previous\":null,\"results\":[{\"id\":1,\"title\":\"First!\",\"slug\":\"first\",\"body\":\"hello world\",\"published\":false,\"views\":6,\"rating\":\"4.50\"},{\"id\":2,\"title\":\"Second\",\"slug\":\"second\",\"body\":\"\",\"published\":true,\"views\":70,\"rating\":null}]}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, HEAD, OPTIONS"
+ },
+ {
+  "method": "GET",
+  "url": "/api/paged/?page=2",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "content": "{\"count\":3,\"next\":null,\"previous\":\"http://testserver/api/paged/\",\"results\":[{\"id\":3,\"title\":\"Third post\",\"slug\":\"third\",\"body\":\"more words\",\"published\":false,\"views\":0,\"rating\":null}]}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, HEAD, OPTIONS"
+ },
+ {
+  "method": "GET",
+  "url": "/api/paged/?page=9",
+  "body": null,
+  "headers": {},
+  "status": 404,
+  "content": "{\"detail\":\"Invalid page.\"}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, HEAD, OPTIONS"
+ },
+ {
+  "method": "POST",
+  "url": "/api/paged/",
+  "body": {
+   "title": "no"
+  },
+  "headers": {},
+  "status": 405,
+  "content": "{\"detail\":\"Method \\\"POST\\\" not allowed.\"}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, HEAD, OPTIONS"
+ },
+ {
+  "method": "GET",
+  "url": "/api/private/",
+  "body": null,
+  "headers": {},
+  "status": 401,
+  "content": "{\"detail\":\"Authentication credentials were not provided.\"}",
+  "content_type": "application/json",
+  "www_authenticate": "Basic realm=\"api\"",
+  "allow": "GET, HEAD, OPTIONS"
+ },
+ {
+  "method": "GET",
+  "url": "/api/private/",
+  "body": null,
+  "headers": {
+   "Authorization": "Basic YW5uOm5vcGU="
+  },
+  "status": 401,
+  "content": "{\"detail\":\"Invalid username/password.\"}",
+  "content_type": "application/json",
+  "www_authenticate": "Basic realm=\"api\"",
+  "allow": "GET, HEAD, OPTIONS"
+ },
+ {
+  "method": "GET",
+  "url": "/api/private/2/",
+  "body": null,
+  "headers": {
+   "Authorization": "Basic YW5uOnB3"
+  },
+  "status": 200,
+  "content": "{\"id\":2,\"title\":\"Second\",\"slug\":\"second\",\"body\":\"\",\"published\":true,\"views\":70,\"rating\":null}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, HEAD, OPTIONS"
+ },
+ {
+  "method": "DELETE",
+  "url": "/api/articles/3/",
+  "body": null,
+  "headers": {},
+  "status": 204,
+  "content": "",
+  "content_type": null,
+  "www_authenticate": null,
+  "allow": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+ },
+ {
+  "method": "DELETE",
+  "url": "/api/articles/3/",
+  "body": null,
+  "headers": {},
+  "status": 404,
+  "content": "{\"detail\":\"No Article matches the given query.\"}",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+ },
+ {
+  "method": "GET",
+  "url": "/api/articles/",
+  "body": null,
+  "headers": {},
+  "status": 200,
+  "content": "[{\"id\":1,\"title\":\"First!\",\"slug\":\"first\",\"body\":\"hello world\",\"published\":false,\"views\":6,\"rating\":\"4.50\"},{\"id\":2,\"title\":\"Second\",\"slug\":\"second\",\"body\":\"\",\"published\":true,\"views\":70,\"rating\":null}]",
+  "content_type": "application/json",
+  "www_authenticate": null,
+  "allow": "GET, POST, HEAD, OPTIONS"
+ }
+]

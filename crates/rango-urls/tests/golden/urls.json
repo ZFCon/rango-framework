@@ -1,0 +1,731 @@
+[
+ {
+  "kind": "resolve",
+  "path": "/",
+  "expected": {
+   "url_name": "index",
+   "app_names": [],
+   "namespaces": [],
+   "view_name": "index",
+   "route": "",
+   "args": [],
+   "kwargs": {},
+   "captured": {},
+   "extra": {}
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/articles/2024/",
+  "expected": {
+   "url_name": "year",
+   "app_names": [],
+   "namespaces": [],
+   "view_name": "year",
+   "route": "articles/<int:year>/",
+   "args": [],
+   "kwargs": {
+    "year": 2024
+   },
+   "captured": {
+    "year": 2024
+   },
+   "extra": {}
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/articles/2024/hello-world/",
+  "expected": {
+   "url_name": "article",
+   "app_names": [],
+   "namespaces": [],
+   "view_name": "article",
+   "route": "articles/<int:year>/<slug:slug>/",
+   "args": [],
+   "kwargs": {
+    "year": 2024,
+    "slug": "hello-world"
+   },
+   "captured": {
+    "year": 2024,
+    "slug": "hello-world"
+   },
+   "extra": {}
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/articles/abc/",
+  "expected": {
+   "error": "Resolver404"
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/articles/2024/bad slug/",
+  "expected": {
+   "error": "Resolver404"
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/files/a/b/c.txt",
+  "expected": {
+   "url_name": "file",
+   "app_names": [],
+   "namespaces": [],
+   "view_name": "file",
+   "route": "files/<path:p>",
+   "args": [],
+   "kwargs": {
+    "p": "a/b/c.txt"
+   },
+   "captured": {
+    "p": "a/b/c.txt"
+   },
+   "extra": {}
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/files/",
+  "expected": {
+   "error": "Resolver404"
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/u/123e4567-e89b-12d3-a456-426614174000/",
+  "expected": {
+   "url_name": "user",
+   "app_names": [],
+   "namespaces": [],
+   "view_name": "user",
+   "route": "u/<uuid:id>/",
+   "args": [],
+   "kwargs": {
+    "id": "123e4567-e89b-12d3-a456-426614174000"
+   },
+   "captured": {
+    "id": "123e4567-e89b-12d3-a456-426614174000"
+   },
+   "extra": {}
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/u/NOT-A-UUID/",
+  "expected": {
+   "error": "Resolver404"
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/re/12/abc/",
+  "expected": {
+   "url_name": "re-named",
+   "app_names": [],
+   "namespaces": [],
+   "view_name": "re-named",
+   "route": "^re/(?P<a>\\d+)/(?P<b>[a-z]+)/$",
+   "args": [],
+   "kwargs": {
+    "a": "12",
+    "b": "abc"
+   },
+   "captured": {
+    "a": "12",
+    "b": "abc"
+   },
+   "extra": {}
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/re/12/ABC/",
+  "expected": {
+   "error": "Resolver404"
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/pos/1/x/",
+  "expected": {
+   "url_name": "re-pos",
+   "app_names": [],
+   "namespaces": [],
+   "view_name": "re-pos",
+   "route": "^pos/(\\d+)/(\\w+)/$",
+   "args": [
+    "1",
+    "x"
+   ],
+   "kwargs": {},
+   "captured": {},
+   "extra": {}
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/opt/end/",
+  "expected": {
+   "url_name": "re-opt",
+   "app_names": [],
+   "namespaces": [],
+   "view_name": "re-opt",
+   "route": "^opt/(?:(?P<x>\\d+)/)?end/$",
+   "args": [],
+   "kwargs": {},
+   "captured": {},
+   "extra": {}
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/opt/5/end/",
+  "expected": {
+   "url_name": "re-opt",
+   "app_names": [],
+   "namespaces": [],
+   "view_name": "re-opt",
+   "route": "^opt/(?:(?P<x>\\d+)/)?end/$",
+   "args": [],
+   "kwargs": {
+    "x": "5"
+   },
+   "captured": {
+    "x": "5"
+   },
+   "extra": {}
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/polls/",
+  "expected": {
+   "url_name": "index",
+   "app_names": [
+    "polls"
+   ],
+   "namespaces": [
+    "polls"
+   ],
+   "view_name": "polls:index",
+   "route": "polls/",
+   "args": [],
+   "kwargs": {},
+   "captured": {},
+   "extra": {}
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/polls/3/",
+  "expected": {
+   "url_name": "detail",
+   "app_names": [
+    "polls"
+   ],
+   "namespaces": [
+    "polls"
+   ],
+   "view_name": "polls:detail",
+   "route": "polls/<int:pk>/",
+   "args": [],
+   "kwargs": {
+    "pk": 3
+   },
+   "captured": {
+    "pk": 3
+   },
+   "extra": {}
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/polls/3/vote/",
+  "expected": {
+   "url_name": "vote",
+   "app_names": [
+    "polls"
+   ],
+   "namespaces": [
+    "polls"
+   ],
+   "view_name": "polls:vote",
+   "route": "polls/<int:pk>/vote/",
+   "args": [],
+   "kwargs": {
+    "pk": 3
+   },
+   "captured": {
+    "pk": 3
+   },
+   "extra": {}
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/polls2/9/",
+  "expected": {
+   "url_name": "detail",
+   "app_names": [
+    "polls"
+   ],
+   "namespaces": [
+    "polls2"
+   ],
+   "view_name": "polls2:detail",
+   "route": "polls2/<int:pk>/",
+   "args": [],
+   "kwargs": {
+    "pk": 9
+   },
+   "captured": {
+    "pk": 9
+   },
+   "extra": {}
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/api/v1/items/",
+  "expected": {
+   "url_name": "items",
+   "app_names": [],
+   "namespaces": [],
+   "view_name": "items",
+   "route": "api/<str:version>/items/",
+   "args": [],
+   "kwargs": {
+    "version": "v1"
+   },
+   "captured": {},
+   "extra": {}
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/api/v1/items/3/",
+  "expected": {
+   "url_name": "item",
+   "app_names": [],
+   "namespaces": [],
+   "view_name": "item",
+   "route": "api/<str:version>/items/<int:id>/",
+   "args": [],
+   "kwargs": {
+    "version": "v1",
+    "id": 3
+   },
+   "captured": {
+    "id": 3
+   },
+   "extra": {}
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/kw/",
+  "expected": {
+   "url_name": "kw",
+   "app_names": [],
+   "namespaces": [],
+   "view_name": "kw",
+   "route": "kw/",
+   "args": [],
+   "kwargs": {
+    "extra": 1
+   },
+   "captured": {},
+   "extra": {
+    "extra": 1
+   }
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/outer/inner/leaf/4/",
+  "expected": {
+   "url_name": "leaf",
+   "app_names": [
+    "outer",
+    "inner"
+   ],
+   "namespaces": [
+    "outer",
+    "inner"
+   ],
+   "view_name": "outer:inner:leaf",
+   "route": "outer/inner/leaf/<int:n>/",
+   "args": [],
+   "kwargs": {
+    "n": 4
+   },
+   "captured": {
+    "n": 4
+   },
+   "extra": {}
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/nope/",
+  "expected": {
+   "error": "Resolver404"
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "/polls/x/",
+  "expected": {
+   "error": "Resolver404"
+  }
+ },
+ {
+  "kind": "resolve",
+  "path": "//x",
+  "expected": {
+   "error": "Resolver404"
+  }
+ },
+ {
+  "kind": "reverse",
+  "name": "index",
+  "args": [],
+  "kwargs": {},
+  "current_app": null,
+  "expected": "/"
+ },
+ {
+  "kind": "reverse",
+  "name": "year",
+  "args": [],
+  "kwargs": {
+   "year": "2024"
+  },
+  "current_app": null,
+  "expected": "/articles/2024/"
+ },
+ {
+  "kind": "reverse",
+  "name": "year",
+  "args": [
+   "2024"
+  ],
+  "kwargs": {},
+  "current_app": null,
+  "expected": "/articles/2024/"
+ },
+ {
+  "kind": "reverse",
+  "name": "article",
+  "args": [],
+  "kwargs": {
+   "year": "1",
+   "slug": "a-b"
+  },
+  "current_app": null,
+  "expected": "/articles/1/a-b/"
+ },
+ {
+  "kind": "reverse",
+  "name": "article",
+  "args": [],
+  "kwargs": {
+   "year": "x",
+   "slug": "a-b"
+  },
+  "current_app": null,
+  "expected": {
+   "error": "NoReverseMatch"
+  }
+ },
+ {
+  "kind": "reverse",
+  "name": "article",
+  "args": [
+   "1"
+  ],
+  "kwargs": {},
+  "current_app": null,
+  "expected": {
+   "error": "NoReverseMatch"
+  }
+ },
+ {
+  "kind": "reverse",
+  "name": "file",
+  "args": [],
+  "kwargs": {
+   "p": "a/b c"
+  },
+  "current_app": null,
+  "expected": "/files/a/b%20c"
+ },
+ {
+  "kind": "reverse",
+  "name": "user",
+  "args": [],
+  "kwargs": {
+   "id": "123e4567-e89b-12d3-a456-426614174000"
+  },
+  "current_app": null,
+  "expected": "/u/123e4567-e89b-12d3-a456-426614174000/"
+ },
+ {
+  "kind": "reverse",
+  "name": "user",
+  "args": [],
+  "kwargs": {
+   "id": "nope"
+  },
+  "current_app": null,
+  "expected": {
+   "error": "NoReverseMatch"
+  }
+ },
+ {
+  "kind": "reverse",
+  "name": "re-named",
+  "args": [],
+  "kwargs": {
+   "a": "1",
+   "b": "x"
+  },
+  "current_app": null,
+  "expected": "/re/1/x/"
+ },
+ {
+  "kind": "reverse",
+  "name": "re-named",
+  "args": [],
+  "kwargs": {
+   "a": "x",
+   "b": "x"
+  },
+  "current_app": null,
+  "expected": {
+   "error": "NoReverseMatch"
+  }
+ },
+ {
+  "kind": "reverse",
+  "name": "re-pos",
+  "args": [
+   "1",
+   "ab"
+  ],
+  "kwargs": {},
+  "current_app": null,
+  "expected": "/pos/1/ab/"
+ },
+ {
+  "kind": "reverse",
+  "name": "re-opt",
+  "args": [],
+  "kwargs": {},
+  "current_app": null,
+  "expected": "/opt/end/"
+ },
+ {
+  "kind": "reverse",
+  "name": "re-opt",
+  "args": [],
+  "kwargs": {
+   "x": "3"
+  },
+  "current_app": null,
+  "expected": "/opt/3/end/"
+ },
+ {
+  "kind": "reverse",
+  "name": "polls:index",
+  "args": [],
+  "kwargs": {},
+  "current_app": null,
+  "expected": "/polls/"
+ },
+ {
+  "kind": "reverse",
+  "name": "polls:detail",
+  "args": [],
+  "kwargs": {
+   "pk": "1"
+  },
+  "current_app": null,
+  "expected": "/polls/1/"
+ },
+ {
+  "kind": "reverse",
+  "name": "polls:detail",
+  "args": [],
+  "kwargs": {
+   "pk": "1"
+  },
+  "current_app": "polls2",
+  "expected": "/polls2/1/"
+ },
+ {
+  "kind": "reverse",
+  "name": "polls2:vote",
+  "args": [
+   "2"
+  ],
+  "kwargs": {},
+  "current_app": null,
+  "expected": "/polls2/2/vote/"
+ },
+ {
+  "kind": "reverse",
+  "name": "polls:detail",
+  "args": [],
+  "kwargs": {
+   "pk": "1"
+  },
+  "current_app": "polls",
+  "expected": "/polls/1/"
+ },
+ {
+  "kind": "reverse",
+  "name": "items",
+  "args": [],
+  "kwargs": {
+   "version": "v2"
+  },
+  "current_app": null,
+  "expected": "/api/v2/items/"
+ },
+ {
+  "kind": "reverse",
+  "name": "item",
+  "args": [],
+  "kwargs": {
+   "version": "v1",
+   "id": "3"
+  },
+  "current_app": null,
+  "expected": "/api/v1/items/3/"
+ },
+ {
+  "kind": "reverse",
+  "name": "kw",
+  "args": [],
+  "kwargs": {},
+  "current_app": null,
+  "expected": "/kw/"
+ },
+ {
+  "kind": "reverse",
+  "name": "kw",
+  "args": [],
+  "kwargs": {
+   "extra": "2"
+  },
+  "current_app": null,
+  "expected": {
+   "error": "NoReverseMatch"
+  }
+ },
+ {
+  "kind": "reverse",
+  "name": "outer:inner:leaf",
+  "args": [],
+  "kwargs": {
+   "n": "5"
+  },
+  "current_app": null,
+  "expected": "/outer/inner/leaf/5/"
+ },
+ {
+  "kind": "reverse",
+  "name": "nope",
+  "args": [],
+  "kwargs": {},
+  "current_app": null,
+  "expected": {
+   "error": "NoReverseMatch"
+  }
+ },
+ {
+  "kind": "reverse",
+  "name": "polls:nope",
+  "args": [],
+  "kwargs": {},
+  "current_app": null,
+  "expected": {
+   "error": "NoReverseMatch"
+  }
+ },
+ {
+  "kind": "reverse",
+  "name": "zzz:index",
+  "args": [],
+  "kwargs": {},
+  "current_app": null,
+  "expected": {
+   "error": "NoReverseMatch"
+  }
+ },
+ {
+  "kind": "reverse",
+  "name": "index",
+  "args": [
+   "1"
+  ],
+  "kwargs": {
+   "a": "2"
+  },
+  "current_app": null,
+  "expected": {
+   "error": "ValueError"
+  }
+ },
+ {
+  "kind": "reverse",
+  "name": "year",
+  "args": [],
+  "kwargs": {},
+  "current_app": null,
+  "expected": {
+   "error": "NoReverseMatch"
+  }
+ },
+ {
+  "kind": "reverse",
+  "name": "year",
+  "args": [],
+  "kwargs": {
+   "year": "1",
+   "x": "2"
+  },
+  "current_app": null,
+  "expected": {
+   "error": "NoReverseMatch"
+  }
+ },
+ {
+  "kind": "reverse",
+  "name": "file",
+  "args": [],
+  "kwargs": {
+   "p": "é/ü"
+  },
+  "current_app": null,
+  "expected": "/files/%C3%A9/%C3%BC"
+ },
+ {
+  "kind": "reverse",
+  "name": "article",
+  "args": [],
+  "kwargs": {
+   "year": "5",
+   "slug": "x y"
+  },
+  "current_app": null,
+  "expected": {
+   "error": "NoReverseMatch"
+  }
+ }
+]

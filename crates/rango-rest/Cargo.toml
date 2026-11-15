@@ -1,0 +1,37 @@
+[package]
+name = "rangoframework-rest"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+readme.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Rango REST framework: serializers, viewsets, routers and OpenAPI schema (a REST framework + OpenAPI schema generation in Rust)."
+
+[lib]
+name = "rango_rest"
+
+[dependencies]
+async-trait = "0.1"
+base64 = "0.23.1"
+chrono = { version = "0.4.45", default-features = false, features = ["std", "clock"] }
+clap = "4"
+futures-util = "0.3.34"
+indexmap = "2.14.2"
+rango-contrib = { package = "rangoframework-contrib", version = "0.1.0", path = "../rango-contrib" }
+rango-core = { package = "rangoframework-core", version = "0.1.0", path = "../rango-core" }
+rango-db = { package = "rangoframework-db", version = "0.1.0", path = "../rango-db" }
+rango-forms = { package = "rangoframework-forms", version = "0.1.0", path = "../rango-forms" }
+rango-http = { package = "rangoframework-http", version = "0.1.0", path = "../rango-http" }
+rango-middleware = { package = "rangoframework-middleware", version = "0.1.0", path = "../rango-middleware" }
+rango-urls = { package = "rangoframework-urls", version = "0.1.0", path = "../rango-urls" }
+regex = "1.13.1"
+rust_decimal = "1.43.0"
+serde_json = { version = "1.0.154", features = ["preserve_order"] }
+tokio = { version = "1", features = ["sync"] }
+uuid = "1"
+
+[dev-dependencies]
+rango-test = { package = "rangoframework-test", version = "0.1.0", path = "../rango-test" }
+tokio = { version = "1", features = ["rt", "macros"] }

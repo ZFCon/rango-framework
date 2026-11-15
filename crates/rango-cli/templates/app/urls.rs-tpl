@@ -1,0 +1,10 @@
+//! URLs for the {{ app_name }} app: `path("{{ app_name }}/", include("{{ app_name }}.urls"))`.
+
+use rango::urls::path;
+use rango::{register_urlconf, urlpatterns};
+
+use super::views;
+
+register_urlconf!("{{ app_name }}.urls", app_name = "{{ app_name }}", || urlpatterns![
+    path("", views::index).name("index"),
+]);

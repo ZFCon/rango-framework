@@ -1,0 +1,58 @@
+[
+ {
+  "algo": "pbkdf2_sha256",
+  "password": "secret",
+  "salt": "fixedSalt123",
+  "encoded": "pbkdf2_sha256$1000000$fixedSalt123$/7H3q4nwE3aUztIHHB3LnZeluzweRMGcrxOlEAc+K7A=",
+  "wrong_ok": false
+ },
+ {
+  "algo": "pbkdf2_sha256",
+  "password": "pässwörd ✓",
+  "salt": "fixedSalt123",
+  "encoded": "pbkdf2_sha256$1000000$fixedSalt123$yBEcEvdMiVvy4FiPq2gtfdGuobenWdWET3ib3GEeHFg=",
+  "wrong_ok": false
+ },
+ {
+  "algo": "pbkdf2_sha1",
+  "password": "secret",
+  "salt": "fixedSalt123",
+  "encoded": "pbkdf2_sha1$1000000$fixedSalt123$zk2pof/ps5yX1vnsy+1ueaAaf0w=",
+  "wrong_ok": false
+ },
+ {
+  "algo": "pbkdf2_sha1",
+  "password": "pässwörd ✓",
+  "salt": "fixedSalt123",
+  "encoded": "pbkdf2_sha1$1000000$fixedSalt123$u7C7JG0xPuIMq6ngV+tmGn/o+Ac=",
+  "wrong_ok": false
+ },
+ {
+  "algo": "scrypt",
+  "password": "secret",
+  "salt": "fixedSalt123",
+  "encoded": "scrypt$16384$fixedSalt123$8$5$MluVgJz30Zhnkn6yCYYHrRLVzXdRo/+oD8RymX7UbOBw1OLkdQobdQhibpvEyn3xzHe9m6+TSw/v3GOKwZsnKA==",
+  "wrong_ok": false
+ },
+ {
+  "algo": "scrypt",
+  "password": "pässwörd ✓",
+  "salt": "fixedSalt123",
+  "encoded": "scrypt$16384$fixedSalt123$8$5$IjHDF+DvYVk+vGriWLfvtFDLvujhAgfZvFI7epdNspx53bqoPa6KOZH/lH5hzeeZGfOesKfQB55P/qMBy08aRw==",
+  "wrong_ok": false
+ },
+ {
+  "algo": "md5",
+  "password": "secret",
+  "salt": "fixedSalt123",
+  "encoded": "md5$fixedSalt123$89305c3bce5729e863da4f4cac828cc3",
+  "wrong_ok": false
+ },
+ {
+  "algo": "md5",
+  "password": "pässwörd ✓",
+  "salt": "fixedSalt123",
+  "encoded": "md5$fixedSalt123$b22e96ab751dcc268d060d87462e43f2",
+  "wrong_ok": false
+ }
+]

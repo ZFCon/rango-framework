@@ -1,0 +1,5356 @@
+{
+ "forms": [
+  {
+   "fields": [
+    [
+     "f",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "abc"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": "abc"
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "  abcdef "
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Ensure this value has at most 5 characters (it has 6).",
+       "code": "max_length"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     ""
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "This field is required.",
+       "code": "required"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "CharField",
+     {
+      "min_length": 3,
+      "required": false
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "ab"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Ensure this value has at least 3 characters (it has 2).",
+       "code": "min_length"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "CharField",
+     {
+      "min_length": 3,
+      "required": false
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     ""
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": ""
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "CharField",
+     {
+      "strip": false
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "  x "
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": "  x "
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "CharField",
+     {
+      "empty_value": null,
+      "required": false
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     ""
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": null
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "IntegerField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "12"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": 12
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "IntegerField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     " 7 "
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": 7
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "IntegerField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "1.0"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": 1
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "IntegerField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "1.5"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a whole number.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "IntegerField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "abc"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a whole number.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "IntegerField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     ""
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "This field is required.",
+       "code": "required"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "IntegerField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "1_000"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": 1000
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "IntegerField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "+5"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": 5
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "IntegerField",
+     {
+      "min_value": 3,
+      "max_value": 10
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "2"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Ensure this value is greater than or equal to 3.",
+       "code": "min_value"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "IntegerField",
+     {
+      "min_value": 3,
+      "max_value": 10
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "11"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Ensure this value is less than or equal to 10.",
+       "code": "max_value"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "IntegerField",
+     {
+      "min_value": 3,
+      "max_value": 10
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "5"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": 5
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "IntegerField",
+     {
+      "min_value": 0,
+      "step_size": 5
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "10"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": 10
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "IntegerField",
+     {
+      "min_value": 0,
+      "step_size": 5
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "7"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Ensure this value is a multiple of step size 5, starting from 0, e.g. 0, 5, 10, and so on.",
+       "code": "step_size"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "FloatField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "1.5"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": 1.5
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "FloatField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "inf"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a number.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "FloatField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "nan"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a number.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "FloatField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "x"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a number.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "FloatField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "1e3"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": 1000.0
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "FloatField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     ""
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "This field is required.",
+       "code": "required"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DecimalField",
+     {
+      "max_digits": 5,
+      "decimal_places": 2
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "123.45"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "decimal": "123.45"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DecimalField",
+     {
+      "max_digits": 5,
+      "decimal_places": 2
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "1234.5"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Ensure that there are no more than 3 digits before the decimal point.",
+       "code": "max_whole_digits"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DecimalField",
+     {
+      "max_digits": 5,
+      "decimal_places": 2
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "1.234"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Ensure that there are no more than 2 decimal places.",
+       "code": "max_decimal_places"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DecimalField",
+     {
+      "max_digits": 5,
+      "decimal_places": 2
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "x"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a number.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DecimalField",
+     {
+      "min_value": 1,
+      "max_value": 9,
+      "required": false
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "0"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Ensure this value is greater than or equal to 1.",
+       "code": "min_value"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DecimalField",
+     {
+      "min_value": 1,
+      "max_value": 9,
+      "required": false
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "10"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Ensure this value is less than or equal to 9.",
+       "code": "max_value"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DecimalField",
+     {
+      "min_value": 1,
+      "max_value": 9,
+      "required": false
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "5.5"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "decimal": "5.5"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DecimalField",
+     {
+      "min_value": 1,
+      "max_value": 9,
+      "required": false
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     ""
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": null
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "2020-02-29"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "date": "2020-02-29"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "02/30/2020"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid date.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "10/25/2006"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "date": "2006-10-25"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "Oct 25 2006"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "date": "2006-10-25"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "nope"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid date.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     ""
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "This field is required.",
+       "code": "required"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateField",
+     {
+      "input_formats": [
+       "%d.%m.%Y"
+      ]
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "25.10.2006"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "date": "2006-10-25"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateField",
+     {
+      "input_formats": [
+       "%d.%m.%Y"
+      ]
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "2006-10-25"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid date.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "TimeField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "14:30:59"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "time": "14:30:59"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "TimeField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "14:30"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "time": "14:30:00"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "TimeField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "2:30 PM"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid time.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "TimeField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "99:00"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid time.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateTimeField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "2020-01-02 03:04:05"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "datetime": "2020-01-02T03:04:05+00:00"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateTimeField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "2020-01-02T03:04:05+02:00"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "datetime": "2020-01-02T01:04:05+00:00"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateTimeField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "2020-01-02"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "datetime": "2020-01-02T00:00:00+00:00"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateTimeField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "01/02/2020 10:11"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "datetime": "2020-01-02T10:11:00+00:00"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateTimeField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "garbage"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid date/time.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DurationField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "1 02:03:04"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "duration": "93784.0"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DurationField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "10"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "duration": "10.0"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DurationField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "bad"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid duration.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DurationField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "P1DT2H"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "duration": "93600.0"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "RegexField",
+     {
+      "regex": "^[a-z]+$"
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "abc"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": "abc"
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "RegexField",
+     {
+      "regex": "^[a-z]+$"
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "ABC"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid value.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "EmailField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "a@b.co"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": "a@b.co"
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "EmailField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "bad"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid email address.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "EmailField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "  x@y.org "
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": "x@y.org"
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "EmailField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "a@b..c"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid email address.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "URLField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "http://example.com"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": "http://example.com"
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "URLField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "example.com"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": "https://example.com"
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "URLField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "//example.com/x"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": "https://example.com/x"
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "URLField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "ftp://x.org"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": "ftp://x.org"
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "URLField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "bad url"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid URL.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "BooleanField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "on"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": true
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "BooleanField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "false"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "This field is required.",
+       "code": "required"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "BooleanField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "0"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": true
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "BooleanField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "True"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": true
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "BooleanField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "false"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": false
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "BooleanField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "off"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": true
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "BooleanField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "data": {},
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": false
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "NullBooleanField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "true"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": true
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "NullBooleanField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "false"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": false
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "NullBooleanField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "1"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": null
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "NullBooleanField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "x"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": null
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "ChoiceField",
+     {
+      "choices": [
+       [
+        "a",
+        "A"
+       ],
+       [
+        "b",
+        "B"
+       ]
+      ]
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "a"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": "a"
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "ChoiceField",
+     {
+      "choices": [
+       [
+        "a",
+        "A"
+       ],
+       [
+        "b",
+        "B"
+       ]
+      ]
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "c"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Select a valid choice. c is not one of the available choices.",
+       "code": "invalid_choice"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "ChoiceField",
+     {
+      "choices": [
+       [
+        "a",
+        "A"
+       ],
+       [
+        "b",
+        "B"
+       ]
+      ]
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     ""
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "This field is required.",
+       "code": "required"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "ChoiceField",
+     {
+      "choices": [
+       [
+        "Group",
+        [
+         [
+          "x",
+          "X"
+         ],
+         [
+          "y",
+          "Y"
+         ]
+        ]
+       ],
+       [
+        "z",
+        "Z"
+       ]
+      ],
+      "required": false
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "y"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": "y"
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "ChoiceField",
+     {
+      "choices": [
+       [
+        "Group",
+        [
+         [
+          "x",
+          "X"
+         ],
+         [
+          "y",
+          "Y"
+         ]
+        ]
+       ],
+       [
+        "z",
+        "Z"
+       ]
+      ],
+      "required": false
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "q"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Select a valid choice. q is not one of the available choices.",
+       "code": "invalid_choice"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "TypedChoiceField",
+     {
+      "choices": [
+       [
+        "1",
+        "one"
+       ],
+       [
+        "2",
+        "two"
+       ]
+      ],
+      "coerce": "int"
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "2"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": 2
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "TypedChoiceField",
+     {
+      "choices": [
+       [
+        "1",
+        "one"
+       ],
+       [
+        "2",
+        "two"
+       ]
+      ],
+      "coerce": "int"
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "3"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Select a valid choice. 3 is not one of the available choices.",
+       "code": "invalid_choice"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "MultipleChoiceField",
+     {
+      "choices": [
+       [
+        "a",
+        "A"
+       ],
+       [
+        "b",
+        "B"
+       ]
+      ]
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "a",
+     "b"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": [
+      "a",
+      "b"
+     ]
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "MultipleChoiceField",
+     {
+      "choices": [
+       [
+        "a",
+        "A"
+       ],
+       [
+        "b",
+        "B"
+       ]
+      ]
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "a",
+     "z"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Select a valid choice. z is not one of the available choices.",
+       "code": "invalid_choice"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "MultipleChoiceField",
+     {
+      "choices": [
+       [
+        "a",
+        "A"
+       ],
+       [
+        "b",
+        "B"
+       ]
+      ]
+     }
+    ]
+   ],
+   "data": {},
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "This field is required.",
+       "code": "required"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "TypedMultipleChoiceField",
+     {
+      "choices": [
+       [
+        "1",
+        "one"
+       ],
+       [
+        "2",
+        "two"
+       ]
+      ],
+      "coerce": "int"
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "1",
+     "2"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": [
+      1,
+      2
+     ]
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "SlugField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "my-slug_1"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": "my-slug_1"
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "SlugField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "bad slug"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid “slug” consisting of letters, numbers, underscores or hyphens.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "UUIDField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "12345678-1234-5678-1234-567812345678"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "uuid": "12345678-1234-5678-1234-567812345678"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "UUIDField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "nope"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid UUID.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "JSONField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "{\"a\": [1, 2]}"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "a": [
+       1,
+       2
+      ]
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "JSONField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "[1,"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid JSON.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "JSONField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "\"str\""
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": "str"
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "JSONField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     ""
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "This field is required.",
+       "code": "required"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "GenericIPAddressField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "192.168.0.1"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": "192.168.0.1"
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "GenericIPAddressField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "::1"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": "::1"
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "GenericIPAddressField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "1:2:3"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "This is not a valid IPv6 address.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "GenericIPAddressField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "300.1.1.1"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid IPv4 or IPv6 address.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "GenericIPAddressField",
+     {
+      "protocol": "IPv4"
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "::1"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid IPv4 address.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "GenericIPAddressField",
+     {
+      "protocol": "IPv4"
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "1.2.3.4"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": "1.2.3.4"
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "SplitDateTimeField",
+     {}
+    ]
+   ],
+   "data": {
+    "f_0": [
+     "2020-01-02"
+    ],
+    "f_1": [
+     "03:04:05"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "datetime": "2020-01-02T03:04:05+00:00"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "SplitDateTimeField",
+     {}
+    ]
+   ],
+   "data": {
+    "f_0": [
+     "2020-01-02"
+    ],
+    "f_1": [
+     ""
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "This field is required.",
+       "code": "required"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "SplitDateTimeField",
+     {}
+    ]
+   ],
+   "data": {
+    "f_0": [
+     "bad"
+    ],
+    "f_1": [
+     "03:04"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Enter a valid date.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "SplitDateTimeField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "data": {
+    "f_0": [
+     ""
+    ],
+    "f_1": [
+     ""
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": null
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "FileField",
+     {}
+    ]
+   ],
+   "data": {},
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "files": {
+    "f": [
+     [
+      "a.txt",
+      "hello"
+     ]
+    ]
+   },
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "f": {
+      "file": "a.txt"
+     }
+    }
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "FileField",
+     {}
+    ]
+   ],
+   "data": {},
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "files": {
+    "f": [
+     [
+      "a.txt",
+      ""
+     ]
+    ]
+   },
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "The submitted file is empty.",
+       "code": "empty"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "FileField",
+     {}
+    ]
+   ],
+   "data": {},
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "This field is required.",
+       "code": "required"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "FileField",
+     {
+      "max_length": 3
+     }
+    ]
+   ],
+   "data": {},
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned"
+   ],
+   "files": {
+    "f": [
+     [
+      "abcdef.txt",
+      "x"
+     ]
+    ]
+   },
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "f": [
+      {
+       "message": "Ensure this filename has at most 3 characters (it has 10).",
+       "code": "max_length"
+      }
+     ]
+    },
+    "cleaned": {}
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 20,
+      "help_text": "Your <b>name</b>"
+     }
+    ],
+    [
+     "age",
+     "IntegerField",
+     {
+      "min_value": 0,
+      "required": false
+     }
+    ],
+    [
+     "email",
+     "EmailField",
+     {
+      "label": "E-mail"
+     }
+    ]
+   ],
+   "data": null,
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned",
+    "as_div",
+    "as_p",
+    "as_table",
+    "as_ul"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {},
+    "cleaned": {},
+    "as_div": "<div>\n    <label for=\"id_name\">Name:</label>\n\n<div class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></div>\n\n<input type=\"text\" name=\"name\" maxlength=\"20\" required aria-describedby=\"id_name_helptext\" id=\"id_name\">\n    \n</div>\n\n  <div>\n    <label for=\"id_age\">Age:</label>\n\n\n\n<input type=\"number\" name=\"age\" min=\"0\" id=\"id_age\">\n    \n</div>\n\n  <div>\n    <label for=\"id_email\">E-mail:</label>\n\n\n\n<input type=\"email\" name=\"email\" maxlength=\"320\" required id=\"id_email\">\n    \n      \n    \n</div>",
+    "as_p": "<p>\n    <label for=\"id_name\">Name:</label>\n    <input type=\"text\" name=\"name\" maxlength=\"20\" required aria-describedby=\"id_name_helptext\" id=\"id_name\">\n    \n      <span class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></span>\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_age\">Age:</label>\n    <input type=\"number\" name=\"age\" min=\"0\" id=\"id_age\">\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_email\">E-mail:</label>\n    <input type=\"email\" name=\"email\" maxlength=\"320\" required id=\"id_email\">\n    \n    \n      \n    \n  </p>",
+    "as_table": "<tr>\n    <th><label for=\"id_name\">Name:</label></th>\n    <td>\n      \n      <input type=\"text\" name=\"name\" maxlength=\"20\" required aria-describedby=\"id_name_helptext\" id=\"id_name\">\n      \n        <br>\n        <span class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></span>\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th><label for=\"id_age\">Age:</label></th>\n    <td>\n      \n      <input type=\"number\" name=\"age\" min=\"0\" id=\"id_age\">\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th><label for=\"id_email\">E-mail:</label></th>\n    <td>\n      \n      <input type=\"email\" name=\"email\" maxlength=\"320\" required id=\"id_email\">\n      \n      \n        \n      \n    </td>\n  </tr>",
+    "as_ul": "<li>\n    \n    <label for=\"id_name\">Name:</label>\n    <input type=\"text\" name=\"name\" maxlength=\"20\" required aria-describedby=\"id_name_helptext\" id=\"id_name\">\n    \n      <span class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></span>\n    \n    \n  </li>\n\n  <li>\n    \n    <label for=\"id_age\">Age:</label>\n    <input type=\"number\" name=\"age\" min=\"0\" id=\"id_age\">\n    \n    \n  </li>\n\n  <li>\n    \n    <label for=\"id_email\">E-mail:</label>\n    <input type=\"email\" name=\"email\" maxlength=\"320\" required id=\"id_email\">\n    \n    \n      \n    \n  </li>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 20,
+      "help_text": "Your <b>name</b>"
+     }
+    ],
+    [
+     "age",
+     "IntegerField",
+     {
+      "min_value": 0,
+      "required": false
+     }
+    ],
+    [
+     "email",
+     "EmailField",
+     {
+      "label": "E-mail"
+     }
+    ]
+   ],
+   "data": {
+    "name": [
+     "Ann"
+    ],
+    "age": [
+     "x"
+    ],
+    "email": [
+     "bad"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned",
+    "as_div",
+    "as_p",
+    "as_table",
+    "as_ul"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "age": [
+      {
+       "message": "Enter a whole number.",
+       "code": "invalid"
+      }
+     ],
+     "email": [
+      {
+       "message": "Enter a valid email address.",
+       "code": "invalid"
+      }
+     ]
+    },
+    "cleaned": {
+     "name": "Ann"
+    },
+    "as_div": "<div>\n    <label for=\"id_name\">Name:</label>\n\n<div class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></div>\n\n<input type=\"text\" name=\"name\" value=\"Ann\" maxlength=\"20\" required aria-describedby=\"id_name_helptext\" id=\"id_name\">\n    \n</div>\n\n  <div>\n    <label for=\"id_age\">Age:</label>\n\n\n<ul class=\"errorlist\" id=\"id_age_error\"><li>Enter a whole number.</li></ul>\n<input type=\"number\" name=\"age\" value=\"x\" min=\"0\" aria-invalid=\"true\" aria-describedby=\"id_age_error\" id=\"id_age\">\n    \n</div>\n\n  <div>\n    <label for=\"id_email\">E-mail:</label>\n\n\n<ul class=\"errorlist\" id=\"id_email_error\"><li>Enter a valid email address.</li></ul>\n<input type=\"email\" name=\"email\" value=\"bad\" maxlength=\"320\" required aria-invalid=\"true\" aria-describedby=\"id_email_error\" id=\"id_email\">\n    \n      \n    \n</div>",
+    "as_p": "<p>\n    <label for=\"id_name\">Name:</label>\n    <input type=\"text\" name=\"name\" value=\"Ann\" maxlength=\"20\" required aria-describedby=\"id_name_helptext\" id=\"id_name\">\n    \n      <span class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></span>\n    \n    \n  </p>\n\n  <ul class=\"errorlist\" id=\"id_age_error\"><li>Enter a whole number.</li></ul>\n  <p>\n    <label for=\"id_age\">Age:</label>\n    <input type=\"number\" name=\"age\" value=\"x\" min=\"0\" aria-invalid=\"true\" aria-describedby=\"id_age_error\" id=\"id_age\">\n    \n    \n  </p>\n\n  <ul class=\"errorlist\" id=\"id_email_error\"><li>Enter a valid email address.</li></ul>\n  <p>\n    <label for=\"id_email\">E-mail:</label>\n    <input type=\"email\" name=\"email\" value=\"bad\" maxlength=\"320\" required aria-invalid=\"true\" aria-describedby=\"id_email_error\" id=\"id_email\">\n    \n    \n      \n    \n  </p>",
+    "as_table": "<tr>\n    <th><label for=\"id_name\">Name:</label></th>\n    <td>\n      \n      <input type=\"text\" name=\"name\" value=\"Ann\" maxlength=\"20\" required aria-describedby=\"id_name_helptext\" id=\"id_name\">\n      \n        <br>\n        <span class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></span>\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th><label for=\"id_age\">Age:</label></th>\n    <td>\n      <ul class=\"errorlist\" id=\"id_age_error\"><li>Enter a whole number.</li></ul>\n      <input type=\"number\" name=\"age\" value=\"x\" min=\"0\" aria-invalid=\"true\" aria-describedby=\"id_age_error\" id=\"id_age\">\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th><label for=\"id_email\">E-mail:</label></th>\n    <td>\n      <ul class=\"errorlist\" id=\"id_email_error\"><li>Enter a valid email address.</li></ul>\n      <input type=\"email\" name=\"email\" value=\"bad\" maxlength=\"320\" required aria-invalid=\"true\" aria-describedby=\"id_email_error\" id=\"id_email\">\n      \n      \n        \n      \n    </td>\n  </tr>",
+    "as_ul": "<li>\n    \n    <label for=\"id_name\">Name:</label>\n    <input type=\"text\" name=\"name\" value=\"Ann\" maxlength=\"20\" required aria-describedby=\"id_name_helptext\" id=\"id_name\">\n    \n      <span class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></span>\n    \n    \n  </li>\n\n  <li>\n    <ul class=\"errorlist\" id=\"id_age_error\"><li>Enter a whole number.</li></ul>\n    <label for=\"id_age\">Age:</label>\n    <input type=\"number\" name=\"age\" value=\"x\" min=\"0\" aria-invalid=\"true\" aria-describedby=\"id_age_error\" id=\"id_age\">\n    \n    \n  </li>\n\n  <li>\n    <ul class=\"errorlist\" id=\"id_email_error\"><li>Enter a valid email address.</li></ul>\n    <label for=\"id_email\">E-mail:</label>\n    <input type=\"email\" name=\"email\" value=\"bad\" maxlength=\"320\" required aria-invalid=\"true\" aria-describedby=\"id_email_error\" id=\"id_email\">\n    \n    \n      \n    \n  </li>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 20,
+      "help_text": "Your <b>name</b>"
+     }
+    ],
+    [
+     "age",
+     "IntegerField",
+     {
+      "min_value": 0,
+      "required": false
+     }
+    ],
+    [
+     "email",
+     "EmailField",
+     {
+      "label": "E-mail"
+     }
+    ]
+   ],
+   "data": {
+    "name": [
+     "Ann"
+    ],
+    "age": [
+     "3"
+    ],
+    "email": [
+     "a@b.co"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned",
+    "as_div",
+    "as_p",
+    "as_table",
+    "as_ul"
+   ],
+   "expected": {
+    "is_valid": true,
+    "errors": {},
+    "cleaned": {
+     "name": "Ann",
+     "age": 3,
+     "email": "a@b.co"
+    },
+    "as_div": "<div>\n    <label for=\"id_name\">Name:</label>\n\n<div class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></div>\n\n<input type=\"text\" name=\"name\" value=\"Ann\" maxlength=\"20\" required aria-describedby=\"id_name_helptext\" id=\"id_name\">\n    \n</div>\n\n  <div>\n    <label for=\"id_age\">Age:</label>\n\n\n\n<input type=\"number\" name=\"age\" value=\"3\" min=\"0\" id=\"id_age\">\n    \n</div>\n\n  <div>\n    <label for=\"id_email\">E-mail:</label>\n\n\n\n<input type=\"email\" name=\"email\" value=\"a@b.co\" maxlength=\"320\" required id=\"id_email\">\n    \n      \n    \n</div>",
+    "as_p": "<p>\n    <label for=\"id_name\">Name:</label>\n    <input type=\"text\" name=\"name\" value=\"Ann\" maxlength=\"20\" required aria-describedby=\"id_name_helptext\" id=\"id_name\">\n    \n      <span class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></span>\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_age\">Age:</label>\n    <input type=\"number\" name=\"age\" value=\"3\" min=\"0\" id=\"id_age\">\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_email\">E-mail:</label>\n    <input type=\"email\" name=\"email\" value=\"a@b.co\" maxlength=\"320\" required id=\"id_email\">\n    \n    \n      \n    \n  </p>",
+    "as_table": "<tr>\n    <th><label for=\"id_name\">Name:</label></th>\n    <td>\n      \n      <input type=\"text\" name=\"name\" value=\"Ann\" maxlength=\"20\" required aria-describedby=\"id_name_helptext\" id=\"id_name\">\n      \n        <br>\n        <span class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></span>\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th><label for=\"id_age\">Age:</label></th>\n    <td>\n      \n      <input type=\"number\" name=\"age\" value=\"3\" min=\"0\" id=\"id_age\">\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th><label for=\"id_email\">E-mail:</label></th>\n    <td>\n      \n      <input type=\"email\" name=\"email\" value=\"a@b.co\" maxlength=\"320\" required id=\"id_email\">\n      \n      \n        \n      \n    </td>\n  </tr>",
+    "as_ul": "<li>\n    \n    <label for=\"id_name\">Name:</label>\n    <input type=\"text\" name=\"name\" value=\"Ann\" maxlength=\"20\" required aria-describedby=\"id_name_helptext\" id=\"id_name\">\n    \n      <span class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></span>\n    \n    \n  </li>\n\n  <li>\n    \n    <label for=\"id_age\">Age:</label>\n    <input type=\"number\" name=\"age\" value=\"3\" min=\"0\" id=\"id_age\">\n    \n    \n  </li>\n\n  <li>\n    \n    <label for=\"id_email\">E-mail:</label>\n    <input type=\"email\" name=\"email\" value=\"a@b.co\" maxlength=\"320\" required id=\"id_email\">\n    \n    \n      \n    \n  </li>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 20,
+      "help_text": "Your <b>name</b>"
+     }
+    ],
+    [
+     "age",
+     "IntegerField",
+     {
+      "min_value": 0,
+      "required": false
+     }
+    ],
+    [
+     "email",
+     "EmailField",
+     {
+      "label": "E-mail"
+     }
+    ]
+   ],
+   "data": null,
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned",
+    "as_div",
+    "as_p",
+    "as_table",
+    "as_ul"
+   ],
+   "form": {
+    "prefix": "p"
+   },
+   "initial": {
+    "name": "Bob"
+   },
+   "expected": {
+    "is_valid": false,
+    "errors": {},
+    "cleaned": {},
+    "as_div": "<div>\n    <label for=\"id_p-name\">Name:</label>\n\n<div class=\"helptext\" id=\"id_p-name_helptext\">Your <b>name</b></div>\n\n<input type=\"text\" name=\"p-name\" value=\"Bob\" maxlength=\"20\" required aria-describedby=\"id_p-name_helptext\" id=\"id_p-name\">\n    \n</div>\n\n  <div>\n    <label for=\"id_p-age\">Age:</label>\n\n\n\n<input type=\"number\" name=\"p-age\" min=\"0\" id=\"id_p-age\">\n    \n</div>\n\n  <div>\n    <label for=\"id_p-email\">E-mail:</label>\n\n\n\n<input type=\"email\" name=\"p-email\" maxlength=\"320\" required id=\"id_p-email\">\n    \n      \n    \n</div>",
+    "as_p": "<p>\n    <label for=\"id_p-name\">Name:</label>\n    <input type=\"text\" name=\"p-name\" value=\"Bob\" maxlength=\"20\" required aria-describedby=\"id_p-name_helptext\" id=\"id_p-name\">\n    \n      <span class=\"helptext\" id=\"id_p-name_helptext\">Your <b>name</b></span>\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_p-age\">Age:</label>\n    <input type=\"number\" name=\"p-age\" min=\"0\" id=\"id_p-age\">\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_p-email\">E-mail:</label>\n    <input type=\"email\" name=\"p-email\" maxlength=\"320\" required id=\"id_p-email\">\n    \n    \n      \n    \n  </p>",
+    "as_table": "<tr>\n    <th><label for=\"id_p-name\">Name:</label></th>\n    <td>\n      \n      <input type=\"text\" name=\"p-name\" value=\"Bob\" maxlength=\"20\" required aria-describedby=\"id_p-name_helptext\" id=\"id_p-name\">\n      \n        <br>\n        <span class=\"helptext\" id=\"id_p-name_helptext\">Your <b>name</b></span>\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th><label for=\"id_p-age\">Age:</label></th>\n    <td>\n      \n      <input type=\"number\" name=\"p-age\" min=\"0\" id=\"id_p-age\">\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th><label for=\"id_p-email\">E-mail:</label></th>\n    <td>\n      \n      <input type=\"email\" name=\"p-email\" maxlength=\"320\" required id=\"id_p-email\">\n      \n      \n        \n      \n    </td>\n  </tr>",
+    "as_ul": "<li>\n    \n    <label for=\"id_p-name\">Name:</label>\n    <input type=\"text\" name=\"p-name\" value=\"Bob\" maxlength=\"20\" required aria-describedby=\"id_p-name_helptext\" id=\"id_p-name\">\n    \n      <span class=\"helptext\" id=\"id_p-name_helptext\">Your <b>name</b></span>\n    \n    \n  </li>\n\n  <li>\n    \n    <label for=\"id_p-age\">Age:</label>\n    <input type=\"number\" name=\"p-age\" min=\"0\" id=\"id_p-age\">\n    \n    \n  </li>\n\n  <li>\n    \n    <label for=\"id_p-email\">E-mail:</label>\n    <input type=\"email\" name=\"p-email\" maxlength=\"320\" required id=\"id_p-email\">\n    \n    \n      \n    \n  </li>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 20,
+      "help_text": "Your <b>name</b>"
+     }
+    ],
+    [
+     "age",
+     "IntegerField",
+     {
+      "min_value": 0,
+      "required": false
+     }
+    ],
+    [
+     "email",
+     "EmailField",
+     {
+      "label": "E-mail"
+     }
+    ]
+   ],
+   "data": null,
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned",
+    "as_div",
+    "as_p",
+    "as_table",
+    "as_ul"
+   ],
+   "form": {
+    "auto_id": false
+   },
+   "expected": {
+    "is_valid": false,
+    "errors": {},
+    "cleaned": {},
+    "as_div": "<div>\n    Name:\n\n<div class=\"helptext\">Your <b>name</b></div>\n\n<input type=\"text\" name=\"name\" maxlength=\"20\" required>\n    \n</div>\n\n  <div>\n    Age:\n\n\n\n<input type=\"number\" name=\"age\" min=\"0\">\n    \n</div>\n\n  <div>\n    E-mail:\n\n\n\n<input type=\"email\" name=\"email\" maxlength=\"320\" required>\n    \n      \n    \n</div>",
+    "as_p": "<p>\n    Name:\n    <input type=\"text\" name=\"name\" maxlength=\"20\" required>\n    \n      <span class=\"helptext\">Your <b>name</b></span>\n    \n    \n  </p>\n\n  \n  <p>\n    Age:\n    <input type=\"number\" name=\"age\" min=\"0\">\n    \n    \n  </p>\n\n  \n  <p>\n    E-mail:\n    <input type=\"email\" name=\"email\" maxlength=\"320\" required>\n    \n    \n      \n    \n  </p>",
+    "as_table": "<tr>\n    <th>Name:</th>\n    <td>\n      \n      <input type=\"text\" name=\"name\" maxlength=\"20\" required>\n      \n        <br>\n        <span class=\"helptext\">Your <b>name</b></span>\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th>Age:</th>\n    <td>\n      \n      <input type=\"number\" name=\"age\" min=\"0\">\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th>E-mail:</th>\n    <td>\n      \n      <input type=\"email\" name=\"email\" maxlength=\"320\" required>\n      \n      \n        \n      \n    </td>\n  </tr>",
+    "as_ul": "<li>\n    \n    Name:\n    <input type=\"text\" name=\"name\" maxlength=\"20\" required>\n    \n      <span class=\"helptext\">Your <b>name</b></span>\n    \n    \n  </li>\n\n  <li>\n    \n    Age:\n    <input type=\"number\" name=\"age\" min=\"0\">\n    \n    \n  </li>\n\n  <li>\n    \n    E-mail:\n    <input type=\"email\" name=\"email\" maxlength=\"320\" required>\n    \n    \n      \n    \n  </li>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 20,
+      "help_text": "Your <b>name</b>"
+     }
+    ],
+    [
+     "age",
+     "IntegerField",
+     {
+      "min_value": 0,
+      "required": false
+     }
+    ],
+    [
+     "email",
+     "EmailField",
+     {
+      "label": "E-mail"
+     }
+    ]
+   ],
+   "data": null,
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned",
+    "as_div",
+    "as_p",
+    "as_table",
+    "as_ul"
+   ],
+   "form": {
+    "auto_id": "f_%s",
+    "label_suffix": " ->"
+   },
+   "expected": {
+    "is_valid": false,
+    "errors": {},
+    "cleaned": {},
+    "as_div": "<div>\n    <label for=\"f_name\">Name -&gt;</label>\n\n<div class=\"helptext\" id=\"f_name_helptext\">Your <b>name</b></div>\n\n<input type=\"text\" name=\"name\" maxlength=\"20\" required aria-describedby=\"f_name_helptext\" id=\"f_name\">\n    \n</div>\n\n  <div>\n    <label for=\"f_age\">Age -&gt;</label>\n\n\n\n<input type=\"number\" name=\"age\" min=\"0\" id=\"f_age\">\n    \n</div>\n\n  <div>\n    <label for=\"f_email\">E-mail -&gt;</label>\n\n\n\n<input type=\"email\" name=\"email\" maxlength=\"320\" required id=\"f_email\">\n    \n      \n    \n</div>",
+    "as_p": "<p>\n    <label for=\"f_name\">Name -&gt;</label>\n    <input type=\"text\" name=\"name\" maxlength=\"20\" required aria-describedby=\"f_name_helptext\" id=\"f_name\">\n    \n      <span class=\"helptext\" id=\"f_name_helptext\">Your <b>name</b></span>\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"f_age\">Age -&gt;</label>\n    <input type=\"number\" name=\"age\" min=\"0\" id=\"f_age\">\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"f_email\">E-mail -&gt;</label>\n    <input type=\"email\" name=\"email\" maxlength=\"320\" required id=\"f_email\">\n    \n    \n      \n    \n  </p>",
+    "as_table": "<tr>\n    <th><label for=\"f_name\">Name -&gt;</label></th>\n    <td>\n      \n      <input type=\"text\" name=\"name\" maxlength=\"20\" required aria-describedby=\"f_name_helptext\" id=\"f_name\">\n      \n        <br>\n        <span class=\"helptext\" id=\"f_name_helptext\">Your <b>name</b></span>\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th><label for=\"f_age\">Age -&gt;</label></th>\n    <td>\n      \n      <input type=\"number\" name=\"age\" min=\"0\" id=\"f_age\">\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th><label for=\"f_email\">E-mail -&gt;</label></th>\n    <td>\n      \n      <input type=\"email\" name=\"email\" maxlength=\"320\" required id=\"f_email\">\n      \n      \n        \n      \n    </td>\n  </tr>",
+    "as_ul": "<li>\n    \n    <label for=\"f_name\">Name -&gt;</label>\n    <input type=\"text\" name=\"name\" maxlength=\"20\" required aria-describedby=\"f_name_helptext\" id=\"f_name\">\n    \n      <span class=\"helptext\" id=\"f_name_helptext\">Your <b>name</b></span>\n    \n    \n  </li>\n\n  <li>\n    \n    <label for=\"f_age\">Age -&gt;</label>\n    <input type=\"number\" name=\"age\" min=\"0\" id=\"f_age\">\n    \n    \n  </li>\n\n  <li>\n    \n    <label for=\"f_email\">E-mail -&gt;</label>\n    <input type=\"email\" name=\"email\" maxlength=\"320\" required id=\"f_email\">\n    \n    \n      \n    \n  </li>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 20,
+      "help_text": "Your <b>name</b>"
+     }
+    ],
+    [
+     "age",
+     "IntegerField",
+     {
+      "min_value": 0,
+      "required": false
+     }
+    ],
+    [
+     "email",
+     "EmailField",
+     {
+      "label": "E-mail"
+     }
+    ]
+   ],
+   "data": {
+    "name": [
+     ""
+    ],
+    "email": [
+     ""
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned",
+    "as_div",
+    "as_p",
+    "as_table",
+    "as_ul"
+   ],
+   "form": {
+    "required_css_class": "req"
+   },
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "name": [
+      {
+       "message": "This field is required.",
+       "code": "required"
+      }
+     ],
+     "email": [
+      {
+       "message": "This field is required.",
+       "code": "required"
+      }
+     ]
+    },
+    "cleaned": {
+     "age": null
+    },
+    "as_div": "<div class=\"req\">\n    <label for=\"id_name\" class=\"req\">Name:</label>\n\n<div class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></div>\n<ul class=\"errorlist\" id=\"id_name_error\"><li>This field is required.</li></ul>\n<input type=\"text\" name=\"name\" maxlength=\"20\" required aria-invalid=\"true\" aria-describedby=\"id_name_helptext id_name_error\" id=\"id_name\">\n    \n</div>\n\n  <div>\n    <label for=\"id_age\">Age:</label>\n\n\n\n<input type=\"number\" name=\"age\" min=\"0\" id=\"id_age\">\n    \n</div>\n\n  <div class=\"req\">\n    <label for=\"id_email\" class=\"req\">E-mail:</label>\n\n\n<ul class=\"errorlist\" id=\"id_email_error\"><li>This field is required.</li></ul>\n<input type=\"email\" name=\"email\" maxlength=\"320\" required aria-invalid=\"true\" aria-describedby=\"id_email_error\" id=\"id_email\">\n    \n      \n    \n</div>",
+    "as_p": "<ul class=\"errorlist\" id=\"id_name_error\"><li>This field is required.</li></ul>\n  <p class=\"req\">\n    <label for=\"id_name\" class=\"req\">Name:</label>\n    <input type=\"text\" name=\"name\" maxlength=\"20\" required aria-invalid=\"true\" aria-describedby=\"id_name_helptext id_name_error\" id=\"id_name\">\n    \n      <span class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></span>\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_age\">Age:</label>\n    <input type=\"number\" name=\"age\" min=\"0\" id=\"id_age\">\n    \n    \n  </p>\n\n  <ul class=\"errorlist\" id=\"id_email_error\"><li>This field is required.</li></ul>\n  <p class=\"req\">\n    <label for=\"id_email\" class=\"req\">E-mail:</label>\n    <input type=\"email\" name=\"email\" maxlength=\"320\" required aria-invalid=\"true\" aria-describedby=\"id_email_error\" id=\"id_email\">\n    \n    \n      \n    \n  </p>",
+    "as_table": "<tr class=\"req\">\n    <th><label for=\"id_name\" class=\"req\">Name:</label></th>\n    <td>\n      <ul class=\"errorlist\" id=\"id_name_error\"><li>This field is required.</li></ul>\n      <input type=\"text\" name=\"name\" maxlength=\"20\" required aria-invalid=\"true\" aria-describedby=\"id_name_helptext id_name_error\" id=\"id_name\">\n      \n        <br>\n        <span class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></span>\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th><label for=\"id_age\">Age:</label></th>\n    <td>\n      \n      <input type=\"number\" name=\"age\" min=\"0\" id=\"id_age\">\n      \n      \n    </td>\n  </tr>\n\n  <tr class=\"req\">\n    <th><label for=\"id_email\" class=\"req\">E-mail:</label></th>\n    <td>\n      <ul class=\"errorlist\" id=\"id_email_error\"><li>This field is required.</li></ul>\n      <input type=\"email\" name=\"email\" maxlength=\"320\" required aria-invalid=\"true\" aria-describedby=\"id_email_error\" id=\"id_email\">\n      \n      \n        \n      \n    </td>\n  </tr>",
+    "as_ul": "<li class=\"req\">\n    <ul class=\"errorlist\" id=\"id_name_error\"><li>This field is required.</li></ul>\n    <label for=\"id_name\" class=\"req\">Name:</label>\n    <input type=\"text\" name=\"name\" maxlength=\"20\" required aria-invalid=\"true\" aria-describedby=\"id_name_helptext id_name_error\" id=\"id_name\">\n    \n      <span class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></span>\n    \n    \n  </li>\n\n  <li>\n    \n    <label for=\"id_age\">Age:</label>\n    <input type=\"number\" name=\"age\" min=\"0\" id=\"id_age\">\n    \n    \n  </li>\n\n  <li class=\"req\">\n    <ul class=\"errorlist\" id=\"id_email_error\"><li>This field is required.</li></ul>\n    <label for=\"id_email\" class=\"req\">E-mail:</label>\n    <input type=\"email\" name=\"email\" maxlength=\"320\" required aria-invalid=\"true\" aria-describedby=\"id_email_error\" id=\"id_email\">\n    \n    \n      \n    \n  </li>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 20,
+      "help_text": "Your <b>name</b>"
+     }
+    ],
+    [
+     "age",
+     "IntegerField",
+     {
+      "min_value": 0,
+      "required": false
+     }
+    ],
+    [
+     "email",
+     "EmailField",
+     {
+      "label": "E-mail"
+     }
+    ]
+   ],
+   "data": {
+    "name": [
+     "x"
+    ]
+   },
+   "out": [
+    "as_p",
+    "changed_data"
+   ],
+   "initial": {
+    "name": "x",
+    "email": "e@e.org"
+   },
+   "expected": {
+    "as_p": "<p>\n    <label for=\"id_name\">Name:</label>\n    <input type=\"text\" name=\"name\" value=\"x\" maxlength=\"20\" required aria-describedby=\"id_name_helptext\" id=\"id_name\">\n    \n      <span class=\"helptext\" id=\"id_name_helptext\">Your <b>name</b></span>\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_age\">Age:</label>\n    <input type=\"number\" name=\"age\" min=\"0\" id=\"id_age\">\n    \n    \n  </p>\n\n  <ul class=\"errorlist\" id=\"id_email_error\"><li>This field is required.</li></ul>\n  <p>\n    <label for=\"id_email\">E-mail:</label>\n    <input type=\"email\" name=\"email\" maxlength=\"320\" required aria-invalid=\"true\" aria-describedby=\"id_email_error\" id=\"id_email\">\n    \n    \n      \n    \n  </p>",
+    "changed_data": [
+     "email"
+    ]
+   }
+  },
+  {
+   "fields": [
+    [
+     "a",
+     "CharField",
+     {}
+    ],
+    [
+     "b",
+     "CharField",
+     {
+      "widget": "HiddenInput"
+     }
+    ],
+    [
+     "c",
+     "CharField",
+     {
+      "disabled": true,
+      "initial": "dis"
+     }
+    ]
+   ],
+   "data": {
+    "a": [
+     "1"
+    ],
+    "b": [
+     ""
+    ]
+   },
+   "out": [
+    "is_valid",
+    "errors",
+    "cleaned",
+    "as_div",
+    "as_p",
+    "as_table",
+    "as_ul"
+   ],
+   "expected": {
+    "is_valid": false,
+    "errors": {
+     "b": [
+      {
+       "message": "This field is required.",
+       "code": "required"
+      }
+     ]
+    },
+    "cleaned": {
+     "a": "1",
+     "c": "dis"
+    },
+    "as_div": "<ul class=\"errorlist nonfield\"><li>(Hidden field b) This field is required.</li></ul>\n\n\n  <div>\n    <label for=\"id_a\">A:</label>\n\n\n\n<input type=\"text\" name=\"a\" value=\"1\" required id=\"id_a\">\n    \n</div>\n\n  <div>\n    <label for=\"id_c\">C:</label>\n\n\n\n<input type=\"text\" name=\"c\" value=\"dis\" required disabled id=\"id_c\">\n    \n      <input type=\"hidden\" name=\"b\" id=\"id_b\">\n    \n</div>",
+    "as_p": "<ul class=\"errorlist nonfield\"><li>(Hidden field b) This field is required.</li></ul>\n\n\n  \n  <p>\n    <label for=\"id_a\">A:</label>\n    <input type=\"text\" name=\"a\" value=\"1\" required id=\"id_a\">\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_c\">C:</label>\n    <input type=\"text\" name=\"c\" value=\"dis\" required disabled id=\"id_c\">\n    \n    \n      <input type=\"hidden\" name=\"b\" id=\"id_b\">\n    \n  </p>",
+    "as_table": "<tr>\n    <td colspan=\"2\">\n      <ul class=\"errorlist nonfield\"><li>(Hidden field b) This field is required.</li></ul>\n      \n    </td>\n  </tr>\n\n\n  <tr>\n    <th><label for=\"id_a\">A:</label></th>\n    <td>\n      \n      <input type=\"text\" name=\"a\" value=\"1\" required id=\"id_a\">\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th><label for=\"id_c\">C:</label></th>\n    <td>\n      \n      <input type=\"text\" name=\"c\" value=\"dis\" required disabled id=\"id_c\">\n      \n      \n        <input type=\"hidden\" name=\"b\" id=\"id_b\">\n      \n    </td>\n  </tr>",
+    "as_ul": "<li>\n    <ul class=\"errorlist nonfield\"><li>(Hidden field b) This field is required.</li></ul>\n  \n  </li>\n\n\n  <li>\n    \n    <label for=\"id_a\">A:</label>\n    <input type=\"text\" name=\"a\" value=\"1\" required id=\"id_a\">\n    \n    \n  </li>\n\n  <li>\n    \n    <label for=\"id_c\">C:</label>\n    <input type=\"text\" name=\"c\" value=\"dis\" required disabled id=\"id_c\">\n    \n    \n      <input type=\"hidden\" name=\"b\" id=\"id_b\">\n    \n  </li>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "a",
+     "CharField",
+     {
+      "show_hidden_initial": true
+     }
+    ]
+   ],
+   "data": null,
+   "out": [
+    "as_p"
+   ],
+   "initial": {
+    "a": "v"
+   },
+   "expected": {
+    "as_p": "<p>\n    <label for=\"id_a\">A:</label>\n    <input type=\"text\" name=\"a\" value=\"v\" required id=\"id_a\"><input type=\"hidden\" name=\"initial-a\" value=\"v\" id=\"initial-id_a\">\n    \n    \n      \n    \n  </p>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "a",
+     "CharField",
+     {}
+    ],
+    [
+     "b",
+     "CharField",
+     {}
+    ]
+   ],
+   "data": null,
+   "out": [
+    "as_ul"
+   ],
+   "form": {
+    "field_order": [
+     "b",
+     "a"
+    ]
+   },
+   "expected": {
+    "as_ul": "<li>\n    \n    <label for=\"id_b\">B:</label>\n    <input type=\"text\" name=\"b\" required id=\"id_b\">\n    \n    \n  </li>\n\n  <li>\n    \n    <label for=\"id_a\">A:</label>\n    <input type=\"text\" name=\"a\" required id=\"id_a\">\n    \n    \n      \n    \n  </li>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "CharField",
+     {
+      "widget": "Textarea"
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "line1\nline2"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "cleaned",
+    "bf:f"
+   ],
+   "expected": {
+    "is_valid": true,
+    "cleaned": {
+     "f": "line1\nline2"
+    },
+    "bf:f": "<textarea name=\"f\" cols=\"40\" rows=\"10\" required id=\"id_f\">\nline1\nline2</textarea>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "CharField",
+     {
+      "widget": [
+       "Textarea",
+       {
+        "rows": "3",
+        "class": "big"
+       }
+      ]
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "<hi>"
+    ]
+   },
+   "out": [
+    "bf:f"
+   ],
+   "expected": {
+    "bf:f": "<textarea name=\"f\" cols=\"40\" rows=\"3\" class=\"big\" required id=\"id_f\">\n&lt;hi&gt;</textarea>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "CharField",
+     {
+      "widget": "PasswordInput"
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "secret"
+    ]
+   },
+   "out": [
+    "bf:f"
+   ],
+   "expected": {
+    "bf:f": "<input type=\"password\" name=\"f\" required id=\"id_f\">"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "ChoiceField",
+     {
+      "choices": [
+       [
+        "a",
+        "A"
+       ],
+       [
+        "b",
+        "B"
+       ]
+      ]
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "b"
+    ]
+   },
+   "out": [
+    "bf:f",
+    "label:f"
+   ],
+   "expected": {
+    "bf:f": "<select name=\"f\" id=\"id_f\">\n  <option value=\"a\">A</option>\n\n  <option value=\"b\" selected>B</option>\n\n</select>",
+    "label:f": "<label for=\"id_f\">F:</label>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "ChoiceField",
+     {
+      "choices": [
+       [
+        "a",
+        "A"
+       ],
+       [
+        "b",
+        "B"
+       ]
+      ],
+      "widget": "RadioSelect"
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "b"
+    ]
+   },
+   "out": [
+    "bf:f",
+    "as_div",
+    "label:f",
+    "subwidgets:f"
+   ],
+   "expected": {
+    "bf:f": "<div id=\"id_f\"><div>\n    <label for=\"id_f_0\"><input type=\"radio\" name=\"f\" value=\"a\" required id=\"id_f_0\">\n A</label>\n\n</div><div>\n    <label for=\"id_f_1\"><input type=\"radio\" name=\"f\" value=\"b\" required id=\"id_f_1\" checked>\n B</label>\n\n</div>\n</div>",
+    "as_div": "<div>\n    <fieldset>\n  <legend>F:</legend>\n\n\n\n<div id=\"id_f\"><div>\n    <label for=\"id_f_0\"><input type=\"radio\" name=\"f\" value=\"a\" required id=\"id_f_0\">\n A</label>\n\n</div><div>\n    <label for=\"id_f_1\"><input type=\"radio\" name=\"f\" value=\"b\" required id=\"id_f_1\" checked>\n B</label>\n\n</div>\n</div></fieldset>\n    \n      \n    \n</div>",
+    "label:f": "<label>F:</label>",
+    "subwidgets:f": [
+     "<label for=\"id_f_0\"><input type=\"radio\" name=\"f\" value=\"a\" id=\"id_f_0\" required>\n A</label>",
+     "<label for=\"id_f_1\"><input type=\"radio\" name=\"f\" value=\"b\" id=\"id_f_1\" required checked>\n B</label>"
+    ]
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "MultipleChoiceField",
+     {
+      "choices": [
+       [
+        "a",
+        "A"
+       ],
+       [
+        "b",
+        "B"
+       ],
+       [
+        "c",
+        "C"
+       ]
+      ],
+      "widget": "CheckboxSelectMultiple"
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "a",
+     "c"
+    ]
+   },
+   "out": [
+    "bf:f",
+    "as_p"
+   ],
+   "expected": {
+    "bf:f": "<div id=\"id_f\"><div>\n    <label for=\"id_f_0\"><input type=\"checkbox\" name=\"f\" value=\"a\" id=\"id_f_0\" checked>\n A</label>\n\n</div><div>\n    <label for=\"id_f_1\"><input type=\"checkbox\" name=\"f\" value=\"b\" id=\"id_f_1\">\n B</label>\n\n</div><div>\n    <label for=\"id_f_2\"><input type=\"checkbox\" name=\"f\" value=\"c\" id=\"id_f_2\" checked>\n C</label>\n\n</div>\n</div>",
+    "as_p": "<p>\n    <label>F:</label>\n    <div id=\"id_f\"><div>\n    <label for=\"id_f_0\"><input type=\"checkbox\" name=\"f\" value=\"a\" id=\"id_f_0\" checked>\n A</label>\n\n</div><div>\n    <label for=\"id_f_1\"><input type=\"checkbox\" name=\"f\" value=\"b\" id=\"id_f_1\">\n B</label>\n\n</div><div>\n    <label for=\"id_f_2\"><input type=\"checkbox\" name=\"f\" value=\"c\" id=\"id_f_2\" checked>\n C</label>\n\n</div>\n</div>\n    \n    \n      \n    \n  </p>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "MultipleChoiceField",
+     {
+      "choices": [
+       [
+        "a",
+        "A"
+       ],
+       [
+        "b",
+        "B"
+       ]
+      ]
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "b"
+    ]
+   },
+   "out": [
+    "bf:f"
+   ],
+   "expected": {
+    "bf:f": "<select name=\"f\" required id=\"id_f\" multiple>\n  <option value=\"a\">A</option>\n\n  <option value=\"b\" selected>B</option>\n\n</select>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "ChoiceField",
+     {
+      "choices": [
+       [
+        "Group",
+        [
+         [
+          "x",
+          "X"
+         ],
+         [
+          "y",
+          "Y"
+         ]
+        ]
+       ],
+       [
+        "z",
+        "Z"
+       ]
+      ]
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "y"
+    ]
+   },
+   "out": [
+    "bf:f"
+   ],
+   "expected": {
+    "bf:f": "<select name=\"f\" id=\"id_f\">\n  <optgroup label=\"Group\">\n  <option value=\"x\">X</option>\n\n  <option value=\"y\" selected>Y</option>\n\n  </optgroup>\n  <option value=\"z\">Z</option>\n\n</select>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "ChoiceField",
+     {
+      "choices": [
+       [
+        "",
+        "---"
+       ],
+       [
+        "a",
+        "A"
+       ]
+      ],
+      "required": false
+     }
+    ]
+   ],
+   "data": null,
+   "out": [
+    "bf:f"
+   ],
+   "expected": {
+    "bf:f": "<select name=\"f\" id=\"id_f\">\n  <option value=\"\" selected>---</option>\n\n  <option value=\"a\">A</option>\n\n</select>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "BooleanField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "on"
+    ]
+   },
+   "out": [
+    "bf:f",
+    "as_p"
+   ],
+   "expected": {
+    "bf:f": "<input type=\"checkbox\" name=\"f\" id=\"id_f\" checked>",
+    "as_p": "<p>\n    <label for=\"id_f\">F:</label>\n    <input type=\"checkbox\" name=\"f\" id=\"id_f\" checked>\n    \n    \n      \n    \n  </p>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "BooleanField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "data": null,
+   "out": [
+    "bf:f"
+   ],
+   "initial": {
+    "f": true
+   },
+   "expected": {
+    "bf:f": "<input type=\"checkbox\" name=\"f\" id=\"id_f\" checked>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "NullBooleanField",
+     {}
+    ]
+   ],
+   "data": {
+    "f": [
+     "true"
+    ]
+   },
+   "out": [
+    "bf:f"
+   ],
+   "expected": {
+    "bf:f": "<select name=\"f\" id=\"id_f\">\n  <option value=\"unknown\">Unknown</option>\n\n  <option value=\"true\" selected>Yes</option>\n\n  <option value=\"false\">No</option>\n\n</select>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateField",
+     {}
+    ]
+   ],
+   "data": null,
+   "out": [
+    "bf:f"
+   ],
+   "initial": {
+    "f": {
+     "date": "2020-03-04"
+    }
+   },
+   "expected": {
+    "bf:f": "<input type=\"text\" name=\"f\" value=\"2020-03-04\" required id=\"id_f\">"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateTimeField",
+     {}
+    ]
+   ],
+   "data": null,
+   "out": [
+    "bf:f"
+   ],
+   "initial": {
+    "f": {
+     "datetime": "2020-03-04T05:06:07+00:00"
+    }
+   },
+   "expected": {
+    "bf:f": "<input type=\"text\" name=\"f\" value=\"2020-03-04 05:06:07\" required id=\"id_f\">"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "TimeField",
+     {}
+    ]
+   ],
+   "data": null,
+   "out": [
+    "bf:f"
+   ],
+   "initial": {
+    "f": {
+     "time": "05:06:07"
+    }
+   },
+   "expected": {
+    "bf:f": "<input type=\"text\" name=\"f\" value=\"05:06:07\" required id=\"id_f\">"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateField",
+     {
+      "widget": [
+       "DateInput",
+       {
+        "type": "date"
+       }
+      ]
+     }
+    ]
+   ],
+   "data": null,
+   "out": [
+    "bf:f"
+   ],
+   "expected": {
+    "bf:f": "<input type=\"date\" name=\"f\" required id=\"id_f\">"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "CharField",
+     {
+      "widget": "HiddenInput"
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "h"
+    ]
+   },
+   "out": [
+    "bf:f",
+    "as_p"
+   ],
+   "expected": {
+    "bf:f": "<input type=\"hidden\" name=\"f\" value=\"h\" id=\"id_f\">",
+    "as_p": "<input type=\"hidden\" name=\"f\" value=\"h\" id=\"id_f\">"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "MultipleChoiceField",
+     {
+      "choices": [
+       [
+        "a",
+        "A"
+       ],
+       [
+        "b",
+        "B"
+       ]
+      ],
+      "widget": "MultipleHiddenInput"
+     }
+    ]
+   ],
+   "data": {
+    "f": [
+     "a",
+     "b"
+    ]
+   },
+   "out": [
+    "bf:f"
+   ],
+   "expected": {
+    "bf:f": "<input type=\"hidden\" name=\"f\" value=\"a\" id=\"id_f_0\"><input type=\"hidden\" name=\"f\" value=\"b\" id=\"id_f_1\">"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "SplitDateTimeField",
+     {}
+    ]
+   ],
+   "data": null,
+   "out": [
+    "bf:f",
+    "as_p"
+   ],
+   "initial": {
+    "f": {
+     "datetime": "2020-03-04T05:06:07+00:00"
+    }
+   },
+   "expected": {
+    "bf:f": "<input type=\"text\" name=\"f_0\" value=\"2020-03-04\" required id=\"id_f_0\"><input type=\"text\" name=\"f_1\" value=\"05:06:07\" required id=\"id_f_1\">",
+    "as_p": "<p>\n    <label>F:</label>\n    <input type=\"text\" name=\"f_0\" value=\"2020-03-04\" required id=\"id_f_0\"><input type=\"text\" name=\"f_1\" value=\"05:06:07\" required id=\"id_f_1\">\n    \n    \n      \n    \n  </p>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DateField",
+     {
+      "widget": "SelectDateWidget"
+     }
+    ]
+   ],
+   "data": {
+    "f_year": [
+     "2020"
+    ],
+    "f_month": [
+     "3"
+    ],
+    "f_day": [
+     "4"
+    ]
+   },
+   "out": [
+    "is_valid",
+    "cleaned",
+    "bf:f"
+   ],
+   "expected": {
+    "is_valid": true,
+    "cleaned": {
+     "f": {
+      "date": "2020-03-04"
+     }
+    },
+    "bf:f": "<select name=\"f_month\" required id=\"id_f_month\"><option value=\"1\">January</option><option value=\"2\">February</option><option value=\"3\" selected>March</option><option value=\"4\">April</option><option value=\"5\">May</option><option value=\"6\">June</option><option value=\"7\">July</option><option value=\"8\">August</option><option value=\"9\">September</option><option value=\"10\">October</option><option value=\"11\">November</option><option value=\"12\">December</option></select><select name=\"f_day\" required id=\"id_f_day\"><option value=\"1\">1</option><option value=\"2\">2</option><option value=\"3\">3</option><option value=\"4\" selected>4</option><option value=\"5\">5</option><option value=\"6\">6</option><option value=\"7\">7</option><option value=\"8\">8</option><option value=\"9\">9</option><option value=\"10\">10</option><option value=\"11\">11</option><option value=\"12\">12</option><option value=\"13\">13</option><option value=\"14\">14</option><option value=\"15\">15</option><option value=\"16\">16</option><option value=\"17\">17</option><option value=\"18\">18</option><option value=\"19\">19</option><option value=\"20\">20</option><option value=\"21\">21</option><option value=\"22\">22</option><option value=\"23\">23</option><option value=\"24\">24</option><option value=\"25\">25</option><option value=\"26\">26</option><option value=\"27\">27</option><option value=\"28\">28</option><option value=\"29\">29</option><option value=\"30\">30</option><option value=\"31\">31</option></select><select name=\"f_year\" required id=\"id_f_year\"><option value=\"2026\">2026</option><option value=\"2027\">2027</option><option value=\"2028\">2028</option><option value=\"2029\">2029</option><option value=\"2030\">2030</option><option value=\"2031\">2031</option><option value=\"2032\">2032</option><option value=\"2033\">2033</option><option value=\"2034\">2034</option><option value=\"2035\">2035</option></select>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "NullBooleanField",
+     {
+      "widget": "NullBooleanSelect"
+     }
+    ]
+   ],
+   "data": null,
+   "out": [
+    "bf:f"
+   ],
+   "expected": {
+    "bf:f": "<select name=\"f\" id=\"id_f\">\n  <option value=\"unknown\" selected>Unknown</option>\n\n  <option value=\"true\">Yes</option>\n\n  <option value=\"false\">No</option>\n\n</select>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "IntegerField",
+     {
+      "min_value": 1,
+      "max_value": 9
+     }
+    ]
+   ],
+   "data": null,
+   "out": [
+    "bf:f"
+   ],
+   "expected": {
+    "bf:f": "<input type=\"number\" name=\"f\" min=\"1\" max=\"9\" required id=\"id_f\">"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "DecimalField",
+     {
+      "decimal_places": 2,
+      "max_digits": 6
+     }
+    ]
+   ],
+   "data": null,
+   "out": [
+    "bf:f"
+   ],
+   "expected": {
+    "bf:f": "<input type=\"number\" name=\"f\" step=\"0.01\" required id=\"id_f\">"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "FloatField",
+     {}
+    ]
+   ],
+   "data": null,
+   "out": [
+    "bf:f"
+   ],
+   "expected": {
+    "bf:f": "<input type=\"number\" name=\"f\" step=\"any\" required id=\"id_f\">"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "FileField",
+     {}
+    ]
+   ],
+   "data": null,
+   "out": [
+    "bf:f",
+    "as_p"
+   ],
+   "form": {},
+   "expected": {
+    "bf:f": "<input type=\"file\" name=\"f\" required id=\"id_f\">",
+    "as_p": "<p>\n    <label for=\"id_f\">F:</label>\n    <input type=\"file\" name=\"f\" required id=\"id_f\">\n    \n    \n      \n    \n  </p>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "f",
+     "EmailField",
+     {}
+    ],
+    [
+     "g",
+     "URLField",
+     {}
+    ],
+    [
+     "h",
+     "SlugField",
+     {
+      "max_length": 9
+     }
+    ]
+   ],
+   "data": null,
+   "out": [
+    "as_table"
+   ],
+   "expected": {
+    "as_table": "<tr>\n    <th><label for=\"id_f\">F:</label></th>\n    <td>\n      \n      <input type=\"email\" name=\"f\" maxlength=\"320\" required id=\"id_f\">\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th><label for=\"id_g\">G:</label></th>\n    <td>\n      \n      <input type=\"url\" name=\"g\" required id=\"id_g\">\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th><label for=\"id_h\">H:</label></th>\n    <td>\n      \n      <input type=\"text\" name=\"h\" maxlength=\"9\" required id=\"id_h\">\n      \n      \n        \n      \n    </td>\n  </tr>"
+   }
+  }
+ ],
+ "formsets": [
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ],
+    [
+     "n",
+     "IntegerField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "opts": {
+    "extra": 2
+   },
+   "data": null,
+   "initial": null,
+   "prefix": null,
+   "out": [
+    "total",
+    "as_div",
+    "as_table",
+    "empty_form"
+   ],
+   "expected": {
+    "total": 2,
+    "as_div": "<input type=\"hidden\" name=\"form-TOTAL_FORMS\" value=\"2\" id=\"id_form-TOTAL_FORMS\"><input type=\"hidden\" name=\"form-INITIAL_FORMS\" value=\"0\" id=\"id_form-INITIAL_FORMS\"><input type=\"hidden\" name=\"form-MIN_NUM_FORMS\" value=\"0\" id=\"id_form-MIN_NUM_FORMS\"><input type=\"hidden\" name=\"form-MAX_NUM_FORMS\" value=\"1000\" id=\"id_form-MAX_NUM_FORMS\"><div>\n    <label for=\"id_form-0-name\">Name:</label>\n\n\n\n<input type=\"text\" name=\"form-0-name\" maxlength=\"5\" id=\"id_form-0-name\">\n    \n</div>\n\n  <div>\n    <label for=\"id_form-0-n\">N:</label>\n\n\n\n<input type=\"number\" name=\"form-0-n\" id=\"id_form-0-n\">\n    \n      \n    \n</div><div>\n    <label for=\"id_form-1-name\">Name:</label>\n\n\n\n<input type=\"text\" name=\"form-1-name\" maxlength=\"5\" id=\"id_form-1-name\">\n    \n</div>\n\n  <div>\n    <label for=\"id_form-1-n\">N:</label>\n\n\n\n<input type=\"number\" name=\"form-1-n\" id=\"id_form-1-n\">\n    \n      \n    \n</div>",
+    "as_table": "<input type=\"hidden\" name=\"form-TOTAL_FORMS\" value=\"2\" id=\"id_form-TOTAL_FORMS\"><input type=\"hidden\" name=\"form-INITIAL_FORMS\" value=\"0\" id=\"id_form-INITIAL_FORMS\"><input type=\"hidden\" name=\"form-MIN_NUM_FORMS\" value=\"0\" id=\"id_form-MIN_NUM_FORMS\"><input type=\"hidden\" name=\"form-MAX_NUM_FORMS\" value=\"1000\" id=\"id_form-MAX_NUM_FORMS\"><tr>\n    <th><label for=\"id_form-0-name\">Name:</label></th>\n    <td>\n      \n      <input type=\"text\" name=\"form-0-name\" maxlength=\"5\" id=\"id_form-0-name\">\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th><label for=\"id_form-0-n\">N:</label></th>\n    <td>\n      \n      <input type=\"number\" name=\"form-0-n\" id=\"id_form-0-n\">\n      \n      \n        \n      \n    </td>\n  </tr><tr>\n    <th><label for=\"id_form-1-name\">Name:</label></th>\n    <td>\n      \n      <input type=\"text\" name=\"form-1-name\" maxlength=\"5\" id=\"id_form-1-name\">\n      \n      \n    </td>\n  </tr>\n\n  <tr>\n    <th><label for=\"id_form-1-n\">N:</label></th>\n    <td>\n      \n      <input type=\"number\" name=\"form-1-n\" id=\"id_form-1-n\">\n      \n      \n        \n      \n    </td>\n  </tr>",
+    "empty_form": "<p>\n    <label for=\"id_form-__prefix__-name\">Name:</label>\n    <input type=\"text\" name=\"form-__prefix__-name\" maxlength=\"5\" id=\"id_form-__prefix__-name\">\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_form-__prefix__-n\">N:</label>\n    <input type=\"number\" name=\"form-__prefix__-n\" id=\"id_form-__prefix__-n\">\n    \n    \n      \n    \n  </p>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ],
+    [
+     "n",
+     "IntegerField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "opts": {
+    "extra": 0,
+    "min_num": 2
+   },
+   "data": null,
+   "initial": null,
+   "prefix": null,
+   "out": [
+    "total",
+    "as_p"
+   ],
+   "expected": {
+    "total": 2,
+    "as_p": "<input type=\"hidden\" name=\"form-TOTAL_FORMS\" value=\"2\" id=\"id_form-TOTAL_FORMS\"><input type=\"hidden\" name=\"form-INITIAL_FORMS\" value=\"0\" id=\"id_form-INITIAL_FORMS\"><input type=\"hidden\" name=\"form-MIN_NUM_FORMS\" value=\"2\" id=\"id_form-MIN_NUM_FORMS\"><input type=\"hidden\" name=\"form-MAX_NUM_FORMS\" value=\"1000\" id=\"id_form-MAX_NUM_FORMS\"><p>\n    <label for=\"id_form-0-name\">Name:</label>\n    <input type=\"text\" name=\"form-0-name\" maxlength=\"5\" id=\"id_form-0-name\">\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_form-0-n\">N:</label>\n    <input type=\"number\" name=\"form-0-n\" id=\"id_form-0-n\">\n    \n    \n      \n    \n  </p><p>\n    <label for=\"id_form-1-name\">Name:</label>\n    <input type=\"text\" name=\"form-1-name\" maxlength=\"5\" id=\"id_form-1-name\">\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_form-1-n\">N:</label>\n    <input type=\"number\" name=\"form-1-n\" id=\"id_form-1-n\">\n    \n    \n      \n    \n  </p>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ],
+    [
+     "n",
+     "IntegerField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "opts": {
+    "extra": 3,
+    "max_num": 2
+   },
+   "data": null,
+   "initial": null,
+   "prefix": null,
+   "out": [
+    "total"
+   ],
+   "expected": {
+    "total": 2
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ],
+    [
+     "n",
+     "IntegerField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "opts": {
+    "extra": 1
+   },
+   "data": null,
+   "initial": [
+    {
+     "name": "a",
+     "n": 1
+    },
+    {
+     "name": "b",
+     "n": 2
+    }
+   ],
+   "prefix": null,
+   "out": [
+    "total",
+    "as_ul"
+   ],
+   "expected": {
+    "total": 3,
+    "as_ul": "<input type=\"hidden\" name=\"form-TOTAL_FORMS\" value=\"3\" id=\"id_form-TOTAL_FORMS\"><input type=\"hidden\" name=\"form-INITIAL_FORMS\" value=\"2\" id=\"id_form-INITIAL_FORMS\"><input type=\"hidden\" name=\"form-MIN_NUM_FORMS\" value=\"0\" id=\"id_form-MIN_NUM_FORMS\"><input type=\"hidden\" name=\"form-MAX_NUM_FORMS\" value=\"1000\" id=\"id_form-MAX_NUM_FORMS\"><li>\n    \n    <label for=\"id_form-0-name\">Name:</label>\n    <input type=\"text\" name=\"form-0-name\" value=\"a\" maxlength=\"5\" id=\"id_form-0-name\">\n    \n    \n  </li>\n\n  <li>\n    \n    <label for=\"id_form-0-n\">N:</label>\n    <input type=\"number\" name=\"form-0-n\" value=\"1\" id=\"id_form-0-n\">\n    \n    \n      \n    \n  </li><li>\n    \n    <label for=\"id_form-1-name\">Name:</label>\n    <input type=\"text\" name=\"form-1-name\" value=\"b\" maxlength=\"5\" id=\"id_form-1-name\">\n    \n    \n  </li>\n\n  <li>\n    \n    <label for=\"id_form-1-n\">N:</label>\n    <input type=\"number\" name=\"form-1-n\" value=\"2\" id=\"id_form-1-n\">\n    \n    \n      \n    \n  </li><li>\n    \n    <label for=\"id_form-2-name\">Name:</label>\n    <input type=\"text\" name=\"form-2-name\" maxlength=\"5\" id=\"id_form-2-name\">\n    \n    \n  </li>\n\n  <li>\n    \n    <label for=\"id_form-2-n\">N:</label>\n    <input type=\"number\" name=\"form-2-n\" id=\"id_form-2-n\">\n    \n    \n      \n    \n  </li>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ],
+    [
+     "n",
+     "IntegerField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "opts": {
+    "can_delete": true,
+    "can_order": true,
+    "extra": 1
+   },
+   "data": null,
+   "initial": [
+    {
+     "name": "a"
+    }
+   ],
+   "prefix": null,
+   "out": [
+    "total",
+    "as_p"
+   ],
+   "expected": {
+    "total": 2,
+    "as_p": "<input type=\"hidden\" name=\"form-TOTAL_FORMS\" value=\"2\" id=\"id_form-TOTAL_FORMS\"><input type=\"hidden\" name=\"form-INITIAL_FORMS\" value=\"1\" id=\"id_form-INITIAL_FORMS\"><input type=\"hidden\" name=\"form-MIN_NUM_FORMS\" value=\"0\" id=\"id_form-MIN_NUM_FORMS\"><input type=\"hidden\" name=\"form-MAX_NUM_FORMS\" value=\"1000\" id=\"id_form-MAX_NUM_FORMS\"><p>\n    <label for=\"id_form-0-name\">Name:</label>\n    <input type=\"text\" name=\"form-0-name\" value=\"a\" maxlength=\"5\" id=\"id_form-0-name\">\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_form-0-n\">N:</label>\n    <input type=\"number\" name=\"form-0-n\" id=\"id_form-0-n\">\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_form-0-ORDER\">Order:</label>\n    <input type=\"number\" name=\"form-0-ORDER\" value=\"1\" id=\"id_form-0-ORDER\">\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_form-0-DELETE\">Delete:</label>\n    <input type=\"checkbox\" name=\"form-0-DELETE\" id=\"id_form-0-DELETE\">\n    \n    \n      \n    \n  </p><p>\n    <label for=\"id_form-1-name\">Name:</label>\n    <input type=\"text\" name=\"form-1-name\" maxlength=\"5\" id=\"id_form-1-name\">\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_form-1-n\">N:</label>\n    <input type=\"number\" name=\"form-1-n\" id=\"id_form-1-n\">\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_form-1-ORDER\">Order:</label>\n    <input type=\"number\" name=\"form-1-ORDER\" id=\"id_form-1-ORDER\">\n    \n    \n  </p>\n\n  \n  <p>\n    <label for=\"id_form-1-DELETE\">Delete:</label>\n    <input type=\"checkbox\" name=\"form-1-DELETE\" id=\"id_form-1-DELETE\">\n    \n    \n      \n    \n  </p>"
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ],
+    [
+     "n",
+     "IntegerField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "opts": {},
+   "data": {
+    "form-TOTAL_FORMS": [
+     "2"
+    ],
+    "form-INITIAL_FORMS": [
+     "0"
+    ],
+    "form-MIN_NUM_FORMS": [
+     "0"
+    ],
+    "form-MAX_NUM_FORMS": [
+     "1000"
+    ],
+    "form-0-name": [
+     "ab"
+    ],
+    "form-0-n": [
+     "1"
+    ],
+    "form-1-name": [
+     "cd"
+    ]
+   },
+   "initial": null,
+   "prefix": null,
+   "out": [
+    "is_valid",
+    "total",
+    "non_form_errors",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "total": 2,
+    "non_form_errors": [],
+    "errors": [
+     {},
+     {}
+    ],
+    "cleaned": [
+     {
+      "name": "ab",
+      "n": 1
+     },
+     {
+      "name": "cd",
+      "n": null
+     }
+    ]
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ],
+    [
+     "n",
+     "IntegerField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "opts": {},
+   "data": {
+    "form-TOTAL_FORMS": [
+     "2"
+    ],
+    "form-INITIAL_FORMS": [
+     "0"
+    ],
+    "form-MIN_NUM_FORMS": [
+     "0"
+    ],
+    "form-MAX_NUM_FORMS": [
+     "1000"
+    ],
+    "form-0-name": [
+     "toolong!"
+    ],
+    "form-0-n": [
+     "x"
+    ],
+    "form-1-name": [
+     ""
+    ]
+   },
+   "initial": null,
+   "prefix": null,
+   "out": [
+    "is_valid",
+    "total",
+    "non_form_errors",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "total": 2,
+    "non_form_errors": [],
+    "errors": [
+     {
+      "name": [
+       {
+        "message": "Ensure this value has at most 5 characters (it has 8).",
+        "code": "max_length"
+       }
+      ],
+      "n": [
+       {
+        "message": "Enter a whole number.",
+        "code": "invalid"
+       }
+      ]
+     },
+     {}
+    ],
+    "cleaned": null
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ],
+    [
+     "n",
+     "IntegerField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "opts": {},
+   "data": {
+    "form-0-name": [
+     "a"
+    ]
+   },
+   "initial": null,
+   "prefix": null,
+   "out": [
+    "is_valid",
+    "total",
+    "non_form_errors",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "total": 0,
+    "non_form_errors": [
+     "ManagementForm data is missing or has been tampered with. Missing fields: form-TOTAL_FORMS, form-INITIAL_FORMS. You may need to file a bug report if the issue persists."
+    ],
+    "errors": [],
+    "cleaned": null
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ],
+    [
+     "n",
+     "IntegerField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "opts": {
+    "validate_max": true,
+    "max_num": 1
+   },
+   "data": {
+    "form-TOTAL_FORMS": [
+     "2"
+    ],
+    "form-INITIAL_FORMS": [
+     "0"
+    ],
+    "form-MIN_NUM_FORMS": [
+     "0"
+    ],
+    "form-MAX_NUM_FORMS": [
+     "1000"
+    ],
+    "form-0-name": [
+     "a"
+    ],
+    "form-1-name": [
+     "b"
+    ]
+   },
+   "initial": null,
+   "prefix": null,
+   "out": [
+    "is_valid",
+    "total",
+    "non_form_errors",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "total": 2,
+    "non_form_errors": [
+     "Please submit at most 1 form."
+    ],
+    "errors": [
+     {},
+     {}
+    ],
+    "cleaned": null
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ],
+    [
+     "n",
+     "IntegerField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "opts": {
+    "validate_min": true,
+    "min_num": 2,
+    "extra": 0
+   },
+   "data": {
+    "form-TOTAL_FORMS": [
+     "2"
+    ],
+    "form-INITIAL_FORMS": [
+     "0"
+    ],
+    "form-MIN_NUM_FORMS": [
+     "0"
+    ],
+    "form-MAX_NUM_FORMS": [
+     "1000"
+    ],
+    "form-0-name": [
+     "a"
+    ],
+    "form-1-name": [
+     ""
+    ]
+   },
+   "initial": null,
+   "prefix": null,
+   "out": [
+    "is_valid",
+    "total",
+    "non_form_errors",
+    "errors",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": false,
+    "total": 2,
+    "non_form_errors": [
+     "Please submit at least 2 forms."
+    ],
+    "errors": [
+     {},
+     {
+      "name": [
+       {
+        "message": "This field is required.",
+        "code": "required"
+       }
+      ]
+     }
+    ],
+    "cleaned": null
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ],
+    [
+     "n",
+     "IntegerField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "opts": {
+    "can_delete": true
+   },
+   "data": {
+    "form-TOTAL_FORMS": [
+     "2"
+    ],
+    "form-INITIAL_FORMS": [
+     "2"
+    ],
+    "form-MIN_NUM_FORMS": [
+     "0"
+    ],
+    "form-MAX_NUM_FORMS": [
+     "1000"
+    ],
+    "form-0-name": [
+     "a"
+    ],
+    "form-1-name": [
+     "toolong!!"
+    ],
+    "form-1-DELETE": [
+     "on"
+    ]
+   },
+   "initial": null,
+   "prefix": null,
+   "out": [
+    "is_valid",
+    "cleaned",
+    "deleted"
+   ],
+   "expected": {
+    "is_valid": true,
+    "cleaned": [
+     {
+      "name": "a",
+      "n": null,
+      "DELETE": false
+     },
+     {
+      "n": null,
+      "DELETE": true
+     }
+    ],
+    "deleted": [
+     1
+    ]
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ],
+    [
+     "n",
+     "IntegerField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "opts": {
+    "can_order": true
+   },
+   "data": {
+    "form-TOTAL_FORMS": [
+     "3"
+    ],
+    "form-INITIAL_FORMS": [
+     "0"
+    ],
+    "form-MIN_NUM_FORMS": [
+     "0"
+    ],
+    "form-MAX_NUM_FORMS": [
+     "1000"
+    ],
+    "form-0-name": [
+     "a"
+    ],
+    "form-0-ORDER": [
+     "3"
+    ],
+    "form-1-name": [
+     "b"
+    ],
+    "form-1-ORDER": [
+     "1"
+    ],
+    "form-2-name": [
+     "c"
+    ]
+   },
+   "initial": null,
+   "prefix": null,
+   "out": [
+    "is_valid",
+    "ordered"
+   ],
+   "expected": {
+    "is_valid": true,
+    "ordered": [
+     1,
+     0,
+     2
+    ]
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ],
+    [
+     "n",
+     "IntegerField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "opts": {
+    "extra": 1
+   },
+   "data": {
+    "form-TOTAL_FORMS": [
+     "1"
+    ],
+    "form-INITIAL_FORMS": [
+     "0"
+    ],
+    "form-MIN_NUM_FORMS": [
+     "0"
+    ],
+    "form-MAX_NUM_FORMS": [
+     "1000"
+    ],
+    "form-0-name": [
+     "a"
+    ]
+   },
+   "initial": null,
+   "prefix": "pre",
+   "out": [
+    "is_valid"
+   ],
+   "expected": {
+    "is_valid": false
+   }
+  },
+  {
+   "fields": [
+    [
+     "name",
+     "CharField",
+     {
+      "max_length": 5
+     }
+    ],
+    [
+     "n",
+     "IntegerField",
+     {
+      "required": false
+     }
+    ]
+   ],
+   "opts": {
+    "extra": 1
+   },
+   "data": {
+    "pre-TOTAL_FORMS": [
+     "1"
+    ],
+    "pre-INITIAL_FORMS": [
+     "0"
+    ],
+    "pre-0-name": [
+     "a"
+    ]
+   },
+   "initial": null,
+   "prefix": "pre",
+   "out": [
+    "is_valid",
+    "cleaned"
+   ],
+   "expected": {
+    "is_valid": true,
+    "cleaned": [
+     {
+      "name": "a",
+      "n": null
+     }
+    ]
+   }
+  }
+ ]
+}

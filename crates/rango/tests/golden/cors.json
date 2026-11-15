@@ -1,0 +1,391 @@
+[
+ {
+  "settings": {},
+  "method": "GET",
+  "path": "/api/x/",
+  "headers": {},
+  "expected": {
+   "status": 200,
+   "body": "ok",
+   "headers": {
+    "vary": "origin"
+   }
+  }
+ },
+ {
+  "settings": {},
+  "method": "GET",
+  "path": "/api/x/",
+  "headers": {
+   "origin": "https://app.example.com"
+  },
+  "expected": {
+   "status": 200,
+   "body": "ok",
+   "headers": {
+    "vary": "origin"
+   }
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOWED_ORIGINS": [
+    "https://app.example.com"
+   ]
+  },
+  "method": "GET",
+  "path": "/api/x/",
+  "headers": {
+   "origin": "https://app.example.com"
+  },
+  "expected": {
+   "status": 200,
+   "body": "ok",
+   "headers": {
+    "vary": "origin",
+    "access-control-allow-origin": "https://app.example.com"
+   }
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOWED_ORIGINS": [
+    "https://app.example.com"
+   ]
+  },
+  "method": "GET",
+  "path": "/api/x/",
+  "headers": {
+   "origin": "https://evil.example.com"
+  },
+  "expected": {
+   "status": 200,
+   "body": "ok",
+   "headers": {
+    "vary": "origin"
+   }
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOWED_ORIGINS": [
+    "https://app.example.com:8443"
+   ]
+  },
+  "method": "GET",
+  "path": "/api/x/",
+  "headers": {
+   "origin": "https://app.example.com"
+  },
+  "expected": {
+   "status": 200,
+   "body": "ok",
+   "headers": {
+    "vary": "origin"
+   }
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOWED_ORIGINS": [
+    "null"
+   ]
+  },
+  "method": "GET",
+  "path": "/api/x/",
+  "headers": {
+   "origin": "null"
+  },
+  "expected": {
+   "status": 200,
+   "body": "ok",
+   "headers": {
+    "vary": "origin",
+    "access-control-allow-origin": "null"
+   }
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOWED_ORIGIN_REGEXES": [
+    "^https://\\w+\\.example\\.com$"
+   ]
+  },
+  "method": "GET",
+  "path": "/api/x/",
+  "headers": {
+   "origin": "https://app.example.com"
+  },
+  "expected": {
+   "status": 200,
+   "body": "ok",
+   "headers": {
+    "vary": "origin",
+    "access-control-allow-origin": "https://app.example.com"
+   }
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOWED_ORIGIN_REGEXES": [
+    "^https://\\w+\\.example\\.com$"
+   ]
+  },
+  "method": "GET",
+  "path": "/api/x/",
+  "headers": {
+   "origin": "https://a.b.example.com"
+  },
+  "expected": {
+   "status": 200,
+   "body": "ok",
+   "headers": {
+    "vary": "origin"
+   }
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOW_ALL_ORIGINS": true
+  },
+  "method": "GET",
+  "path": "/api/x/",
+  "headers": {
+   "origin": "https://app.example.com"
+  },
+  "expected": {
+   "status": 200,
+   "body": "ok",
+   "headers": {
+    "vary": "origin",
+    "access-control-allow-origin": "*"
+   }
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOW_ALL_ORIGINS": true,
+   "CORS_ALLOW_CREDENTIALS": true
+  },
+  "method": "GET",
+  "path": "/api/x/",
+  "headers": {
+   "origin": "https://app.example.com"
+  },
+  "expected": {
+   "status": 200,
+   "body": "ok",
+   "headers": {
+    "vary": "origin",
+    "access-control-allow-origin": "https://app.example.com",
+    "access-control-allow-credentials": "true"
+   }
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOWED_ORIGINS": [
+    "https://app.example.com"
+   ],
+   "CORS_ALLOW_CREDENTIALS": true,
+   "CORS_EXPOSE_HEADERS": [
+    "x-total",
+    "x-page"
+   ]
+  },
+  "method": "GET",
+  "path": "/api/x/",
+  "headers": {
+   "origin": "https://app.example.com"
+  },
+  "expected": {
+   "status": 200,
+   "body": "ok",
+   "headers": {
+    "vary": "origin",
+    "access-control-allow-origin": "https://app.example.com",
+    "access-control-allow-credentials": "true",
+    "access-control-expose-headers": "x-total, x-page"
+   }
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOWED_ORIGINS": [
+    "https://app.example.com"
+   ]
+  },
+  "method": "OPTIONS",
+  "path": "/api/x/",
+  "headers": {
+   "origin": "https://app.example.com",
+   "access_control_request_method": "POST"
+  },
+  "expected": {
+   "status": 200,
+   "body": "",
+   "headers": {
+    "vary": "origin",
+    "access-control-allow-origin": "https://app.example.com",
+    "access-control-allow-headers": "accept, authorization, content-type, user-agent, x-csrftoken, x-requested-with",
+    "access-control-allow-methods": "DELETE, GET, OPTIONS, PATCH, POST, PUT",
+    "access-control-max-age": "86400"
+   }
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOWED_ORIGINS": [
+    "https://app.example.com"
+   ]
+  },
+  "method": "OPTIONS",
+  "path": "/api/x/",
+  "headers": {
+   "origin": "https://evil.example.com",
+   "access_control_request_method": "POST"
+  },
+  "expected": {
+   "status": 200,
+   "body": "",
+   "headers": {
+    "vary": "origin"
+   }
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOWED_ORIGINS": [
+    "https://app.example.com"
+   ]
+  },
+  "method": "OPTIONS",
+  "path": "/api/x/",
+  "headers": {
+   "origin": "https://app.example.com"
+  },
+  "expected": {
+   "status": 200,
+   "body": "ok",
+   "headers": {
+    "vary": "origin",
+    "access-control-allow-origin": "https://app.example.com",
+    "access-control-allow-headers": "accept, authorization, content-type, user-agent, x-csrftoken, x-requested-with",
+    "access-control-allow-methods": "DELETE, GET, OPTIONS, PATCH, POST, PUT",
+    "access-control-max-age": "86400"
+   }
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOWED_ORIGINS": [
+    "https://app.example.com"
+   ],
+   "CORS_PREFLIGHT_MAX_AGE": 0,
+   "CORS_ALLOW_METHODS": [
+    "GET"
+   ],
+   "CORS_ALLOW_HEADERS": [
+    "x-a",
+    "x-b"
+   ]
+  },
+  "method": "OPTIONS",
+  "path": "/api/x/",
+  "headers": {
+   "origin": "https://app.example.com",
+   "access_control_request_method": "GET"
+  },
+  "expected": {
+   "status": 200,
+   "body": "",
+   "headers": {
+    "vary": "origin",
+    "access-control-allow-origin": "https://app.example.com",
+    "access-control-allow-headers": "x-a, x-b",
+    "access-control-allow-methods": "GET"
+   }
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOWED_ORIGINS": [
+    "https://app.example.com"
+   ],
+   "CORS_URLS_REGEX": "^/api/.*$"
+  },
+  "method": "GET",
+  "path": "/other/",
+  "headers": {
+   "origin": "https://app.example.com"
+  },
+  "expected": {
+   "status": 200,
+   "body": "ok",
+   "headers": {}
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOWED_ORIGINS": [
+    "https://app.example.com"
+   ],
+   "CORS_URLS_REGEX": "^/api/.*$"
+  },
+  "method": "OPTIONS",
+  "path": "/other/",
+  "headers": {
+   "origin": "https://app.example.com",
+   "access_control_request_method": "POST"
+  },
+  "expected": {
+   "status": 200,
+   "body": "ok",
+   "headers": {}
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOWED_ORIGINS": [
+    "https://app.example.com"
+   ],
+   "CORS_ALLOW_PRIVATE_NETWORK": true
+  },
+  "method": "GET",
+  "path": "/api/x/",
+  "headers": {
+   "origin": "https://app.example.com",
+   "access_control_request_private_network": "true"
+  },
+  "expected": {
+   "status": 200,
+   "body": "ok",
+   "headers": {
+    "vary": "origin",
+    "access-control-allow-origin": "https://app.example.com",
+    "access-control-allow-private-network": "true"
+   }
+  }
+ },
+ {
+  "settings": {
+   "CORS_ALLOWED_ORIGINS": [
+    "https://app.example.com"
+   ],
+   "CORS_ALLOW_PRIVATE_NETWORK": true
+  },
+  "method": "GET",
+  "path": "/api/x/",
+  "headers": {
+   "origin": "https://app.example.com"
+  },
+  "expected": {
+   "status": 200,
+   "body": "ok",
+   "headers": {
+    "vary": "origin",
+    "access-control-allow-origin": "https://app.example.com"
+   }
+  }
+ }
+]

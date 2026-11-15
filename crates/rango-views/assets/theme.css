@@ -1,0 +1,127 @@
+/*
+ * Rango theme: the admin/debug colour roles, re-coloured for Rust.
+ *
+ * the admin is blue (#417690) and its brand is dark green (#092e20). Rango swaps both for
+ * a rust palette; the lizard-green of the logo is kept for success states.
+ *
+ * Variable names are the reference's (admin/css/base.css, dark_mode.css), so the ported admin
+ * stylesheets work unchanged when this file is loaded after them. `--rango-*` tokens are for
+ * pages the reference implementation styles with hard-coded colours (welcome page, technical 404/500).
+ *
+ * All text/background pairs below have a WCAG contrast ratio >= 4.5:1.
+ */
+
+html[data-theme="light"],
+:root {
+    /* brand */
+    --rango-rust: #b7410e;
+    --rango-rust-deep: #8f3a14;
+    --rango-rust-ink: #5a2510;      /* replaces the #092e20 on the welcome page */
+    --rango-copper: #de8a5c;
+    --rango-lizard: #43a047;        /* logo green: success, "it worked" check mark */
+    --rango-lizard-deep: #2e7d32;
+    --rango-ink-muted: #6a615b;     /* replaces #525252 */
+
+    /* admin roles (names) */
+    --primary: var(--rango-rust);
+    --secondary: var(--rango-rust-deep);
+    --accent: #f2c14e;
+    --primary-fg: #fff;
+    --body-fg: #2f2a27;
+    --body-bg: #fff;
+    --body-quiet-color: var(--rango-ink-muted);
+    --body-medium-color: #4a423d;
+    --body-loud-color: #000;
+    --header-color: #ffe9d6;
+    --header-branding-color: var(--accent);
+    --header-bg: var(--secondary);
+    --header-link-color: var(--primary-fg);
+    --breadcrumbs-fg: #f1cdb5;
+    --breadcrumbs-link-fg: var(--body-bg);
+    --breadcrumbs-bg: var(--rango-rust-ink);
+    --link-fg: var(--rango-rust-deep);
+    --link-hover-color: var(--rango-rust-ink);
+    --link-selected-fg: var(--secondary);
+    --hairline-color: #ebe3dc;
+    --border-color: #d6c9bf;
+    --error-fg: #b4172b;            /* crimson, kept distinct from rust orange */
+    --message-success-bg: #dff0d8;
+    --message-warning-bg: #fff3d6;
+    --message-error-bg: #ffeaec;
+    --darkened-bg: #f7f1ec;
+    --selected-bg: #eadfd6;
+    --selected-row: #fff3d6;
+    --button-fg: #fff;
+    --button-bg: var(--secondary);
+    --button-hover-bg: #6b2a0e;
+    --default-button-bg: #6b2a0e;
+    --default-button-hover-bg: var(--secondary);
+    --close-button-bg: #747474;
+    --close-button-hover-bg: #333;
+    --delete-button-bg: #b4172b;
+    --delete-button-hover-bg: #98121f;
+    --object-tools-fg: var(--button-fg);
+    --object-tools-bg: var(--close-button-bg);
+    --object-tools-hover-bg: var(--close-button-hover-bg);
+    color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --rango-rust-ink: #f0a070;
+        --rango-ink-muted: #cfc5bd;
+        --primary: #7c2d12;
+        --primary-fg: #f7efe9;
+        --body-fg: #eee7e1;
+        --body-bg: #181412;
+        --body-quiet-color: #cfc5bd;
+        --body-medium-color: #ddd3cb;
+        --body-loud-color: #fff;
+        --breadcrumbs-link-fg: #e8ddd5;
+        --breadcrumbs-bg: var(--primary);
+        --link-fg: #f0a070;
+        --link-hover-color: #ffb98a;
+        --link-selected-fg: #e08a5c;
+        --hairline-color: #2a2320;
+        --border-color: #3a302b;
+        --error-fg: #ff7a85;
+        --message-success-bg: #1f5a2a;
+        --message-warning-bg: #5a3d0a;
+        --message-error-bg: #5a1219;
+        --darkened-bg: #221c19;
+        --selected-bg: #1b1613;
+        --selected-row: #3a2a10;
+        --close-button-bg: #3a322e;
+        --close-button-hover-bg: #6a5f58;
+        color-scheme: dark;
+    }
+}
+
+html[data-theme="dark"] {
+    --rango-rust-ink: #f0a070;
+    --rango-ink-muted: #cfc5bd;
+    --primary: #7c2d12;
+    --primary-fg: #f7efe9;
+    --body-fg: #eee7e1;
+    --body-bg: #181412;
+    --body-quiet-color: #cfc5bd;
+    --body-medium-color: #ddd3cb;
+    --body-loud-color: #fff;
+    --breadcrumbs-link-fg: #e8ddd5;
+    --breadcrumbs-bg: var(--primary);
+    --link-fg: #f0a070;
+    --link-hover-color: #ffb98a;
+    --link-selected-fg: #e08a5c;
+    --hairline-color: #2a2320;
+    --border-color: #3a302b;
+    --error-fg: #ff7a85;
+    --message-success-bg: #1f5a2a;
+    --message-warning-bg: #5a3d0a;
+    --message-error-bg: #5a1219;
+    --darkened-bg: #221c19;
+    --selected-bg: #1b1613;
+    --selected-row: #3a2a10;
+    --close-button-bg: #3a322e;
+    --close-button-hover-bg: #6a5f58;
+    color-scheme: dark;
+}

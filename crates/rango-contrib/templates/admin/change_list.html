@@ -1,0 +1,13 @@
+{% extends "admin/base.html" %}
+{% block breadcrumbs %} &rsaquo; {{ app_name }} &rsaquo; {{ title }}{% endblock %}
+{% block content %}
+<div class="object-tools">{% if add_url %}<a class="button" href="{{ add_url }}">Add {{ verbose_name }}</a>{% endif %}</div>
+{% if filters %}<div id="changelist-filter"><h3>Filter</h3>
+{% for f in filters %}<h4>By {{ f.title }}</h4><ul>{% for c in f.choices %}<li>{% if c.selected %}<strong>{{ c.label }}</strong>{% else %}<a href="{{ c.url }}">{{ c.label }}</a>{% endif %}</li>{% endfor %}</ul>{% endfor %}</div>{% endif %}
+{% if search_fields %}<form method="get"><input type="search" name="q" value="{{ query }}"> <input type="submit" value="Search"></form>{% endif %}
+<p>{{ count }} {{ verbose_name_plural }}</p>
+<table><thead><tr>{% for h in headers %}<th><a href="{{ h.url }}">{{ h.label }}</a></th>{% endfor %}</tr></thead>
+<tbody>{% for row in rows %}<tr>{% for cell in row.cells %}<{% if forloop.first %}th{% else %}td{% endif %}>{% if forloop.first %}<a href="{{ row.change_url }}">{{ cell }}</a>{% else %}{{ cell }}{% endif %}</{% if forloop.first %}th{% else %}td{% endif %}>{% endfor %}</tr>
+{% empty %}<tr><td colspan="{{ headers|length }}">No {{ verbose_name_plural }}.</td></tr>{% endfor %}</tbody></table>
+<p class="paginator">{% if prev_url %}<a href="{{ prev_url }}">&laquo; prev</a>{% endif %} Page {{ page }} of {{ num_pages }} {% if next_url %}<a href="{{ next_url }}">next &raquo;</a>{% endif %}</p>
+{% endblock %}

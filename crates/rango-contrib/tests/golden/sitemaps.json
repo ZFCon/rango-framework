@@ -1,0 +1,4 @@
+{
+ "sitemap": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">\n<url><loc>http://example.com/a/</loc><lastmod>2024-01-05</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url><loc>http://example.com/b/?x=1&amp;y=2</loc></url>\n</urlset>\n",
+ "index": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<sitemapindex xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n<sitemap><loc>http://example.com/sitemap-news.xml</loc><lastmod>2024-03-09T08:30:00+00:00</lastmod></sitemap><sitemap><loc>http://example.com/sitemap-x.xml?p=2</loc></sitemap>\n</sitemapindex>\n"
+}

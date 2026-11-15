@@ -1,0 +1,635 @@
+{
+ "ABSOLUTE_URL_OVERRIDES": {},
+ "ADMINS": [],
+ "ALLOWED_HOSTS": [],
+ "APPEND_SLASH": true,
+ "ASGI_APPLICATION": null,
+ "AUTHENTICATION_BACKENDS": [
+  "rango.contrib.auth.backends.ModelBackend"
+ ],
+ "AUTH_PASSWORD_VALIDATORS": [],
+ "AUTH_USER_MODEL": "auth.User",
+ "CACHES": {
+  "default": {
+   "BACKEND": "rango.core.cache.backends.locmem.LocMemCache"
+  }
+ },
+ "CACHE_MIDDLEWARE_ALIAS": "default",
+ "CACHE_MIDDLEWARE_KEY_PREFIX": "",
+ "CACHE_MIDDLEWARE_SECONDS": 600,
+ "CORS_ALLOWED_ORIGINS": [],
+ "CORS_ALLOWED_ORIGIN_REGEXES": [],
+ "CORS_ALLOW_ALL_ORIGINS": false,
+ "CORS_ALLOW_CREDENTIALS": false,
+ "CORS_ALLOW_HEADERS": [
+  "accept",
+  "authorization",
+  "content-type",
+  "user-agent",
+  "x-csrftoken",
+  "x-requested-with"
+ ],
+ "CORS_ALLOW_METHODS": [
+  "DELETE",
+  "GET",
+  "OPTIONS",
+  "PATCH",
+  "POST",
+  "PUT"
+ ],
+ "CORS_ALLOW_PRIVATE_NETWORK": false,
+ "CORS_EXPOSE_HEADERS": [],
+ "CORS_PREFLIGHT_MAX_AGE": 86400,
+ "CORS_URLS_REGEX": "^.*$",
+ "CSRF_COOKIE_AGE": 31449600,
+ "CSRF_COOKIE_DOMAIN": null,
+ "CSRF_COOKIE_HTTPONLY": false,
+ "CSRF_COOKIE_NAME": "csrftoken",
+ "CSRF_COOKIE_PATH": "/",
+ "CSRF_COOKIE_SAMESITE": "Lax",
+ "CSRF_COOKIE_SECURE": false,
+ "CSRF_FAILURE_VIEW": "rango.views.csrf.csrf_failure",
+ "CSRF_HEADER_NAME": "HTTP_X_CSRFTOKEN",
+ "CSRF_TRUSTED_ORIGINS": [],
+ "CSRF_USE_SESSIONS": false,
+ "DATABASES": {},
+ "DATABASE_ROUTERS": [],
+ "DATA_UPLOAD_MAX_MEMORY_SIZE": 2621440,
+ "DATA_UPLOAD_MAX_NUMBER_FIELDS": 1000,
+ "DATA_UPLOAD_MAX_NUMBER_FILES": 100,
+ "DATETIME_FORMAT": "N j, Y, P",
+ "DATETIME_INPUT_FORMATS": [
+  "%Y-%m-%d %H:%M:%S",
+  "%Y-%m-%d %H:%M:%S.%f",
+  "%Y-%m-%d %H:%M",
+  "%m/%d/%Y %H:%M:%S",
+  "%m/%d/%Y %H:%M:%S.%f",
+  "%m/%d/%Y %H:%M",
+  "%m/%d/%y %H:%M:%S",
+  "%m/%d/%y %H:%M:%S.%f",
+  "%m/%d/%y %H:%M"
+ ],
+ "DATE_FORMAT": "N j, Y",
+ "DATE_INPUT_FORMATS": [
+  "%Y-%m-%d",
+  "%m/%d/%Y",
+  "%m/%d/%y",
+  "%b %d %Y",
+  "%b %d, %Y",
+  "%d %b %Y",
+  "%d %b, %Y",
+  "%B %d %Y",
+  "%B %d, %Y",
+  "%d %B %Y",
+  "%d %B, %Y"
+ ],
+ "DEBUG": false,
+ "DEBUG_PROPAGATE_EXCEPTIONS": false,
+ "DECIMAL_SEPARATOR": ".",
+ "DEFAULT_AUTO_FIELD": "rango.db.models.AutoField",
+ "DEFAULT_CHARSET": "utf-8",
+ "DEFAULT_EXCEPTION_REPORTER": "rango.views.debug.ExceptionReporter",
+ "DEFAULT_EXCEPTION_REPORTER_FILTER": "rango.views.debug.SafeExceptionReporterFilter",
+ "DEFAULT_FROM_EMAIL": "webmaster@localhost",
+ "DEFAULT_INDEX_TABLESPACE": "",
+ "DEFAULT_TABLESPACE": "",
+ "DISALLOWED_USER_AGENTS": [],
+ "EMAIL_BACKEND": "rango.core.mail.backends.smtp.EmailBackend",
+ "EMAIL_HOST": "localhost",
+ "EMAIL_HOST_PASSWORD": "",
+ "EMAIL_HOST_USER": "",
+ "EMAIL_PORT": 25,
+ "EMAIL_SSL_CERTFILE": null,
+ "EMAIL_SSL_KEYFILE": null,
+ "EMAIL_SUBJECT_PREFIX": "[Rango] ",
+ "EMAIL_TIMEOUT": null,
+ "EMAIL_USE_LOCALTIME": false,
+ "EMAIL_USE_SSL": false,
+ "EMAIL_USE_TLS": false,
+ "FILE_UPLOAD_DIRECTORY_PERMISSIONS": null,
+ "FILE_UPLOAD_HANDLERS": [
+  "rango.core.files.uploadhandler.MemoryFileUploadHandler",
+  "rango.core.files.uploadhandler.TemporaryFileUploadHandler"
+ ],
+ "FILE_UPLOAD_MAX_MEMORY_SIZE": 2621440,
+ "FILE_UPLOAD_PERMISSIONS": 420,
+ "FILE_UPLOAD_TEMP_DIR": null,
+ "FIRST_DAY_OF_WEEK": 0,
+ "FIXTURE_DIRS": [],
+ "FORCE_SCRIPT_NAME": null,
+ "FORMAT_MODULE_PATH": null,
+ "FORMS_URLFIELD_ASSUME_HTTPS": false,
+ "FORM_RENDERER": "rango.forms.renderers.RangoTemplates",
+ "IGNORABLE_404_URLS": [],
+ "INSTALLED_APPS": [],
+ "INTERNAL_IPS": [],
+ "LANGUAGES": [
+  [
+   "af",
+   "Afrikaans"
+  ],
+  [
+   "ar",
+   "Arabic"
+  ],
+  [
+   "ar-dz",
+   "Algerian Arabic"
+  ],
+  [
+   "ast",
+   "Asturian"
+  ],
+  [
+   "az",
+   "Azerbaijani"
+  ],
+  [
+   "bg",
+   "Bulgarian"
+  ],
+  [
+   "be",
+   "Belarusian"
+  ],
+  [
+   "bn",
+   "Bengali"
+  ],
+  [
+   "br",
+   "Breton"
+  ],
+  [
+   "bs",
+   "Bosnian"
+  ],
+  [
+   "ca",
+   "Catalan"
+  ],
+  [
+   "ckb",
+   "Central Kurdish (Sorani)"
+  ],
+  [
+   "cs",
+   "Czech"
+  ],
+  [
+   "cy",
+   "Welsh"
+  ],
+  [
+   "da",
+   "Danish"
+  ],
+  [
+   "de",
+   "German"
+  ],
+  [
+   "dsb",
+   "Lower Sorbian"
+  ],
+  [
+   "el",
+   "Greek"
+  ],
+  [
+   "en",
+   "English"
+  ],
+  [
+   "en-au",
+   "Australian English"
+  ],
+  [
+   "en-gb",
+   "British English"
+  ],
+  [
+   "eo",
+   "Esperanto"
+  ],
+  [
+   "es",
+   "Spanish"
+  ],
+  [
+   "es-ar",
+   "Argentinian Spanish"
+  ],
+  [
+   "es-co",
+   "Colombian Spanish"
+  ],
+  [
+   "es-mx",
+   "Mexican Spanish"
+  ],
+  [
+   "es-ni",
+   "Nicaraguan Spanish"
+  ],
+  [
+   "es-ve",
+   "Venezuelan Spanish"
+  ],
+  [
+   "et",
+   "Estonian"
+  ],
+  [
+   "eu",
+   "Basque"
+  ],
+  [
+   "fa",
+   "Persian"
+  ],
+  [
+   "fi",
+   "Finnish"
+  ],
+  [
+   "fr",
+   "French"
+  ],
+  [
+   "fy",
+   "Frisian"
+  ],
+  [
+   "ga",
+   "Irish"
+  ],
+  [
+   "gd",
+   "Scottish Gaelic"
+  ],
+  [
+   "gl",
+   "Galician"
+  ],
+  [
+   "he",
+   "Hebrew"
+  ],
+  [
+   "hi",
+   "Hindi"
+  ],
+  [
+   "hr",
+   "Croatian"
+  ],
+  [
+   "hsb",
+   "Upper Sorbian"
+  ],
+  [
+   "hu",
+   "Hungarian"
+  ],
+  [
+   "hy",
+   "Armenian"
+  ],
+  [
+   "ia",
+   "Interlingua"
+  ],
+  [
+   "id",
+   "Indonesian"
+  ],
+  [
+   "ig",
+   "Igbo"
+  ],
+  [
+   "io",
+   "Ido"
+  ],
+  [
+   "is",
+   "Icelandic"
+  ],
+  [
+   "it",
+   "Italian"
+  ],
+  [
+   "ja",
+   "Japanese"
+  ],
+  [
+   "ka",
+   "Georgian"
+  ],
+  [
+   "kab",
+   "Kabyle"
+  ],
+  [
+   "kk",
+   "Kazakh"
+  ],
+  [
+   "km",
+   "Khmer"
+  ],
+  [
+   "kn",
+   "Kannada"
+  ],
+  [
+   "ko",
+   "Korean"
+  ],
+  [
+   "ky",
+   "Kyrgyz"
+  ],
+  [
+   "lb",
+   "Luxembourgish"
+  ],
+  [
+   "lt",
+   "Lithuanian"
+  ],
+  [
+   "lv",
+   "Latvian"
+  ],
+  [
+   "mk",
+   "Macedonian"
+  ],
+  [
+   "ml",
+   "Malayalam"
+  ],
+  [
+   "mn",
+   "Mongolian"
+  ],
+  [
+   "mr",
+   "Marathi"
+  ],
+  [
+   "ms",
+   "Malay"
+  ],
+  [
+   "my",
+   "Burmese"
+  ],
+  [
+   "nb",
+   "Norwegian Bokm\u00e5l"
+  ],
+  [
+   "ne",
+   "Nepali"
+  ],
+  [
+   "nl",
+   "Dutch"
+  ],
+  [
+   "nn",
+   "Norwegian Nynorsk"
+  ],
+  [
+   "os",
+   "Ossetic"
+  ],
+  [
+   "pa",
+   "Punjabi"
+  ],
+  [
+   "pl",
+   "Polish"
+  ],
+  [
+   "pt",
+   "Portuguese"
+  ],
+  [
+   "pt-br",
+   "Brazilian Portuguese"
+  ],
+  [
+   "ro",
+   "Romanian"
+  ],
+  [
+   "ru",
+   "Russian"
+  ],
+  [
+   "sk",
+   "Slovak"
+  ],
+  [
+   "sl",
+   "Slovenian"
+  ],
+  [
+   "sq",
+   "Albanian"
+  ],
+  [
+   "sr",
+   "Serbian"
+  ],
+  [
+   "sr-latn",
+   "Serbian Latin"
+  ],
+  [
+   "sv",
+   "Swedish"
+  ],
+  [
+   "sw",
+   "Swahili"
+  ],
+  [
+   "ta",
+   "Tamil"
+  ],
+  [
+   "te",
+   "Telugu"
+  ],
+  [
+   "tg",
+   "Tajik"
+  ],
+  [
+   "th",
+   "Thai"
+  ],
+  [
+   "tk",
+   "Turkmen"
+  ],
+  [
+   "tr",
+   "Turkish"
+  ],
+  [
+   "tt",
+   "Tatar"
+  ],
+  [
+   "udm",
+   "Udmurt"
+  ],
+  [
+   "ug",
+   "Uyghur"
+  ],
+  [
+   "uk",
+   "Ukrainian"
+  ],
+  [
+   "ur",
+   "Urdu"
+  ],
+  [
+   "uz",
+   "Uzbek"
+  ],
+  [
+   "vi",
+   "Vietnamese"
+  ],
+  [
+   "zh-hans",
+   "Simplified Chinese"
+  ],
+  [
+   "zh-hant",
+   "Traditional Chinese"
+  ]
+ ],
+ "LANGUAGES_BIDI": [
+  "he",
+  "ar",
+  "ar-dz",
+  "ckb",
+  "fa",
+  "ug",
+  "ur"
+ ],
+ "LANGUAGE_CODE": "en-us",
+ "LANGUAGE_COOKIE_AGE": null,
+ "LANGUAGE_COOKIE_DOMAIN": null,
+ "LANGUAGE_COOKIE_HTTPONLY": false,
+ "LANGUAGE_COOKIE_NAME": "rango_language",
+ "LANGUAGE_COOKIE_PATH": "/",
+ "LANGUAGE_COOKIE_SAMESITE": null,
+ "LANGUAGE_COOKIE_SECURE": false,
+ "LOCALE_PATHS": [],
+ "LOGGING": {},
+ "LOGGING_CONFIG": "rango.utils.log.configure_logging",
+ "LOGIN_REDIRECT_URL": "/accounts/profile/",
+ "LOGIN_URL": "/accounts/login/",
+ "LOGOUT_REDIRECT_URL": null,
+ "MANAGERS": [],
+ "MEDIA_ROOT": "",
+ "MEDIA_URL": "",
+ "MESSAGE_LEVEL": null,
+ "MESSAGE_STORAGE": "rango.contrib.messages.storage.fallback.FallbackStorage",
+ "MESSAGE_TAGS": null,
+ "MIDDLEWARE": [],
+ "MIGRATION_MODULES": {},
+ "MONTH_DAY_FORMAT": "F j",
+ "NUMBER_GROUPING": 0,
+ "PASSWORD_HASHERS": [
+  "rango.contrib.auth.hashers.PBKDF2PasswordHasher",
+  "rango.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
+  "rango.contrib.auth.hashers.Argon2PasswordHasher",
+  "rango.contrib.auth.hashers.BCryptSHA256PasswordHasher",
+  "rango.contrib.auth.hashers.ScryptPasswordHasher"
+ ],
+ "PASSWORD_RESET_TIMEOUT": 259200,
+ "PREPEND_WWW": false,
+ "REST_FRAMEWORK": {},
+ "ROOT_URLCONF": null,
+ "SECRET_KEY": "",
+ "SECRET_KEY_FALLBACKS": [],
+ "SECURE_CONTENT_TYPE_NOSNIFF": true,
+ "SECURE_CROSS_ORIGIN_OPENER_POLICY": "same-origin",
+ "SECURE_HSTS_INCLUDE_SUBDOMAINS": false,
+ "SECURE_HSTS_PRELOAD": false,
+ "SECURE_HSTS_SECONDS": 0,
+ "SECURE_PROXY_SSL_HEADER": null,
+ "SECURE_REDIRECT_EXEMPT": [],
+ "SECURE_REFERRER_POLICY": "same-origin",
+ "SECURE_SSL_HOST": null,
+ "SECURE_SSL_REDIRECT": false,
+ "SERVER_EMAIL": "root@localhost",
+ "SESSION_CACHE_ALIAS": "default",
+ "SESSION_COOKIE_AGE": 1209600,
+ "SESSION_COOKIE_DOMAIN": null,
+ "SESSION_COOKIE_HTTPONLY": true,
+ "SESSION_COOKIE_NAME": "sessionid",
+ "SESSION_COOKIE_PATH": "/",
+ "SESSION_COOKIE_SAMESITE": "Lax",
+ "SESSION_COOKIE_SECURE": false,
+ "SESSION_ENGINE": "rango.contrib.sessions.backends.db",
+ "SESSION_EXPIRE_AT_BROWSER_CLOSE": false,
+ "SESSION_FILE_PATH": null,
+ "SESSION_SAVE_EVERY_REQUEST": false,
+ "SESSION_SERIALIZER": "rango.contrib.sessions.serializers.JSONSerializer",
+ "SHORT_DATETIME_FORMAT": "m/d/Y P",
+ "SHORT_DATE_FORMAT": "m/d/Y",
+ "SIGNED_COOKIE_LEGACY_SALT_FALLBACK": true,
+ "SIGNING_BACKEND": "rango.core.signing.TimestampSigner",
+ "SILENCED_SYSTEM_CHECKS": [],
+ "SITE_ID": null,
+ "SPECTACULAR_SETTINGS": {},
+ "STATICFILES_DIRS": [],
+ "STATICFILES_FINDERS": [
+  "rango.contrib.staticfiles.finders.FileSystemFinder",
+  "rango.contrib.staticfiles.finders.AppDirectoriesFinder"
+ ],
+ "STATIC_ROOT": null,
+ "STATIC_URL": null,
+ "STORAGES": {
+  "default": {
+   "BACKEND": "rango.core.files.storage.FileSystemStorage"
+  },
+  "staticfiles": {
+   "BACKEND": "rango.contrib.staticfiles.storage.StaticFilesStorage"
+  }
+ },
+ "TEMPLATES": [],
+ "TEST_NON_SERIALIZED_APPS": [],
+ "TEST_RUNNER": "rango.test.runner.DiscoverRunner",
+ "THOUSAND_SEPARATOR": ",",
+ "TIME_FORMAT": "P",
+ "TIME_INPUT_FORMATS": [
+  "%H:%M:%S",
+  "%H:%M:%S.%f",
+  "%H:%M"
+ ],
+ "TIME_ZONE": "America/Chicago",
+ "USE_I18N": true,
+ "USE_THOUSAND_SEPARATOR": false,
+ "USE_TZ": true,
+ "USE_X_FORWARDED_HOST": false,
+ "USE_X_FORWARDED_PORT": false,
+ "WSGI_APPLICATION": null,
+ "X_FRAME_OPTIONS": "DENY",
+ "YEAR_MONTH_FORMAT": "F Y"
+}

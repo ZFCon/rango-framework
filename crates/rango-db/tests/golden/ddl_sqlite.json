@@ -1,0 +1,11 @@
+[
+ "CREATE TABLE \"polls_question\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"question_text\" varchar(200) NOT NULL, \"pub_date\" datetime NOT NULL);",
+ "CREATE TABLE \"polls_choice\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"question_id\" integer NOT NULL REFERENCES \"polls_question\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"choice_text\" varchar(200) NOT NULL, \"votes\" integer NOT NULL);",
+ "CREATE TABLE \"polls_author\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"name\" varchar(100) NOT NULL, \"age\" integer NULL);",
+ "CREATE TABLE \"polls_book\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"title\" varchar(200) NOT NULL, \"published\" date NOT NULL, \"price\" decimal NOT NULL);",
+ "CREATE TABLE \"polls_book_authors\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"book_id\" integer NOT NULL REFERENCES \"polls_book\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"author_id\" integer NOT NULL REFERENCES \"polls_author\" (\"id\") DEFERRABLE INITIALLY DEFERRED);",
+ "CREATE INDEX \"polls_choice_question_id_c5b4b260\" ON \"polls_choice\" (\"question_id\");",
+ "CREATE UNIQUE INDEX \"polls_book_authors_book_id_author_id_73b6f03b_uniq\" ON \"polls_book_authors\" (\"book_id\", \"author_id\");",
+ "CREATE INDEX \"polls_book_authors_book_id_60f30711\" ON \"polls_book_authors\" (\"book_id\");",
+ "CREATE INDEX \"polls_book_authors_author_id_474a3602\" ON \"polls_book_authors\" (\"author_id\");"
+]

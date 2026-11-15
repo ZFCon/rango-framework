@@ -1,0 +1,26 @@
+[package]
+name = "rangoframework-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+readme.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Rango command-line tools: rango-admin, startproject, startapp."
+
+[[bin]]
+name = "rango-admin"
+path = "src/main.rs"
+
+[lib]
+name = "rango_cli"
+
+[dependencies]
+async-trait = "0.1.92"
+clap = "4.6.7"
+rango-core = { package = "rangoframework-core", version = "0.1.0", path = "../rango-core" }
+tokio = { version = "1.54.1", features = ["rt", "rt-multi-thread", "macros"] }
+
+[dev-dependencies]
+tokio = { version = "1.54.1", features = ["rt-multi-thread", "macros"] }

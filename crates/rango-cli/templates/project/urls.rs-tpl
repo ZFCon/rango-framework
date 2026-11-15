@@ -1,0 +1,17 @@
+//! URL configuration for {{ project_name }}.
+//!
+//! Add routes with `path("blog/", include("blog.urls"))`.
+//!
+//! API: register viewsets on a `rango::rest::Router` and `path("api/", include(router.urls()))`;
+//! they appear in the OpenAPI document served below.
+
+use rango::rest::schema;
+use rango::urls::path;
+use rango::{register_urlconf, urlpatterns};
+
+register_urlconf!("{{ project_name }}.urls", || urlpatterns![
+    // path("polls/", rango::urls::include("polls.urls")),
+    path("api/schema/", schema::schema_view()).name("schema"),
+    path("api/docs/", schema::swagger_view("/api/schema/")).name("swagger-ui"),
+    path("api/redoc/", schema::redoc_view("/api/schema/")).name("redoc"),
+]);
