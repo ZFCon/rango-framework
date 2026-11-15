@@ -6,11 +6,14 @@ Seven parts, from an empty directory to a tested app with an admin. Every snippe
 ## Part 1 — project, app, first view
 
 ```console
+$ cargo install rangoframework-cli     # installs the rango-admin tool
 $ rango-admin startproject mysite
 $ cd mysite
 $ rango-admin startapp polls          # or: cargo run -- startapp polls
 $ cargo run -- runserver
 ```
+
+The generated `Cargo.toml` depends on `rangoframework`; in code the library is called `rango` (`use rango::...`).
 
 `src/main.rs` is your `manage.py`: `cargo run -- <command>`. Register the app by name in
 `src/settings.rs` (`installed_apps: vec!["polls".into()]`) and include its URLs in `src/urls.rs`:

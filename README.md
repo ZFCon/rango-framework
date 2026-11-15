@@ -22,7 +22,8 @@ cd mysite && cargo run -- migrate && cargo run -- runserver
 ```
 
 In an existing project, add `rangoframework = "0.1"` to `Cargo.toml`; the library is imported as `rango`
-(`use rango::db::models::Model;`).
+(`use rango::db::models::Model;`). On crates.io every package is prefixed `rangoframework` (`rangoframework-core`,
+`rangoframework-cli`, ...); `rangoframework` re-exports them all.
 
 Repository: <https://github.com/ZFCon/rango-framework>
 

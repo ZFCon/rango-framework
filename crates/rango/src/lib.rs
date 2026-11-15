@@ -1,13 +1,14 @@
-//! Rango: the reference for Rust. Module paths follow the (`core.signing` is
-//! `rango::core::signing`, `urls` is `rango::urls`, `test.Client` is
-//! `rango::test::Client`, ...).
+//! Rango: a batteries-included web framework for Rust.
+//!
+//! Published as `rangoframework`, imported as `rango`: `rango::core::signing`, `rango::urls`,
+//! `rango::test::Client`, ...
 
 pub use rango_core::{apps, conf, dispatch, utils};
 pub use rango_core::{Error, Result, format_html, register_app, register_check, register_command};
 pub use rango_db as db;
 pub use rango_forms as forms;
 pub use rango_http as http;
-/// `rest_framework` + `OpenAPI schema generation`.
+/// REST framework and OpenAPI schema generation.
 pub use rango_rest as rest;
 pub use rango_middleware::register_middleware;
 pub use rango_template as template;

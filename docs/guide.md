@@ -1,5 +1,24 @@
 # Rango guide
 
+## Installing
+
+On crates.io the packages are named `rangoframework*`; in code the library is always `rango`.
+
+```toml
+[dependencies]
+rangoframework = "0.1"      # use rango::...
+```
+
+```console
+cargo install rangoframework-cli     # the rango-admin tool (startproject, startapp)
+```
+
+| crates.io package | Imported as | What it is |
+|---|---|---|
+| `rangoframework` | `rango` | the whole framework; the only one most projects need |
+| `rangoframework-cli` | — | the `rango-admin` command |
+| `rangoframework-core`, `-http`, `-urls`, `-views`, `-middleware`, `-db`, `-macros`, `-template`, `-forms`, `-contrib`, `-rest`, `-test` | `rango_core`, `rango_http`, ... | the parts, all re-exported by `rango` |
+
 Everything is re-exported by the `rango` crate: `rango::core::signing`, `rango::utils::text`,
 `rango::conf::settings()`, and so on.
 
