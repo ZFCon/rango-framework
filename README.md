@@ -33,19 +33,20 @@ Repository: <https://github.com/ZFCon/rango-framework>
 
 ## Performance
 
-Requests per second on the same 16-core machine, same endpoints, same default middleware (security, sessions, CSRF,
-auth, messages), debug off. Rango was a release build. Load: `oha -z 10s -c 64`, run on the same box.
+Requests per second on a 16-core machine, same endpoints for each framework, with the default middleware stack
+(security, sessions, CSRF, auth, messages), debug off, Rango as a release build. Load: `oha -z 10s -c 64`, run on the
+same machine.
 
-| Endpoint | Rango | Python web framework (gunicorn, 16 workers) | NestJS (Express, 1 process) |
-|---|---|---|---|
-| `/hello` plain text | **31,280** | 17,046 (Rango 1.8x) | 7,860 (Rango 4.0x) |
-| `/json` small JSON | **31,048** | 16,660 (1.9x) | 7,344 (4.2x) |
-| `/db` 20 rows from SQLite as JSON | **21,942** | 7,229 (3.0x) | 4,946 (4.4x) |
+| Endpoint | Rango | NestJS (Express, 1 process) |
+|---|---|---|
+| `/hello` plain text | **31,280 req/s** | 7,860 (Rango 4.0x faster) |
+| `/json` small JSON | **31,048 req/s** | 7,344 (4.2x) |
+| `/db` 20 rows from SQLite as JSON | **21,942 req/s** | 4,946 (4.4x) |
 
-Median latency on `/db`: Rango 2.9 ms, the Python framework 8.7 ms, NestJS 12.2 ms.
+Median latency on `/db`: Rango 2.9 ms, NestJS 12.2 ms; 99th percentile 3.5 ms and 27.5 ms.
 
 A small, single-run test, not a rigorous benchmark. NestJS ran as one Node process; a cluster of processes would score
-several times higher. Real applications with templates, forms and heavier queries will see smaller gaps.
+several times higher. Applications with templates, forms and heavier queries will see smaller gaps.
 
 **Included:** core, HTTP/URLs/views, ORM + migrations (SQLite, PostgreSQL), templates, forms, generic views, contrib
 (auth, sessions, messages, contenttypes, staticfiles, sites, redirects, flatpages, sitemaps, syndication, admin), cache,
