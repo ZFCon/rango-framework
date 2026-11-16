@@ -1,4 +1,4 @@
-//! SQL text parity with the reference on SQLite (cases recorded by `tools/gen_sql_golden.py`).
+//! SQL text parity with the reference on SQLite.
 
 mod common;
 

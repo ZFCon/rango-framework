@@ -25,7 +25,7 @@ static DATETIME_RE: LazyLock<Regex> = LazyLock::new(|| {
     )
 });
 static STANDARD_DURATION_RE: LazyLock<Regex> = LazyLock::new(|| {
-    // The Python lookahead `(?=\d+:\d+)` is expressed by trying the "with hours" form first.
+    // The lookahead `(?=\d+:\d+)` is expressed by trying the "with hours" form first.
     re(
         r"^(?:(?P<days>-?\d+) (?:days?, )?)?(?P<sign>-?)(?:(?P<hours>\d+):(?P<minutes_h>\d+):)?(?:(?P<minutes>\d+):)?(?P<seconds>\d+)(?:[.,](?P<microseconds>\d{1,6})\d{0,6})?$",
     )
@@ -61,13 +61,13 @@ static ISO_TIME: LazyLock<Regex> = LazyLock::new(|| {
     )
 });
 
-/// Python 3.11+ `date.fromisoformat` (`YYYY-MM-DD` or `YYYYMMDD`).
+/// `date.fromisoformat` (`YYYY-MM-DD` or `YYYYMMDD`).
 fn iso_date(value: &str) -> Option<NaiveDate> {
     let c = ISO_DATE.captures(value)?;
     NaiveDate::from_ymd_opt(c[1].parse().ok()?, c[2].parse().ok()?, c[3].parse().ok()?)
 }
 
-/// Python 3.11+ `time.fromisoformat`: the time and its UTC offset in seconds, if any.
+/// `time.fromisoformat`: the time and its UTC offset in seconds, if any.
 fn iso_time(value: &str) -> Option<(NaiveTime, Option<i32>)> {
     let c = ISO_TIME.captures(value.strip_prefix('T').unwrap_or(value))?;
     let num = |n: &str| c.name(n).map_or(Some(0u32), |m| m.as_str().parse().ok());

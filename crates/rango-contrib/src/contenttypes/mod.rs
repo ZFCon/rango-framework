@@ -18,7 +18,7 @@ pub struct ContentType {
     pub id: Option<i64>,
     #[field(max_length = 100, verbose_name = "app label")]
     pub app_label: String,
-    #[field(max_length = 100, verbose_name = "python model class name")]
+    #[field(max_length = 100, verbose_name = "model class name")]
     pub model: String,
 }
 

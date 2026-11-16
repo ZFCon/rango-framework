@@ -11,7 +11,7 @@ use unicode_properties::{GeneralCategory as G, UnicodeGeneralCategory};
 use super::translation::{gettext, pgettext};
 use crate::exceptions::{Error, Result, SuspiciousKind};
 
-/// Python's `str.isalnum() or c == "_"`, i.e. what `\w` means in Python's `re` (Unicode mode).
+/// `str.isalnum() or c == "_"`, i.e. what `\w` means in `re` (Unicode mode).
 pub fn is_word_char(c: char) -> bool {
     c == '_'
         || matches!(
@@ -27,7 +27,7 @@ pub fn is_word_char(c: char) -> bool {
         )
 }
 
-/// Python's `str.isspace()` (`\s` in Unicode mode).
+/// `str.isspace()` (`\s` in Unicode mode).
 pub fn is_space(c: char) -> bool {
     c.is_whitespace() || matches!(c, '\x1c'..='\x1f')
 }
@@ -48,7 +48,7 @@ pub fn normalize_newlines(text: &str) -> String {
 
 /// `camel_case_to_spaces()`: split CamelCase and lowercase.
 pub fn camel_case_to_spaces(value: &str) -> String {
-    // Python: re.sub(r"(((?<=[a-z])[A-Z])|([A-Z](?![A-Z]|$)))", r" \1", value).strip().lower()
+    // Equivalent regex: re.sub(r"(((?<=[a-z])[A-Z])|([A-Z](?![A-Z]|$)))", r" \1", value).strip().lower()
     let chars: Vec<char> = value.chars().collect();
     let mut out = String::with_capacity(value.len() + 4);
     for (i, &c) in chars.iter().enumerate() {

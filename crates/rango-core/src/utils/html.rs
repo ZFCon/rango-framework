@@ -140,7 +140,7 @@ pub fn avoid_wrapping(value: &str) -> String {
 static LONG_OPEN_TAG: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r"<[a-zA-Z][^>]{1000,}").expect("valid regex"));
 
-/// One pass of tag removal. Mirrors the `MLStripper` on top of Python's lenient
+/// One pass of tag removal. Mirrors the `MLStripper` on top of lenient
 /// `HTMLParser(convert_charrefs=False)`: tags, comments, declarations and processing
 /// instructions are dropped; text and character/entity references are kept verbatim.
 fn strip_once(value: &str) -> String {

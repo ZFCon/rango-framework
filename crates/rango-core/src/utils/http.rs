@@ -164,7 +164,7 @@ pub fn urlsafe_base64_encode(s: &[u8]) -> String {
 
 /// `urlsafe_base64_decode()`: tolerates stripped (or present) padding.
 pub fn urlsafe_base64_decode(s: &str) -> Result<Vec<u8>, base64::DecodeError> {
-    // Python's decoder silently discards characters outside the base64 alphabet.
+    // the decoder silently discards characters outside the base64 alphabet.
     let cleaned: String = s
         .chars()
         .filter(|c| c.is_ascii_alphanumeric() || matches!(c, '-' | '_' | '+' | '/'))
@@ -256,7 +256,7 @@ impl SplitResult {
     }
 }
 
-/// `urllib.parse.urlsplit` (Python 3.12 semantics). `Err` mirrors its `ValueError`.
+/// Split a URL into scheme, netloc, path, query and fragment. `Err` for an invalid URL.
 pub fn urlsplit(url: &str) -> Result<SplitResult, String> {
     let mut url: String = url
         .trim_start_matches(|c: char| c <= ' ')

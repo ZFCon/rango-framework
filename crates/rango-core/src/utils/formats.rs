@@ -1,7 +1,6 @@
 //! `utils.formats`: locale-specific date, time and number formats.
 //!
-//! The per-locale values are the (`rango/conf/locale/<lang>/formats.py`), extracted into
-//! `data/locale_formats.json` by `tools/gen_locale_formats.py`.
+//! The per-locale values live in `data/locale_formats.json`.
 
 use std::collections::HashMap;
 use std::sync::LazyLock;

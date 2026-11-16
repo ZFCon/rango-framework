@@ -326,7 +326,7 @@ pub fn default_filters() -> Library {
             return string_result(v, t);
         }
         let total = w - len;
-        // Python's str.center: extra padding goes on the left when the total is odd and the width is odd.
+        // str.center: extra padding goes on the left when the total is odd and the width is odd.
         let left = total / 2 + (total & w & 1);
         string_result(v, format!("{}{t}{}", " ".repeat(left), " ".repeat(total - left)))
     });

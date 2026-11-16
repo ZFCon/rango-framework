@@ -1,6 +1,6 @@
 //! `apps`: `AppConfig` and the app registry.
 //!
-//! Python finds apps by importing the dotted names in `INSTALLED_APPS`. Rust has no import
+//! finds apps by importing the dotted names in `INSTALLED_APPS`. Rust has no import
 //! by name, so each app registers itself at link time with [`register_app!`] and
 //! `INSTALLED_APPS` selects among the registered apps by `name`.
 
@@ -64,7 +64,7 @@ impl AppConfig {
     }
 }
 
-/// Python's `str.title()`.
+/// `str.title()`.
 fn title(s: &str) -> String {
     let mut out = String::with_capacity(s.len());
     let mut prev_letter = false;

@@ -1,5 +1,5 @@
 //! S1-style smoke test: settings + app registry + checks + management commands + signals,
-//! exercised the way `manage.py` does.
+//! exercised the way a project's `cargo run -- <command>` does.
 
 use rango::apps::AppConfig;
 use rango::conf::{self, Settings, override_settings};

@@ -43,7 +43,7 @@ pub fn to_json(f: &Field, v: &Value) -> Json {
         Value::Str(s) => json!(s),
         Value::Bytes(b) => json!(String::from_utf8_lossy(b)),
         Value::Date(d) => json!(d.to_string()),
-        // Python's isoformat(): microseconds, omitted when zero.
+        // ISO 8601: microseconds, omitted when zero.
         Value::Time(t) => json!(format!("{}{}", t.format("%H:%M:%S"), micros(chrono::Timelike::nanosecond(t)))),
         Value::DateTime(d) => json!(format!("{}{}Z", d.format("%Y-%m-%dT%H:%M:%S"), micros(d.timestamp_subsec_nanos()))),
         Value::NaiveDateTime(d) => json!(format!("{}{}", d.format("%Y-%m-%dT%H:%M:%S"), micros(chrono::Timelike::nanosecond(d)))),

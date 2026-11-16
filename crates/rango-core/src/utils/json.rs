@@ -1,4 +1,4 @@
-//! Python-compatible `json.dumps` output (`ensure_ascii=True`).
+//! `json.dumps` output (`ensure_ascii=True`).
 //!
 //! Signed values, session payloads and `json_script` must be byte-identical to what the reference implementation
 //! produces so each side can read the other's data.
@@ -9,7 +9,7 @@ use serde::Serialize;
 use serde_json::ser::Formatter;
 
 struct PyFormatter {
-    /// `separators=(",", ":")` when true, Python's default `(", ", ": ")` otherwise.
+    /// `separators=(",", ":")` when true, default `(", ", ": ")` otherwise.
     compact: bool,
     /// `ensure_ascii`: escape non-ASCII as `\uXXXX`.
     ascii: bool,
@@ -64,7 +64,7 @@ impl Formatter for PyFormatter {
     }
 }
 
-/// `json.dumps(value, separators=...)` with Python's `ensure_ascii=True` escaping.
+/// `json.dumps(value, separators=...)` with `ensure_ascii=True` escaping.
 pub fn dumps<T: Serialize + ?Sized>(value: &T, compact: bool) -> serde_json::Result<String> {
     dumps_with(value, compact, true)
 }

@@ -15,7 +15,7 @@ fn split_delim(s: &str) -> Vec<&str> {
 /// Value of a `Cache-Control` directive passed to [`patch_cache_control`].
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum Cc {
-    /// Bare directive (`Python True`).
+    /// Bare directive (`True`).
     Flag,
     Value(String),
 }

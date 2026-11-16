@@ -13,7 +13,7 @@ use indexmap::IndexMap;
 use rango_core::exceptions::{Error, Result};
 use rango_http::{HttpRequest, HttpResponse};
 
-/// A converted URL parameter (`to_python` result).
+/// A converted URL parameter (`to_clean` result).
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum Arg {
     Str(String),

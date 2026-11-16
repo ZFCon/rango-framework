@@ -39,7 +39,7 @@ impl Object {
     }
 }
 
-/// A template value (what Python objects are in templates).
+/// A template value (what objects are in templates).
 #[derive(Clone)]
 pub enum Value {
     None,
@@ -103,7 +103,7 @@ impl Value {
         }
     }
 
-    /// Python truthiness.
+    /// Truthiness (empty / zero / false are false).
     pub fn truthy(&self) -> bool {
         match self {
             Value::None => false,
@@ -184,7 +184,7 @@ impl Value {
         }
     }
 
-    /// Python `==`.
+    /// `==`.
     pub fn eq_py(&self, other: &Value) -> bool {
         match (self, other) {
             (Value::None, Value::None) => true,
@@ -208,7 +208,7 @@ impl Value {
         }
     }
 
-    /// Python ordering comparison; `None` when the types are not comparable.
+    /// ordering comparison; `None` when the types are not comparable.
     pub fn cmp_py(&self, other: &Value) -> Option<std::cmp::Ordering> {
         match (self, other) {
             (Value::Str(a) | Value::Safe(a), Value::Str(b) | Value::Safe(b)) => Some(a.cmp(b)),

@@ -1,7 +1,6 @@
 //! `core.checks.security`: the `check --deploy` security checks.
 //!
-//! Message texts come from `data/security_checks.json` (extracted from the reference implementation by
-//! `tools/gen_security_checks.py`); only the conditions are code.
+//! Message texts live in `data/security_checks.json`; only the conditions are code.
 
 use std::collections::{BTreeSet, HashMap};
 use std::sync::LazyLock;

@@ -65,7 +65,7 @@ pub enum Error {
     /// `NoReverseMatch` (`urls`).
     #[error("{0}")]
     NoReverseMatch(String),
-    /// Python's `LookupError` (unknown app label, unknown model, ...).
+    /// A lookup error (unknown app label, unknown model, ...).
     #[error("{0}")]
     LookupError(String),
     /// `ViewDoesNotExist`.
@@ -143,7 +143,7 @@ pub type Params = IndexMap<String, String>;
 ///
 /// the single class has three shapes depending on the constructor argument; they are
 /// explicit variants here. [`ValidationError::error_list`] / [`ValidationError::messages`]
-/// behave like the Python properties of the same name.
+/// behave like properties of the same name.
 #[derive(Debug, Clone, PartialEq)]
 pub enum ValidationError {
     /// One message with optional `code` and `params`.
@@ -288,7 +288,7 @@ impl ValidationError {
 }
 
 impl fmt::Display for ValidationError {
-    /// Python `str()`: the repr of `dict(self)` or `list(self)`.
+    /// String form: the dict or list of messages.
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             Self::Dict(_) => {
@@ -306,7 +306,7 @@ impl fmt::Display for ValidationError {
 
 impl std::error::Error for ValidationError {}
 
-/// Python-style `%(name)s` / `%(name)d` / `%%` substitution used by message templates.
+/// `%(name)s` / `%(name)d` / `%%` substitution used by message templates.
 pub fn format_percent(template: &str, params: &Params) -> String {
     let mut out = String::with_capacity(template.len());
     let mut chars = template.chars().peekable();
@@ -338,7 +338,7 @@ pub fn format_percent(template: &str, params: &Params) -> String {
     out
 }
 
-/// `repr()` of a Python `str`.
+/// Quoted string form.
 pub fn py_repr_str(s: &str) -> String {
     let quote = if s.contains('\'') && !s.contains('"') {
         '"'
@@ -367,7 +367,7 @@ pub fn py_repr_str(s: &str) -> String {
     out
 }
 
-/// `repr()` of a Python `list[str]`.
+/// `repr()` of a `list[str]`.
 pub fn py_repr_list(items: &[String]) -> String {
     format!(
         "[{}]",

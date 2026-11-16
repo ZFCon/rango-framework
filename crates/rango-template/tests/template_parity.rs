@@ -1,4 +1,4 @@
-//! D3: template rendering parity with the reference (cases recorded by `tools/gen_template_golden.py`).
+//! D3: template rendering parity with the reference.
 
 use chrono::{NaiveDate, NaiveDateTime, NaiveTime};
 use rango_core::conf::{self, Settings};

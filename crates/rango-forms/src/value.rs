@@ -4,7 +4,7 @@ use chrono::{DateTime, NaiveDate, NaiveDateTime, NaiveTime, TimeDelta, Utc};
 use rango_http::UploadedFile;
 use rust_decimal::Decimal;
 
-/// A cleaned/initial value (Python objects in the `cleaned_data` / `initial`).
+/// A cleaned/initial value (dynamic values in `cleaned_data` / `initial`).
 #[derive(Debug, Clone)]
 pub enum Value {
     None,
@@ -60,7 +60,7 @@ impl Value {
         }
     }
 
-    /// Python truthiness.
+    /// Truthiness (empty / zero / false are false).
     pub fn truthy(&self) -> bool {
         match self {
             Value::None | Value::Cleared => false,

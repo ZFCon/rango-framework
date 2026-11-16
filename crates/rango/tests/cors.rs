@@ -1,4 +1,4 @@
-//! CORS middleware vs the CORS middleware (tools/gen_cors_golden.py).
+//! CORS middleware vs the CORS middleware.
 
 use rango::conf::{self, Settings, override_settings};
 use rango::http::{HttpRequest, HttpResponse};

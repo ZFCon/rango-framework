@@ -1,4 +1,4 @@
-//! Oracle test: ~150 form cases run through the reference data (tools/gen_forms_golden.py).
+//! Oracle test: ~150 form cases run through the reference data.
 
 use std::sync::Arc;
 

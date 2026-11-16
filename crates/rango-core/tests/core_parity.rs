@@ -1,5 +1,5 @@
 //! D1-style parity test for the core runtime: replays ~500 cases recorded from the reference data
-//! (see `tools/gen_core_golden.py`) against rango-core and reports every mismatch at once.
+//! against rango-core and reports every mismatch at once.
 //! Also checks the default settings table against the `global_settings`.
 
 use std::collections::HashSet;

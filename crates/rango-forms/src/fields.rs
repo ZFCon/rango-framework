@@ -732,12 +732,12 @@ impl Field {
         }
     }
 
-    /// `to_python(value)`.
-    pub fn to_python(&self, value: &Value) -> VResult<Value> {
+    /// `to_clean(value)`.
+    pub fn to_clean(&self, value: &Value) -> VResult<Value> {
         match &self.kind {
-            k if self.is_char_like() && !matches!(k, FieldKind::Uuid | FieldKind::Json | FieldKind::Url { .. } | FieldKind::GenericIpAddress { .. }) => Ok(self.char_to_python(value)),
+            k if self.is_char_like() && !matches!(k, FieldKind::Uuid | FieldKind::Json | FieldKind::Url { .. } | FieldKind::GenericIpAddress { .. }) => Ok(self.char_to_clean(value)),
             FieldKind::Url { assume_scheme } => {
-                let v = self.char_to_python(value);
+                let v = self.char_to_clean(value);
                 let Value::Str(s) = &v else { return Ok(v) };
                 if s.is_empty() {
                     return Ok(v);
@@ -763,7 +763,7 @@ impl Field {
                 Ok(Value::Str(s))
             }
             FieldKind::Uuid => {
-                let v = self.char_to_python(value);
+                let v = self.char_to_clean(value);
                 if v.is_empty() {
                     return Ok(Value::None);
                 }
@@ -963,7 +963,7 @@ impl Field {
         }
     }
 
-    fn char_to_python(&self, value: &Value) -> Value {
+    fn char_to_clean(&self, value: &Value) -> Value {
         if value.is_empty() {
             return self.empty_string();
         }
@@ -1137,7 +1137,7 @@ impl Field {
     }
 
     fn standard_clean(&self, value: &Value) -> VResult<Value> {
-        let v = self.to_python(value)?;
+        let v = self.to_clean(value)?;
         self.validate(&v)?;
         self.run_validators(&v)?;
         Ok(v)
@@ -1233,7 +1233,7 @@ impl Field {
         }
         match &self.kind {
             FieldKind::File { .. } | FieldKind::Image { .. } => !matches!(data, Value::None),
-            FieldKind::Boolean | FieldKind::NullBoolean => self.to_python(initial).ok() != self.to_python(data).ok(),
+            FieldKind::Boolean | FieldKind::NullBoolean => self.to_clean(initial).ok() != self.to_clean(data).ok(),
             FieldKind::MultipleChoice | FieldKind::TypedMultipleChoice { .. } | FieldKind::ModelChoice { multiple: true } => {
                 let set = |v: &Value| -> Vec<String> {
                     let mut s: Vec<String> = match v {
@@ -1255,7 +1255,7 @@ impl Field {
                     }
                     coerce(&v.to_text()).ok()
                 };
-                match self.to_python(data) {
+                match self.to_clean(data) {
                     Ok(d) => c(&d) != c(initial),
                     Err(_) => true,
                 }
@@ -1271,7 +1271,7 @@ impl Field {
                     v => self.widget.decompress(v),
                 };
                 for ((f, i), d) in fields.iter().zip(init).zip(&data_list) {
-                    match f.to_python(&i) {
+                    match f.to_clean(&i) {
                         Ok(i) => {
                             if f.has_changed(&i, d) {
                                 return true;
@@ -1289,7 +1289,7 @@ impl Field {
                     Value::Str(s) => serde_json::from_str(s).ok(),
                     _ => None,
                 };
-                match self.to_python(data) {
+                match self.to_clean(data) {
                     Err(_) => true,
                     Ok(d) => {
                         let dj = to_j(&d).unwrap_or(serde_json::Value::Null);
@@ -1299,7 +1299,7 @@ impl Field {
                     }
                 }
             }
-            _ => match self.to_python(data) {
+            _ => match self.to_clean(data) {
                 Err(_) => true,
                 Ok(d) => {
                     let norm = |v: &Value| if matches!(v, Value::None) { Value::Str(String::new()) } else { v.clone() };
@@ -1347,7 +1347,7 @@ fn file_messages() -> IndexMap<String, String> {
     m
 }
 
-/// Python `int(str)`: optional sign, digits with single underscores; trailing `.0*` is stripped first.
+/// `int(str)`: optional sign, digits with single underscores; trailing `.0*` is stripped first.
 fn parse_int(s: &str) -> Option<i64> {
     let s = s.trim();
     let s = match s.find('.') {
@@ -1372,7 +1372,7 @@ fn parse_float(s: &str) -> Option<f64> {
     s.replace('_', "").parse().ok()
 }
 
-/// Python strptime formats are chrono-compatible except `%f` (microseconds, 1–6 digits).
+/// strptime formats are chrono-compatible except `%f` (microseconds, 1–6 digits).
 fn py_fmt(f: &str) -> String {
     f.replace("%f", "%6f")
 }

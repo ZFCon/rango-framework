@@ -1,4 +1,4 @@
-//! {{ project_name }}: Rango's command-line utility for administrative tasks (`manage.py`).
+//! {{ project_name }}: Rango's command-line utility for administrative tasks (`cargo run -- <command>`).
 
 mod settings;
 mod urls;

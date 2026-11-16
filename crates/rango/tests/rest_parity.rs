@@ -1,5 +1,5 @@
 //! The REST framework vs a REST framework: the same API, the same requests
-//! (tools/gen_rest_golden.py), byte-identical bodies.
+//!, byte-identical bodies.
 
 use rango::conf::{self, DatabaseConfig, Settings};
 use rango::contrib::auth;

@@ -102,7 +102,7 @@ impl PathConverter for FourDigitYear {
     fn regex(&self) -> &str {
         "[0-9]{4}"
     }
-    fn to_python(&self, value: &str) -> Option<Arg> {
+    fn to_clean(&self, value: &str) -> Option<Arg> {
         value.parse().ok().map(Arg::Int)
     }
     fn to_url(&self, value: &str) -> Option<String> {
@@ -115,7 +115,7 @@ register_converter("yyyy", FourDigitYear);
 ```
 
 - `regex()` is the fragment the placeholder expands to.
-- `to_python()` converts the matched text. Returning `None` means "this pattern does not match", and the resolver
+- `to_clean()` converts the matched text. Returning `None` means "this pattern does not match", and the resolver
   moves on to the next pattern.
 - `to_url()` is used by `reverse`; it has a default that returns the value unchanged. Returning `None` makes that
   candidate pattern fail to reverse.

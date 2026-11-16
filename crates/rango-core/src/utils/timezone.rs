@@ -69,7 +69,7 @@ pub fn localtime(value: DateTime<Utc>, tz: Option<Tz>) -> Result<DateTime<Tz>> {
 }
 
 /// `make_aware(value, timezone)`: ambiguous times take the first occurrence (`fold=0`) and
-/// non-existent times use the offset in force before the gap, as Python's `zoneinfo` does.
+/// non-existent times use the offset in force before the gap, as standard time zone rules do.
 pub fn make_aware(value: NaiveDateTime, tz: Tz) -> DateTime<Tz> {
     match tz.from_local_datetime(&value) {
         LocalResult::Single(dt) => dt,

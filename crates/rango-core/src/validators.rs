@@ -49,7 +49,7 @@ fn invalid(message: String, code: &str, value: &str) -> ValidationError {
         .with_params([("value", value)])
 }
 
-/// Compile a Python-flavoured pattern: `\Z` (end of string) becomes `\z`.
+/// Compile a pattern: `\Z` (end of string) becomes `\z`.
 fn compile(pattern: &str) -> Result<Regex> {
     Regex::new(&pattern.replace("\\Z", "\\z")).map_err(|e| {
         Error::improperly_configured(format!("invalid validator regex {pattern:?}: {e}"))
@@ -67,7 +67,7 @@ pub struct RegexValidator {
 }
 
 impl RegexValidator {
-    /// Use `(?i)` in `pattern` for `re.IGNORECASE`; `\Z` is accepted as in Python.
+    /// Use `(?i)` in `pattern` for `re.IGNORECASE`; `\Z` is accepted as an end-of-string anchor.
     pub fn new(pattern: &str) -> Result<Self> {
         Ok(Self {
             regex: compile(pattern)?,
@@ -552,7 +552,7 @@ limit_validator!(
     "Ensure this value is greater than or equal to %(limit_value)s."
 );
 
-/// `StepValueValidator` (floating-point arithmetic, like Python's `math.remainder`).
+/// `StepValueValidator` (floating-point arithmetic, like `math.remainder`).
 #[derive(Debug, Clone)]
 pub struct StepValueValidator {
     pub limit: f64,

@@ -164,7 +164,7 @@ impl<'a> BoundField<'a> {
     pub fn has_changed(&self) -> bool {
         let initial = if self.field.show_hidden_initial {
             let v = self.form.widget_data_value(&self.field.hidden_widget(), &self.html_initial_name);
-            match self.field.to_python(&v) {
+            match self.field.to_clean(&v) {
                 Ok(v) => v,
                 Err(_) => return true,
             }

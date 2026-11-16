@@ -657,7 +657,7 @@ impl Query {
         let mut clause = WhereNode::default();
         clause.children.push(WhereChild::Lookup(resolved));
         if current_negated && (lookup != "isnull" || matches!(&rhs, Rhs::Val(Value::Bool(false)))) && !matches!(&rhs, Rhs::Val(Value::Null)) {
-            // The `col IS NOT NULL` guard that makes NOT (col = x) behave like Python.
+            // The `col IS NOT NULL` guard that makes NOT (col = x) behave as expected with NULLs.
             if lookup != "isnull" && nullable {
                 if let Some(c) = lhs.base_col() {
                     clause.children.push(WhereChild::Lookup(ResolvedLookup {

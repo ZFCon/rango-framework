@@ -201,7 +201,7 @@ Options on a field kind they do not belong to are accepted and ignored (for exam
 except that `max_length`, `min_length`, `min_value` and `max_value` always add their validator.
 
 Methods you may call on a built field: `clean(&Value) -> Result<Value, ValidationError>` (the whole pipeline),
-`to_python(&Value)`, `has_changed(&initial, &data)` and `hidden_widget()`.
+`to_clean(&Value)`, `has_changed(&initial, &data)` and `hidden_widget()`.
 
 ## `#[derive(Form)]`
 

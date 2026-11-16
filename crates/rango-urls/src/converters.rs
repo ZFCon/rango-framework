@@ -9,8 +9,8 @@ use crate::view::Arg;
 pub trait PathConverter: Send + Sync {
     /// Regex fragment matched by the parameter.
     fn regex(&self) -> &str;
-    /// `to_python`: `None` means "does not match" (the `ValueError`).
-    fn to_python(&self, value: &str) -> Option<Arg>;
+    /// `to_clean`: `None` means "does not match" (the `ValueError`).
+    fn to_clean(&self, value: &str) -> Option<Arg>;
     /// `to_url`: `None` means the value cannot be reversed.
     fn to_url(&self, value: &str) -> Option<String> {
         Some(value.to_owned())
@@ -27,7 +27,7 @@ impl PathConverter for IntConverter {
     fn regex(&self) -> &str {
         "[0-9]+"
     }
-    fn to_python(&self, v: &str) -> Option<Arg> {
+    fn to_clean(&self, v: &str) -> Option<Arg> {
         v.parse().ok().map(Arg::Int)
     }
 }
@@ -35,7 +35,7 @@ impl PathConverter for StringConverter {
     fn regex(&self) -> &str {
         "[^/]+"
     }
-    fn to_python(&self, v: &str) -> Option<Arg> {
+    fn to_clean(&self, v: &str) -> Option<Arg> {
         Some(Arg::Str(v.to_owned()))
     }
 }
@@ -43,7 +43,7 @@ impl PathConverter for SlugConverter {
     fn regex(&self) -> &str {
         "[-a-zA-Z0-9_]+"
     }
-    fn to_python(&self, v: &str) -> Option<Arg> {
+    fn to_clean(&self, v: &str) -> Option<Arg> {
         Some(Arg::Str(v.to_owned()))
     }
 }
@@ -51,7 +51,7 @@ impl PathConverter for PathConv {
     fn regex(&self) -> &str {
         ".+"
     }
-    fn to_python(&self, v: &str) -> Option<Arg> {
+    fn to_clean(&self, v: &str) -> Option<Arg> {
         Some(Arg::Str(v.to_owned()))
     }
 }
@@ -59,7 +59,7 @@ impl PathConverter for UuidConverter {
     fn regex(&self) -> &str {
         "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
     }
-    fn to_python(&self, v: &str) -> Option<Arg> {
+    fn to_clean(&self, v: &str) -> Option<Arg> {
         v.parse().ok().map(Arg::Uuid)
     }
 }

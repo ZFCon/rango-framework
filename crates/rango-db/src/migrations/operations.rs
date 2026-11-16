@@ -11,7 +11,7 @@ use crate::migrations::schema::SchemaEditor;
 use crate::migrations::state::ProjectState;
 use crate::models::meta::{Field, Index, ModelMeta};
 
-/// Callable run by `RunCode` (the `RunPython`).
+/// Callable run by `RunCode` (run arbitrary Rust code in a migration).
 pub type CodeFn = Arc<dyn for<'a> Fn(&'a dyn Executor) -> BoxFuture<'a, Result<()>> + Send + Sync>;
 
 #[derive(Clone)]

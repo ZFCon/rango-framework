@@ -12,7 +12,7 @@
 //! # });
 //! ```
 //!
-//! Differences from Python: senders are identified by a label string (a model's
+//! Differences: senders are identified by a label string (a model's
 //! `"app_label.ModelName"`, a type name, ...) instead of object identity; there are no weak
 //! references (Rust ownership: `disconnect` explicitly); a signal is typed by its argument
 //! struct `A` and the receivers' return type `R`.

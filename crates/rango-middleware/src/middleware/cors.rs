@@ -15,7 +15,7 @@ use regex::Regex;
 
 use crate::handlers::{GetResponse, Middleware};
 
-/// Python `re.match`: anchored at the start only.
+/// `re.match`: anchored at the start only.
 fn re_match(pattern: &str, text: &str) -> bool {
     Regex::new(&format!("^(?:{pattern})")).is_ok_and(|r| r.is_match(text))
 }

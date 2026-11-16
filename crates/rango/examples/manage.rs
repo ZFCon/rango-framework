@@ -1,4 +1,4 @@
-//! `manage.py` for a tiny demo project: `cargo run -p rango --example manage -- help`.
+//! A management entry point for a tiny demo project: `cargo run -p rango --example manage -- help`.
 
 use rango::apps::AppConfig;
 use rango::conf::{self, Settings};

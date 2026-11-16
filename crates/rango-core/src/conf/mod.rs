@@ -21,7 +21,7 @@ pub use global_settings::Settings;
 
 use crate::exceptions::{Error, Result};
 
-/// Free-form (Python-dict-like) setting values.
+/// Free-form setting values.
 pub type Json = serde_json::Value;
 
 pub(crate) fn vs<const N: usize>(items: [&str; N]) -> Vec<String> {

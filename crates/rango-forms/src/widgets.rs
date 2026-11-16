@@ -942,7 +942,7 @@ pub fn month_name(m: i32) -> String {
     gettext(NAMES[(m - 1) as usize])
 }
 
-/// Python `strftime` on a date/time/datetime value (`%f` is microseconds).
+/// `strftime` on a date/time/datetime value (`%f` is microseconds).
 pub fn strftime_value(v: &Value, fmt: &str) -> String {
     let render = |nanos: u32, f: &dyn Fn(&str) -> String| f(&fmt.replace("%f", "\u{1}")).replace('\u{1}', &format!("{:06}", nanos / 1000));
     match v {

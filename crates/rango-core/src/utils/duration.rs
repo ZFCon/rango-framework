@@ -36,7 +36,7 @@ pub fn duration_microseconds(d: TimeDelta) -> i64 {
     d.num_microseconds().unwrap_or(i64::MAX)
 }
 
-/// Python `timedelta` normalization: `days` may be negative, the rest are non-negative.
+/// `timedelta` normalization: `days` may be negative, the rest are non-negative.
 fn components(d: TimeDelta) -> (i64, i64, i64, i64, i64) {
     let total_us = d.num_microseconds().unwrap_or(0);
     let day_us = 86_400_000_000i64;

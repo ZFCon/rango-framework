@@ -1,7 +1,7 @@
 //! `core.cache`: the cache framework.
 //!
 //! Values are stored serialized (JSON bytes), so any `Serialize + DeserializeOwned` type can be
-//! cached; the on-disk/in-memory format is not Python's pickle (documented divergence).
+//! cached; values are stored as JSON.
 
 pub mod backends;
 

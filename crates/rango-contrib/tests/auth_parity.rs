@@ -23,7 +23,7 @@ fn hashers_match_rango() {
             assert!(!check_password(Some("nope"), enc).0);
         }
     }
-    // Round trips for the algorithms Python could not produce here.
+    // Round trips for the algorithms with no golden hash here.
     for algo in ["argon2", "bcrypt_sha256", "bcrypt"] {
         let enc = make_password(Some("hunter2"), None, algo).unwrap();
         assert!(enc.starts_with(&format!("{algo}$")), "{enc}");

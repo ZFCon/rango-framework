@@ -1,5 +1,5 @@
 //! `core.management`: command discovery, `call_command`, and the
-//! `manage.py` / `rango-admin` entry point.
+//! `rango-admin` / project entry point.
 
 mod base;
 pub mod commands;
@@ -164,7 +164,7 @@ pub fn main_help_text(prog_name: &str) -> String {
     out
 }
 
-/// `execute_from_command_line(argv)`: the body of `manage.py`. Returns the process exit code.
+/// `execute_from_command_line(argv)`: the body of a project's `main`. Returns the process exit code.
 pub async fn execute_from_command_line(argv: impl IntoIterator<Item = String>) -> i32 {
     let argv: Vec<String> = argv.into_iter().collect();
     let prog = argv

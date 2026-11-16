@@ -97,7 +97,7 @@ impl CheckMessage {
         }
     }
 
-    /// Level name as `manage.py check` prints it (`ERRORS`, `WARNINGS`, ...).
+    /// Level name as the `check` command prints it (`ERRORS`, `WARNINGS`, ...).
     pub fn level_name(level: u32) -> &'static str {
         match level {
             0..DEBUG => "DEBUGS",

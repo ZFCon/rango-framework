@@ -94,7 +94,7 @@ impl Pattern {
             if let Some(m) = caps.name(name) {
                 let value = m.as_str();
                 let arg = match self.converters.get(name) {
-                    Some(c) => c.to_python(value)?,
+                    Some(c) => c.to_clean(value)?,
                     None => Arg::Str(value.to_owned()),
                 };
                 kwargs.insert(name.to_owned(), arg);
@@ -508,7 +508,7 @@ impl UrlResolver {
     }
 }
 
-/// Substitute `%(name)s` placeholders (Python `%` formatting with a dict).
+/// Substitute `%(name)s` placeholders (`%` formatting with a dict).
 fn percent_format(template: &str, subs: &IndexMap<String, String>) -> String {
     let mut out = String::new();
     let mut rest = template;

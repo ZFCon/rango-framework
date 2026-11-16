@@ -1,4 +1,4 @@
-//! URL resolving/reversing parity with the reference (cases recorded by `tools/gen_urls_golden.py`).
+//! URL resolving/reversing parity with the reference.
 
 use indexmap::IndexMap;
 use rango_core::conf::{self, Settings};
