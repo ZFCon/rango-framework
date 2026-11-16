@@ -31,6 +31,22 @@ Repository: <https://github.com/ZFCon/rango-framework>
 - `docs/guide.md` — module map, rules of thumb, design notes.
 - `docs/features.md` — feature-by-feature checklist, including what is partial or not started.
 
+## Performance
+
+Requests per second on the same 16-core machine, same endpoints, same default middleware (security, sessions, CSRF,
+auth, messages), debug off. Rango was a release build. Load: `oha -z 10s -c 64`, run on the same box.
+
+| Endpoint | Rango | Python web framework (gunicorn, 16 workers) | NestJS (Express, 1 process) |
+|---|---|---|---|
+| `/hello` plain text | **31,280** | 17,046 (Rango 1.8x) | 7,860 (Rango 4.0x) |
+| `/json` small JSON | **31,048** | 16,660 (1.9x) | 7,344 (4.2x) |
+| `/db` 20 rows from SQLite as JSON | **21,942** | 7,229 (3.0x) | 4,946 (4.4x) |
+
+Median latency on `/db`: Rango 2.9 ms, the Python framework 8.7 ms, NestJS 12.2 ms.
+
+A small, single-run test, not a rigorous benchmark. NestJS ran as one Node process; a cluster of processes would score
+several times higher. Real applications with templates, forms and heavier queries will see smaller gaps.
+
 **Included:** core, HTTP/URLs/views, ORM + migrations (SQLite, PostgreSQL), templates, forms, generic views, contrib
 (auth, sessions, messages, contenttypes, staticfiles, sites, redirects, flatpages, sitemaps, syndication, admin), cache,
 mail, files, serializers, gettext i18n and locale formats, REST framework (serializers, viewsets, routers), OpenAPI docs
