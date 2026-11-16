@@ -15,7 +15,7 @@ $ cargo run -- runserver
 
 The generated `Cargo.toml` depends on `rangoframework`; in code the library is called `rango` (`use rango::...`).
 
-`src/main.rs` is your `manage.py`: `cargo run -- <command>`. Register the app by name in
+`src/main.rs` is your project's command-line entry point: `cargo run -- <command>`. Register the app by name in
 `src/settings.rs` (`installed_apps: vec!["polls".into()]`) and include its URLs in `src/urls.rs`:
 
 ```rust
