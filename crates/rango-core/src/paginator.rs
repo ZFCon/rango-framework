@@ -69,7 +69,8 @@ impl<S: PageSource> Paginator<S> {
     pub fn new(object_list: S, per_page: usize) -> Self {
         Self {
             object_list,
-            per_page,
+            // A page size of 0 would divide by zero; treat it as 1.
+            per_page: per_page.max(1),
             orphans: 0,
             allow_empty_first_page: true,
             error_messages: ErrorMessages::default(),
@@ -189,10 +190,8 @@ impl<S: PageSource> Paginator<S> {
             Err(InvalidPage::PageNotAnInteger(_)) => 1,
             Err(InvalidPage::EmptyPage(_)) => self.num_pages().await?,
         };
-        Ok(self
-            .page(number as i64)
-            .await?
-            .expect("validated page number"))
+        // `None` only when there is no page at all (empty list with `allow_empty_first_page(false)`).
+        self.page(number as i64).await?.map_err(|e| crate::Error::Other(format!("{e:?}").into()))
     }
 
     /// `get_elided_page_range()`: e.g. `1, 2, …, 40, 41, 42, 43, 44, 45, 46, …, 49, 50`.

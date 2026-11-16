@@ -29,7 +29,14 @@ pub struct QuerySet<M: Model> {
 
 impl<M: Model> Clone for QuerySet<M> {
     fn clone(&self) -> Self {
-        QuerySet { query: self.query.clone(), prefetch: self.prefetch.clone(), error: None, _m: PhantomData }
+        // A recorded build error (bad field name in a filter) must survive cloning, or `get`/`first`
+        // would silently run the query without the broken filter.
+        let error = self.error.as_ref().map(|e| match e {
+            Error::FieldError(m) => Error::FieldError(m.clone()),
+            Error::LookupError(m) => Error::LookupError(m.clone()),
+            other => Error::Other(other.to_string().into()),
+        });
+        QuerySet { query: self.query.clone(), prefetch: self.prefetch.clone(), error, _m: PhantomData }
     }
 }
 

@@ -5,12 +5,23 @@
 //! API: register viewsets on a `rango::rest::Router` and `path("api/", include(router.urls()))`;
 //! they appear in the OpenAPI document served below.
 
+use rango::http::{HttpRequest, HttpResponse};
 use rango::rest::schema;
 use rango::urls::path;
-use rango::{register_urlconf, urlpatterns};
+use rango::{Error, Result, register_urlconf, urlpatterns};
+
+/// Development-only static file serving (app `static/` directories and `staticfiles_dirs`).
+/// With `debug: false` use `collectstatic` and let the web server serve the files.
+async fn static_files(req: HttpRequest, path: String) -> Result<HttpResponse> {
+    if !rango::conf::settings().debug {
+        return Err(Error::Http404("static files are served by the web server in production".into()));
+    }
+    rango::contrib::staticfiles::serve(&req, &path).await
+}
 
 register_urlconf!("{{ project_name }}.urls", || urlpatterns![
     // path("polls/", rango::urls::include("polls.urls")),
+    path("static/<path:path>", static_files),
     path("api/schema/", schema::schema_view()).name("schema"),
     path("api/docs/", schema::swagger_view("/api/schema/")).name("swagger-ui"),
     path("api/redoc/", schema::redoc_view("/api/schema/")).name("redoc"),

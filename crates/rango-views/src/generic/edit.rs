@@ -110,6 +110,13 @@ struct ModelEdit<M: Model> {
 }
 
 impl<M: Model> ModelEdit<M> {
+    /// Called before saving: with neither a `success_url` nor an object URL the save would succeed and then fail.
+    fn ensure_target(&self) -> Result<()> {
+        if self.success_url.is_none() && self.absolute_url.is_none() {
+            return Err(Error::improperly_configured("No URL to redirect to.  Either provide a url or define a get_absolute_url method on the Model."));
+        }
+        Ok(())
+    }
     fn success(&self, req: &HttpRequest, obj: &M) -> Result<String> {
         if let Some(f) = &self.success_url {
             return f(req);
@@ -214,6 +221,7 @@ impl<M: Model + Default> View for CreateView<M> {
         if !form.is_valid(&db).await? {
             return form_response(&req, args, &self.inner.detail, form.form(), None);
         }
+        self.inner.ensure_target()?;
         let obj = form.save(&db).await?;
         redirect_to(&self.inner.success(&req, obj)?)
     }
@@ -252,6 +260,7 @@ impl<M: Model> View for UpdateView<M> {
         if !form.is_valid(&db).await? {
             return form_response(&req, args, &self.inner.detail, form.form(), Some(&form.instance));
         }
+        self.inner.ensure_target()?;
         let obj = form.save(&db).await?;
         redirect_to(&self.inner.success(&req, obj)?)
     }
@@ -300,7 +309,7 @@ impl<M: Model> Default for DeleteView<M> {
 #[async_trait]
 impl<M: Model> View for DeleteView<M> {
     fn allowed_methods(&self) -> Vec<&'static str> {
-        vec!["GET", "HEAD", "POST", "DELETE", "PUT", "PATCH", "OPTIONS"]
+        vec!["GET", "HEAD", "POST", "DELETE", "OPTIONS"]
     }
     async fn get(&self, req: HttpRequest, args: &ViewArgs) -> Result<HttpResponse> {
         let db = Db::using(&self.detail.using);
@@ -311,9 +320,10 @@ impl<M: Model> View for DeleteView<M> {
     async fn post(&self, req: HttpRequest, args: &ViewArgs) -> Result<HttpResponse> {
         let db = Db::using(&self.detail.using);
         let obj = self.detail.get_object(&req, args, &db).await?;
+        // Resolve the redirect first: a missing success_url must not leave the row deleted.
+        let url = self.success_url.as_ref().ok_or_else(|| Error::improperly_configured("No URL to redirect to. Provide a success_url."))?(&req)?;
         let pk = obj.pk_value();
         rango_db::models::deletion::delete_pks(&db as &dyn Executor, &M::label(), vec![pk]).await?;
-        let url = self.success_url.as_ref().ok_or_else(|| Error::improperly_configured("No URL to redirect to. Provide a success_url."))?(&req)?;
         redirect_to(&url)
     }
     async fn delete(&self, req: HttpRequest, args: &ViewArgs) -> Result<HttpResponse> {

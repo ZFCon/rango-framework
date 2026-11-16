@@ -131,6 +131,13 @@ async fn exercise(db: &dyn Executor) {
     assert_eq!(Author::objects().none().count(db).await.unwrap(), 0);
     assert_eq!(Author::objects().in_bulk(db, vec![Value::Int(1), Value::Int(2)]).await.unwrap().len(), 2);
 
+    // --- lookups on the relation itself, and sticky build errors
+    assert_eq!(Choice::objects().filter_q(Q::is_in("question", [1, 2])).count(db).await.unwrap(), 3);
+    assert_eq!(Choice::objects().filter_q(Q::is_in("question", [2])).count(db).await.unwrap(), 1);
+    assert_eq!(Choice::objects().filter_kw("question__isnull", false).count(db).await.unwrap(), 3);
+    let bad = Choice::objects().filter_kw("typo", 1);
+    assert!(bad.get(db).await.is_err() && bad.first(db).await.is_err() && bad.count(db).await.is_err(), "a bad filter name must not be dropped by clone");
+
     // --- cascading delete, protect
     let (total, per_model) = Question::objects().filter_kw("id", 1).delete(db).await.unwrap();
     assert_eq!(total, 3, "{per_model:?}");
@@ -220,3 +227,4 @@ async fn sqlite_and_postgres() {
         println!("postgres skipped (no server on 127.0.0.1:54329)");
     }
 }
+

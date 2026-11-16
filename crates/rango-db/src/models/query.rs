@@ -565,7 +565,10 @@ impl Query {
         let used_joins: HashSet<String> = joins.into_iter().filter(|a| self.alias_map.get(a).is_some_and(|j| j.join_type != JoinType::Base)).collect();
         let mut rest: Vec<String> = parts[consumed..].to_vec();
         // The field.
-        let (field, alias, opts, traversed_relation_target) = if rest.is_empty() {
+        // `question__in=[..]` / `question__isnull=true`: the path ends on the relation itself and the
+        // rest is a lookup, so compare the target's primary key (as `question=1` does).
+        let relation_lookup = consumed > 0 && rest.first().is_some_and(|r| r != "pk" && opts.get_field(r).is_none() && (crate::models::lookups::is_lookup(r) || crate::models::lookups::is_transform(r)));
+        let (field, alias, opts, traversed_relation_target) = if rest.is_empty() || relation_lookup {
             // `question=1` style: filter on the relation itself -> target pk.
             if consumed > 0 {
                 let f = opts.pk().clone();

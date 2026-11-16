@@ -8,4 +8,4 @@ mod tests;
 pub mod urls;
 pub mod views;
 
-rango::register_app!(rango::apps::AppConfig::new("{{ app_name }}"));
+rango::register_app!(rango::apps::AppConfig::new("{{ app_name }}").path(concat!(env!("CARGO_MANIFEST_DIR"), "/src/{{ app_name }}")));

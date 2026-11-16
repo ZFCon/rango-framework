@@ -14,6 +14,7 @@ cd mysite
 grep -q "^mod polls;" src/main.rs
 sed -i 's|installed_apps: vec!\[\],|installed_apps: vec!["polls".into()],|' src/settings.rs
 sed -i 's|// path("polls/", rango::urls::include("polls.urls")),|rango::urls::path("polls/", rango::urls::include("polls.urls")),|' src/urls.rs
+mkdir -p src/polls/static/polls && echo "body{}" > src/polls/static/polls/a.css
 cat > src/polls/models.rs <<'RS'
 //! Models for the polls app.
 
@@ -64,6 +65,7 @@ echo "$BODY" | grep -q "Hello, world. You're at the polls index."
 CODE="$(curl -s -o /dev/null -w '%{http_code}' "http://127.0.0.1:$PORT/nope/")"
 test "$CODE" = "404"
 curl -s -H 'Accept: text/html' "http://127.0.0.1:$PORT/" | grep -q "Page not found"
+curl -s "http://127.0.0.1:$PORT/static/polls/a.css" | grep -q 'body{}'
 curl -s "http://127.0.0.1:$PORT/api/schema/" | grep -q '"openapi": "3.0.3"'
 curl -s "http://127.0.0.1:$PORT/api/docs/" | grep -q "swagger-ui"
 curl -s -H 'Origin: https://x.example' -D - -o /dev/null "http://127.0.0.1:$PORT/polls/" | grep -qi "^vary:.*origin"
